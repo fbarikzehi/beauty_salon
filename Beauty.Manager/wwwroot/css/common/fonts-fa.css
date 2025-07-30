@@ -1,0 +1,38 @@
+﻿@font-face {
+    font-family: 'iransansweb';
+    src: url('../../fonts/iransansweb/iransansweb.ttf') format('truetype'), url('../../fonts/iransansweb/iransansweb.woff') format('woff'), url('../../fonts/iransansweb/iransansweb.woff2') format('woff2');
+}
+
+@font-face {
+    font-family: 'iranyekanwebblack';
+    src: url('../../fonts/iranyekanweb/iranyekanwebblack.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'iranyekanwebbold';
+    src: url('../../fonts/iranyekanweb/iranyekanwebbold.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'iranyekanwebextrabold';
+    src: url('../../fonts/iranyekanweb/iranyekanwebextrabold.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'iranyekanweblight';
+    src: url('../../fonts/iranyekanweb/iranyekanweblight.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'iranyekanwebmedium';
+    src: url('../../fonts/iranyekanweb/iranyekanwebmedium.woff') format('woff');
+}
+
+@font-face {
+    font-family: 'iranyekanwebregular';
+    src: url('../../fonts/iranyekanweb/iranyekanwebregular.woff') format('woff');
+}
+@font-face {
+    font-family: 'yekannumbers-regular';
+    src: url('../../fonts/yekannumbers-regular.woff') format('woff');
+}

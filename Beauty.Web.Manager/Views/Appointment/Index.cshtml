@@ -1,0 +1,588 @@
+﻿@model Beauty.Application.Modules.Appointment.ViewModel.AppointmentCreateViewModel
+@{
+    ViewData["Title"] = PageTitleResource.AppointmentIndex;
+
+    int personnelCount = Model.Personnels.ToList().Count;
+    int cardHeight = 130;
+}
+
+<link href="~/lib/jalali.datetimepicker/jalali.datetimepicker.css" rel="stylesheet" />
+<link href="~/theme/app-assets/vendors/css/extensions/sweetalert2.min.css" rel="stylesheet" />
+<style>
+    #scheduler-table > thead {
+        background: azure;
+    }
+
+    .time-header-cell {
+        width: 300px;
+        min-width: 300px !important;
+    }
+
+    table, th, td, tr {
+        font-size: 16px !important;
+        font-weight: bolder !important;
+    }
+
+    .time-hour-cell {
+        background: #b0b5d58c;
+        color: #2b2671;
+        padding-top: 11px;
+        width: 45px;
+        height: 45px;
+        border-radius: 100%;
+        text-align: center;
+    }
+
+    #current-time-hour {
+        background: #0b25b5;
+        color: white;
+        padding-top: 11px;
+        width: 45px;
+        height: 45px;
+        border-radius: 100%;
+        text-align: center;
+    }
+
+    .personnel-name {
+    }
+
+    .appointment-cell {
+        cursor: pointer;
+    }
+
+    .appointment-cell-name {
+        background: #b10909;
+        padding: 3px;
+        color: white;
+        width: auto;
+        height: 32px;
+        border-radius: 4px;
+        text-align: center;
+        float: right;
+        margin-left: 4px;
+    }
+
+    .appointment-cell-mobile {
+        background: #0935b1;
+        padding: 3px 1px;
+        width: 120px;
+        height: 32px;
+        color: white;
+        border-radius: 4px;
+        text-align: center;
+        float: right;
+        margin-left: 4px;
+    }
+
+    .appointment-cell-time {
+        background: #b10909;
+        padding: 3px;
+        width: 40px;
+        height: 32px;
+        color: white;
+        border-radius: 6px;
+        text-align: center;
+        float: left;
+    }
+
+    .appointment-card {
+        height: @(cardHeight.ToString() + "px");
+        padding: 10px;
+        border-radius: 6px;
+        margin-top: 5px;
+        position: inherit;
+        width: 100%;
+        cursor:pointer;
+    }
+    .appointment-card-pendding {
+        background: #673AB7;
+    }
+    .appointment-card-done {
+        background: #bdbdbd;
+    }
+    #appointment-customer-details {
+        width: 100%;
+        background: #ffffff;
+        position: fixed;
+        display: block;
+        z-index: 9999999;
+        top: 0;
+        right: 0;
+        left: 0;
+        display: none;
+        box-shadow: 0 0 20px 0px black;
+    }
+
+    #customer_appointent_services_wrapper, #customer_appointent_services_wrapper label, #customer_appointent_services_wrapper table {
+        font-size: 15px !important;
+        font-weight: bolder;
+        font-family: 'bnazanin';
+    }
+
+        #customer_appointent_services_wrapper table, #customer_appointent_services_wrapper table th, #customer_appointent_services_wrapper table td {
+            border: 1px solid #00000038;
+        }
+
+        #customer_appointent_services_wrapper table thead th {
+            text-align: center;
+        }
+    table::-webkit-scrollbar {
+        display: none;
+    }
+    .dropdown-menu > a {
+        font-size: 13px;
+        font-weight: bolder;
+    }
+</style>
+<div id="appointment-customer-details" data-state="false">
+    <div class="card" style="margin-bottom: 0;">
+        <div class="card-content">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-ms-12">
+                        <fieldset style="border: .5px solid #bdbcbc;padding: 10px;">
+                            <legend style="width: auto; padding: -1px; margin-right: 13px; font-size: 16px;">اطلاعات مشتری</legend>
+                            @using (Html.BeginForm("Create", "Appointment", FormMethod.Post, new { @class = "form", id = "appointment_frm", autocomplete = "off" }))
+                            {
+                                <div class="form-body">
+                                    <div class="row">
+                                        <div class="col-md-4 col-lg-4 col-sm-12 col-12">
+                                            <div class="form-label-group">
+                                                <input type="hidden" id="CustomerProfileId" name="CustomerProfileId" />
+                                                <input type="text"
+                                                       id="CustomerProfileName"
+                                                       class="form-control customerProfile_title"
+                                                       name="CustomerProfileName"
+                                                       placeholder="نام مشتری  *"
+                                                       onkeyup="customer_dropselect(this.value,'customerProfile_search_item','CustomerProfileId','set_customer_values_appointment')" />
+                                                <label for="CustomerProfileName">نام مشتری <span class="text-danger">*</span></label>
+                                                <ul id="customerProfile_search_item" class="search_dropdown hide-select-dropdown"></ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-lg-4 col-sm-12 col-12">
+                                            <div class="form-label-group">
+                                                <input type="text" id="MemberCode" class="form-control" name="MemberCode" placeholder="کد مشتری" readonly="readonly" />
+                                                <label for="MemberCode">کد مشتری</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4 col-lg-4 col-sm-12 col-12">
+                                            <div class="form-label-group">
+                                                <input class="form-control" id="CustomerMobile" name="CustomerMobile" type="text" readonly="readonly" placeholder="موبایل مشتری" />
+                                                <label for="CustomerMobile">موبایل مشتری </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-2 col-lg-2 col-sm-12 col-12">
+                                            <label for="PersonnelId">پرسنل </label>
+                                            <fieldset class="form-group position-relative has-icon-left input-divider-left">
+                                                <select class="form-control" id="PersonnelId" name="Service.PersonnelId" onchange="load_personnel_services()">
+                                                    <option value="">پرسنل را انتخاب کنید</option>
+                                                </select>
+                                                <div class="form-control-position">
+                                                    <i class="feather icon-user-check"></i>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-md-4 col-lg-4 col-sm-12 col-12">
+                                            <label for="ServiceId">خدمت پرسنل </label>
+                                            <fieldset class="form-group position-relative has-icon-left input-divider-left">
+                                                <select class="form-control" id="ServiceId" name="Service.ServiceId">
+                                                    <option value="">خدمت را انتخاب کنید</option>
+                                                </select>
+                                                <div class="form-control-position">
+                                                    <i class="feather icon-grid"></i>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-md-2 col-lg-2 col-sm-12 col-12">
+                                            <label for="Date">تاریخ مراجعه </label>
+                                            <fieldset class="form-group position-relative has-icon-left input-divider-left">
+                                                <input class="form-control" id="Date" name="Date" type="text" readonly="readonly" />
+                                                <div class="form-control-position">
+                                                    <i class="feather icon-calendar"></i>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-md-3 col-lg-2 col-sm-12 col-12">
+                                            <label for="Time">زمان مراجعه </label>
+                                            <fieldset class="form-group position-relative">
+                                                <input class="form-control text-center" id="Time" name="Time" type="time" />
+                                                <span class="form-text text-dark" style=" font-size: .8rem !important;">برای انتخاب روی ایکن ساعت کلیک کنید</span>
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-md-2 col-lg-2 col-sm-12 col-12">
+                                            <label for="CreateDateTime">تاریخ ثبت نوبت </label>
+                                            <fieldset class="form-group position-relative has-icon-left input-divider-left">
+                                                <input class="form-control" id="CreateDateTime" name="CreateDateTime" type="text" readonly="readonly" value="@Model.DefaultCreateDateTime" placeholder="تاریخ ثبت نوبت" />
+                                                <div class="form-control-position">
+                                                    <i class="feather icon-calendar"></i>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-md-2 col-lg-2 col-sm-12 col-12">
+                                        </div>
+                                    </div>
+                                    <hr class="mt-0" />
+                                    <button type="button" class="btn btn-success mr-1 waves-effect waves-light" id="save_appointment" style="background:#007e38 !important">ثبت خدمت<i class="feather icon-download"></i></button>
+                                    <button type="button" class="btn btn-warning mr-1 waves-effect waves-light pull-right" onclick="dismiss_appiontment_info()">انصراف<i class="feather icon-x"></i></button>
+                                </div>
+                            }
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<section id="basic-examples">
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-content">
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4 col-lg-4 col-sm-4 pull-right" style="padding: 0rem 6rem;">
+                                <div class="btn-group font-bnazanin font-15-bolder" role="group" aria-label="Basic example">
+                                    <button type="button" id="SalonOpeningTime_clock" data-toggle="modal" data-target="#modal_updateopenclose" class="btn btn-primary  btn-sm waves-effect waves-light" style=" font-size: 14px; font-weight: bolder;">@Model.SalonOpeningTime</button>
+                                    <button type="button" data-toggle="modal" data-target="#modal_updateopenclose" class="btn btn-outline-dark  btn-sm waves-effect waves-light" style=" font-size: 14px; font-weight: bolder;">الی</button>
+                                    <button type="button" id="SalonClosingTime_clock" data-toggle="modal" data-target="#modal_updateopenclose" class="btn btn-danger  btn-sm waves-effect waves-light" style=" font-size: 14px; font-weight: bolder;">@Model.SalonClosingTime</button>
+                                </div>
+                                <span class="form-text text-dark" style=" font-size: .8rem !important;">برای ویرایش ساعت کار سالن کلیک کنید</span>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-4 col-lg-4 col-sm-12">
+                                <button type="button" class="btn btn-icon btn-outline-primary mr-1 mb-1 waves-effect waves-light pull-left  mt-2" onclick="scheduler_right_scroll()"><i class="feather icon-chevron-right"></i></button>
+                                <button type="button" class="btn btn-info waves-effect waves-light   mt-2" onclick="add_out_of_appointment('00:00')"><i class="feather icon-log-in"></i> ثبت خارج از نوبت</button>
+                                <button type="button" data-toggle="modal" data-target="#modal_customer_appointment" class="btn btn-primary waves-effect waves-light   mt-2"><i class="feather icon-search"></i> جستجو نوبت مشتری</button>
+                                <button type="button" class="btn btn-dark waves-effect waves-light   mt-2" onclick="get_scheduler_data()"><i class="feather icon-refresh-cw"></i> بروزرسانی پنل</button>
+                            </div>
+                            <div class="col-md-4 col-lg-4 col-sm-12">
+                                <nav aria-label="Page navigation example">
+                                    <ul class="pagination justify-content-center mt-2">
+                                        <li class="page-item prev-item">
+                                            <button type="button"
+                                                    class="page-link"
+                                                    onclick="date_updown('prev')"
+                                                    style="border-radius: 0 5px 5px 0;">
+                                                روز قبل
+                                            </button>
+                                        </li>
+                                        <li class="page-item active" style="border-radius: 0 !important;background-color: #7367F0;" aria-current="page">
+                                            <a class="page-link date-holder"
+                                               href="#"
+                                               id="current_date"
+                                               data-year="1399"
+                                               data-month="12"
+                                               data-day="20"
+                                               style="border-radius: 0!important;background-color: transparent;font-family: 'bnazanin';font-weight:bolder;font-size: 17px;padding: .50rem .911rem;"></a>
+                                        </li>
+                                        <li class="page-item next-item">
+                                            <button type="button"
+                                                    class="page-link"
+                                                    onclick="date_updown('next')"
+                                                    style="border-radius: 5px 0 0 5px ;">
+                                                روز بعد
+                                            </button>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </div>
+                            <div class="col-md-4 col-lg-4 col-sm-12">
+                                <button type="button" class="btn btn-icon btn-outline-primary mr-1 mb-1 waves-effect waves-light pull-right  mt-2" onclick="scheduler_left_scroll()"><i class="feather icon-chevron-left"></i></button>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="spinner-border text-danger" role="status" id="scheduler_loader" style="position: absolute; z-index: 999; right: 50%; top: 32%;display:none">
+                                <span class="sr-only">لطفا صبر کنید...</span>
+                            </div>
+                            <div class="col-md-12 col-lg-12 col-sm-12" id="scheduler">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<div class="modal fade text-left" id="modal_updateopenclose" tabindex="-1" role="dialog" aria-labelledby="myModalLabel17" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary white">
+                <h4 class="modal-title" id="myModalLabel17">ویرایش ساعت کاری سالن</h4>
+            </div>
+            <div class="modal-body mt-75 mb-25">
+                @using (Html.BeginForm("UpdateOpeningAndClosingTime", "Salon", FormMethod.Post, new { @class = "form", id = "openingAndClosingTime_frm", autocomplete = "off" }))
+                {
+                    <input type="hidden" id="SalonId" name="SalonId" value="@Model.SalonId">
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-6 col-lg-6 col-sm-12 col-12">
+                                <label for="Time">زمان شروع </label>
+                                <fieldset class="form-group position-relative">
+                                    <input class="form-control text-center" id="OpeningTime" name="OpeningTime" type="time" value="@Model.SalonOpeningTime" />
+                                    <span class="form-text text-dark" style=" font-size: .8rem !important;">برای انتخاب روی ایکن ساعت کلیک کنید</span>
+                                </fieldset>
+                            </div>
+                            <div class="col-md-6 col-lg-6 col-sm-12 col-12">
+                                <label for="Time">زمان پایان </label>
+                                <fieldset class="form-group position-relative">
+                                    <input class="form-control text-center" id="ClosingTime" name="ClosingTime" type="time" value="@Model.SalonClosingTime" />
+                                    <span class="form-text text-dark" style=" font-size: .8rem !important;">برای انتخاب روی ایکن ساعت کلیک کنید</span>
+                                </fieldset>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-warning" data-dismiss="modal">انصراف</button>
+                <button type="button" class="btn btn-primary" id="submit_UpdateOpeningAndClosingTime">ثبت</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade text-left" id="modal_customer_appointment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel17" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary white">
+                <h4 class="modal-title" id="myModalLabel17">نوبت مشتری</h4>
+                <button type="button" class="btn btn-warning" data-dismiss="modal">انصراف</button>
+            </div>
+            <div class="modal-body mt-75 mb-25" style="min-height: 674px;">
+                <div class="form-body">
+                    @using (Html.BeginForm("Create", "Appointment", FormMethod.Post, new { @class = "form", id = "customer_appointment_frm", autocomplete = "off" }))
+                    {
+                        <fieldset style="border: .5px solid #bdbcbc;padding: 10px;">
+                            <legend style="width: auto; padding: -1px; margin-right: 13px; font-size: 16px;">مشتری</legend>
+                            <div class="row">
+                                <div class="col-md-3 col-lg-3 col-sm-12 col-12">
+                                    <input type="hidden" id="appointmentCustomerProfileId" name="appointmentCustomerProfileId" />
+                                    <label for="appointmentCustomerProfileName">نام مشتری</label>
+                                    <fieldset class="form-group position-relative has-icon-left input-divider-left" style="margin-bottom: 0;">
+                                        <input class="form-control appointmentcustomerProfile_title"
+                                               id="appointmentCustomerProfileName"
+                                               name="appointmentCustomerProfileName"
+                                               placeholder="نام مشتری  *"
+                                               onkeyup="customer_dropselect(this.value,'appointmentcustomerProfile_search_item','appointmentCustomerProfileName','set_customer_values_appointment_details')" />
+                                        <div class="form-control-position">
+                                            <i class="feather icon-user"></i>
+                                        </div>
+                                    </fieldset>
+                                    <ul id="appointmentcustomerProfile_search_item" class="search_dropdown hide-select-dropdown"></ul>
+                                </div>
+                                <div class="col-md-3 col-lg-3 col-sm-12 col-12">
+                                    <label for="appointmentCustomerMemberCode">کد مشتری</label>
+                                    <fieldset class="form-group position-relative has-icon-left input-divider-left" style="margin-bottom: 0;">
+                                        <input class="form-control" id="appointmentCustomerMemberCode" name="appointmentCustomerMemberCode" type="text" readonly="readonly" placeholder="کد مشتری" />
+                                        <div class="form-control-position">
+                                            <i class="feather icon-hash"></i>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-3 col-lg-3 col-sm-12 col-12">
+                                    <label for="appointmentCustomerMobile">موبایل مشتری  </label>
+                                    <fieldset class="form-group position-relative has-icon-left input-divider-left" style="margin-bottom: 0;">
+                                        <input class="form-control" id="appointmentCustomerMobile" name="appointmentCustomerMobile" type="text" readonly="readonly" placeholder="موبایل مشتری" />
+                                        <div class="form-control-position">
+                                            <i class="feather icon-smartphone"></i>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-2 col-lg-2 col-sm-12 col-12">
+                                    <label for="CreateDateTime">تاریخ نوبت </label>
+                                    <fieldset class="form-group position-relative has-icon-left input-divider-left" style="margin-bottom: 0;">
+                                        <input class="form-control" id="appointmentCustomerDate" name="appointmentCustomerDate" type="text" readonly="readonly" value="@Model.DefaultCreateDateTime" placeholder="تاریخ نوبت" />
+                                        <div class="form-control-position">
+                                            <i class="feather icon-calendar"></i>
+                                        </div>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-1 col-lg-1 col-sm-12 col-12">
+                                    <button type="button" onclick="get_customer_details()" class="btn btn-primary waves-effect waves-light mt-2 col-md-12  col-sm-12 col-lg-12"><i class="feather icon-search"></i> جستجو</button>
+                                </div>
+                            </div>
+                        </fieldset>
+                        <fieldset style="border: .5px solid #bdbcbc;padding: 10px;margin-top:1%">
+                            <legend style="width: auto; padding: -1px; margin-right: 13px; font-size: 16px;">خدمات مشتری</legend>
+                            <div id="customer_appointent_services_wrapper">
+
+                            </div>
+                        </fieldset>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade text-left" id="change_personnel_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel17" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content" style="background-color: #262C49;">
+            <div class="modal-header bg-primary white">
+                <h4 class="modal-title" id="myModalLabel17">تعویض پرسنل خدمت</h4>
+            </div>
+            <div class="modal-body mt-75 mb-25">
+                <div class="form-body">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12 col-sm-12 col-12">
+                            <input id="ChangePersonnel_appointmentServiceId" type="hidden" value="0" />
+                            <div class="form-label-group">
+                                <label for="ChangePersonnelId">پرسنل</label>
+                                @Html.DropDownList("ChangePersonnelId", Model.Personnels, "پرسنل جدید را انتخاب کنید", new { @class = "form-control" })
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary pull-left" id="submit_change_personnel"><i class="feather icon-check"></i> ثبت </button>
+                <button type="button" class="btn btn-outline-warning" data-dismiss="modal"><i class="feather icon-x"></i>  انصراف</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade text-left" id="add_service_details_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel17" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable  modal-lg" role="document">
+        <div class="modal-content" style="background-color: #262C49;">
+            <div class="modal-header bg-primary white">
+                <h4 class="modal-title" id="myModalLabel17">ثبت ریزهزینه خدمت</h4>
+            </div>
+            <div class="modal-body mt-75 mb-25">
+                <div class="form-body">
+                    @using (Html.BeginForm("ModifyServiceDetails", "Appointment", FormMethod.Post, new { @class = "form", id = "modifyServiceDetails_appointment_frm", autocomplete = "off" }))
+                    {
+                        <input id="add_service_details_appointmentServiceId" name="AppointmentServiceId" type="hidden" value="0" />
+                        <div class="row">
+                            <div class="col-md-4 col-lg-4 col-sm-12 col-12">
+                                <label style="color: #ffffff;">عنوان </label>
+                            </div>
+                            <div class="col-md-3 col-lg-3 col-sm-12 col-12">
+                                <label style="color: #ffffff;">قیمت واحد</label>
+                            </div>
+                            <div class="col-md-2 col-lg-2 col-sm-12 col-12">
+                                <label style="color: #ffffff;">تعداد</label>
+                            </div>
+                            <div class="col-md-3 col-lg-3 col-sm-12 col-12">
+                                <label style="color: #ffffff;">مبلغ انجام شده</label>
+                            </div>
+                        </div>
+                        <hr style="border-top: 1px solid rgb(255 255 255 / 38%)" />
+                        <div id="add_service_details_items">
+
+                        </div>
+                    }
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary pull-left" id="submit_service_details"><i class="feather icon-check"></i> ثبت </button>
+                <button type="button" class="btn btn-outline-warning" data-dismiss="modal"><i class="feather icon-x"></i>  انصراف</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="modal fade text-left" id="add_discount" tabindex="-1" role="dialog" aria-labelledby="myModalLabel17" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content" style="background-color: #262C49;font-size: 15px !important;font-weight: bolder;font-family: 'bnazanin';">
+            <div class="modal-header bg-primary white">
+                <h4 class="modal-title" id="myModalLabel17">ثبت تخفیف</h4>
+            </div>
+            <div class="modal-body mt-75 mb-25">
+                <div class="form-body">
+                    <div class="row">
+                        <div class="col-md-12 col-lg-12 col-sm-12 col-12">
+                            <label style="color: #ffffff;">مبلغ تخفیف </label>
+                            <fieldset class="form-group position-relative has-icon-left input-divider-left" style="margin-bottom: 0;">
+                                <input class="form-control" id="discount_price" onkeyup="to_price(this)" placeholder="مبلغ تخفیف را وارد کنید" />
+                                <div class="form-control-position">
+                                    <i class="feather icon-calendar"></i>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+
+
+                </div>
+                <hr />
+                <div class="table-responsive">
+                    <table class="table table-bordered mb-0" style="color: #ffffff;">
+                        <thead>
+                            <tr>
+                                <th>ردیف</th>
+                                <th>مبلغ</th>
+                                <th>تاریخ و ساعت</th>
+                                <th>عملیات</th>
+                            </tr>
+                        </thead>
+                        <tbody id="appointment_dicounts">
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary pull-left" id="submit_add_discount"><i class="feather icon-check"></i> ثبت </button>
+                <button type="button" class="btn btn-outline-warning" data-dismiss="modal"><i class="feather icon-x"></i>  انصراف</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="invoice_print_section"></div>
+
+<div class="modal fade text-left" id="cheque_list" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel17" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl" role="document">
+        <div class="modal-content" style="border: 1px solid #8BC34A;border-radius: 0;box-shadow: 0px 20px 20px 20px rgba(0,0,0,.1);">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel17">
+                    لیست چک های ثبت شده
+                </h4>
+                <span class="form-text text-danger" style=" font-size: .8rem !important;">برای خروج از لیست بروی فضای بیرون آن کلیک کنید</span>
+            </div>
+            <div class="modal-body">
+                <fieldset>
+                   
+                </fieldset>
+                <hr />
+                <div class="table-responsive">
+                    <table class="table table-bordered mb-0">
+                        <thead>
+                            <tr>
+                                <th>ردیف</th>
+                                <th>مبلغ</th>
+                                <th>بانک</th>
+                                <th>شماره چک</th>
+                                <th>تاریخ چک</th>
+                                <th>تاریخ ثبت</th>
+                                <th>عملیات</th>
+                            </tr>
+                        </thead>
+                        <tbody id="cheques">
+                          
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/lib/qztray/qz-tray.js"></script>
+    <script src="~/js/qz-printer.js"></script>
+
+    <script src="~/theme/app-assets/vendors/js/extensions/sweetalert2.all.min.js"></script>
+    <script src="~/lib/jquery-inputmask.js"></script>
+    <script src="~/theme/app-assets/vendors/js/extensions/moment.min.js"></script>
+    <script src="~/lib/jalali.datetimepicker/jalali.datetimepicker.js"></script>
+    <script src="~/lib/persian-date.js"></script>
+    <script src="~/lib/mustache.js"></script>
+    <script src="~/lib/humanize.js"></script>
+    <script src="~/js/pages/appointment-index.js"></script>
+}

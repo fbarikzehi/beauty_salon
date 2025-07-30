@@ -1,0 +1,69 @@
+﻿@model Beauty.Application.Modules.Line.ViewModel.LineIndexViewModel
+@{
+    ViewData["Title"] = PageTitleResource.LineIndex;
+}
+
+<div class="row">
+    <div class="col-xl-2 col-md-4 col-sm-6">
+        <button type="button" id="line_modal_btn" class="btn btn-primary mb-2 waves-effect waves-light" data-toggle="modal" data-target="#line_modal" ><i class="feather icon-plus"></i>&nbsp; ثبت لاین جدید</button>
+    </div>
+</div>
+<div class="row" id="lines">
+    @for (int i = 0; i < Model.Lines.Count; i++)
+    {
+        <div class="col-xl-2 col-md-4 col-sm-6"  id="card_id_@(Model.Lines[i].Id)">
+            <div class="card text-center">
+                <div class="card-content">
+                    <div class="card-body">
+                        <div class="avatar bg-rgba-info p-50 m-0 mb-1">
+                            <div class="avatar-content">
+                                <i class="feather icon-award text-info font-medium-5"></i>
+                            </div>
+                        </div>
+                        <h2 class="text-bold-700">@Model.Lines[i].ServiceCount</h2>
+                        <p class="mb-0 line-ellipsis" id="line_title_id_@(Model.Lines[i].Id)">@Model.Lines[i].Title</p>
+                        <hr />
+                        <button type="button" class="btn mr-1 mb-1 btn-success btn-sm waves-effect waves-light" onclick="edit_set('@Model.Lines[i].Id','@Model.Lines[i].Title')"><i class="feather icon-plus"></i> ویرایش</button>
+                        <button type="button" class="btn mr-1 mb-1 btn-danger btn-sm ml-25 waves-effect waves-light" onclick="delete_line('@Model.Lines[i].Id')"><i class="feather icon-x"></i> حذف</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+<div class="modal fade text-left" id="line_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel17" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary white">
+                <h4 class="modal-title" id="myModalLabel17">اطلاعات لاین</h4>
+            </div>
+            <div class="modal-body mt-75 mb-25">
+                @using (Html.BeginForm("Create", "Line", FormMethod.Post, new { @class = "form", id = "line_form", autocomplete = "off" }))
+                {
+                    <input type="hidden" id="Id" name="Entity.Id" value="0">
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-12 col-lg-12 col-sm-12 col-12">
+                                <div class="form-label-group">
+                                    <input type="text" id="Title" class="form-control" name="Entity.Title" placeholder="عنوان *">
+                                    <label for="Title">عنوان <span class="text-danger">*</span></label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary pull-left" id="submit_create_line"><i class="feather icon-check"></i> ثبت </button>
+                <button type="button" class="btn btn-primary pull-left" id="submit_edit_line" style="display:none"><i class="feather icon-check"></i> ثبت تغییرات</button>
+                <button type="button" class="btn btn-outline-warning" data-dismiss="modal"><i class="feather icon-x"></i>  انصراف</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/theme/app-assets/vendors/js/extensions/sweetalert2.all.min.js"></script>
+    <script src="~/js/pages/line-index.js" asp-append-version="true"></script>
+}

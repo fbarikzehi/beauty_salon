@@ -1,0 +1,275 @@
+﻿[data-mdpersiandatetimepicker][disabled] {
+    opacity: 0.5;
+    cursor: default;
+}
+
+.jalali-persian-datetime-picker-container {
+    min-width: 300px;
+    font-size: 12px;
+    position: relative;
+    overflow: visible;
+    z-index: 999999;
+}
+
+    .jalali-persian-datetime-picker-container.rtl {
+        direction: rtl;
+    }
+
+    .jalali-persian-datetime-picker-container .select-year-box,
+    .jalali-persian-datetime-picker-container .select-year-inline-box {
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: #fff;
+        text-align: center;
+        transition: all 200ms ease;
+        overflow-y: auto;
+        overflow-x: hidden;
+        z-index: 9999999;
+    }
+
+        .jalali-persian-datetime-picker-container .select-year-box.inline {
+            top: 23px !important;
+        }
+
+        .jalali-persian-datetime-picker-container .select-year-box.w-0,
+        .jalali-persian-datetime-picker-container .select-year-inline-box.w-0 {
+            height: 0;
+        }
+
+        .jalali-persian-datetime-picker-container .select-year-box button {
+            font-size: 16px;
+        }
+
+        .jalali-persian-datetime-picker-container .select-year-box [selected-year] button {
+            background-color: aquamarine;
+        }
+
+    .jalali-persian-datetime-picker-container.rtl table {
+        direction: rtl;
+    }
+
+    .jalali-persian-datetime-picker-container.rtl tfoot table {
+        direction: ltr;
+    }
+
+    .jalali-persian-datetime-picker-container.rtl .dropdown-toggle::after {
+        margin-left: 0;
+        margin-right: 0.255em;
+    }
+
+    .jalali-persian-datetime-picker-container * {
+        font-size: 12px;
+    }
+
+    .jalali-persian-datetime-picker-container table {
+        margin-bottom: 0;
+    }
+
+        .jalali-persian-datetime-picker-container table th,
+        .jalali-persian-datetime-picker-container table td {
+            padding: 1px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .jalali-persian-datetime-picker-container table tbody td[data-next-month] .btn,
+        .jalali-persian-datetime-picker-container table tbody td[data-prev-month] .btn {
+            background: #fff;
+            border: none;
+            cursor: default;
+        }
+
+        .jalali-persian-datetime-picker-container table table {
+            background: white !important;
+            background-color: white !important;
+            border: none;
+        }
+
+            .jalali-persian-datetime-picker-container table table th {
+                border: none;
+            }
+
+            .jalali-persian-datetime-picker-container table table input[type="text"] {
+                width: 50px;
+                border: none;
+                text-align: center;
+                background-color: #fff;
+            }
+
+    .jalali-persian-datetime-picker-container th {
+        padding: 0;
+    }
+
+    .jalali-persian-datetime-picker-container table table tbody.days {
+        border: 0;
+    }
+
+        .jalali-persian-datetime-picker-container table table tbody.days tr:first-child > td {
+            vertical-align: top;
+            padding-bottom: 5px;
+            width: 14.2%;
+            cursor: default;
+            font-weight: bold;
+        }
+
+        .jalali-persian-datetime-picker-container table table tbody.days td[data-day] {
+            cursor: pointer;
+            transition: all 200ms ease;
+            padding: 4px !important;
+        }
+
+            .jalali-persian-datetime-picker-container table table tbody.days td[data-day][data-today] {
+                background-color: #1dc9b730;
+                padding: 4px !important;
+                border-radius: 4px;
+            }
+
+            .jalali-persian-datetime-picker-container table table tbody.days td[data-day][data-selectedday] {
+                background-color: #96daff !important;
+                color: aliceblue !important;
+                border-radius: 4px !important;
+                padding: 4px !important;
+            }
+
+            .jalali-persian-datetime-picker-container table table tbody.days td[data-day]:not([data-special-date]):hover, .jalali-persian-datetime-picker-container table table tbody.days td[data-nm]:hover, .jalali-persian-datetime-picker-container table table tbody.days td[data-pm]:hover {
+                background: #00adff !important;
+                color: aliceblue !important;
+                border-radius: 4px !important;
+                padding: 4px !important;
+            }
+
+        .jalali-persian-datetime-picker-container table table tbody.days td.selected-range-days-start-end {
+            background-color: #289cff;
+            padding: 4px !important;
+            color: aliceblue;
+            border-radius: 4px;
+        }
+
+        .jalali-persian-datetime-picker-container table table tbody.days td.selected-range-days {
+            background-color: #36abff26;
+        }
+
+        .jalali-persian-datetime-picker-container table table tbody.days td[data-special-date] {
+            background-color: #c7f7c7;
+            border: 1px solid #00ce00;
+            transition: all 200ms ease;
+        }
+
+            .jalali-persian-datetime-picker-container table table tbody.days td[data-special-date]:hover {
+                background-color: #7bff7b;
+                border-color: #31cc31;
+            }
+
+        .jalali-persian-datetime-picker-container table table tbody.days td[data-pm],
+        .jalali-persian-datetime-picker-container table table tbody.days td[data-nm],
+        .jalali-persian-datetime-picker-container table table tbody.days td[disabled] {
+            cursor: default;
+            opacity: 0.2;
+            transition: none;
+        }
+
+            .jalali-persian-datetime-picker-container table table tbody.days td[data-pm]:hover,
+            .jalali-persian-datetime-picker-container table table tbody.days td[data-nm]:hover,
+            .jalali-persian-datetime-picker-container table table tbody.days td[disabled]:hover {
+                cursor: default;
+                opacity: 0.3;
+                transition: none;
+            }
+
+            .jalali-persian-datetime-picker-container table table tbody.days td[data-day]:not([data-special-date]):hover,
+            .jalali-persian-datetime-picker-container table table tbody.days td[data-nm]:hover,
+            .jalali-persian-datetime-picker-container table table tbody.days td[data-pm]:hover {
+                background: #ccc;
+            }
+
+    .jalali-persian-datetime-picker-container .btn {
+        width: 100%;
+        margin-bottom: 1px;
+        font-size: 12px;
+        border-radius: 6px;
+    }
+
+        .jalali-persian-datetime-picker-container .btn[disabled] {
+            opacity: 0.2;
+        }
+
+    .jalali-persian-datetime-picker-container .dropdown {
+        padding: 0;
+        padding-bottom: 1px;
+        text-align: center;
+    }
+
+    .jalali-persian-datetime-picker-container .dropdown-menu {
+        min-width: fit-content;
+        width: 100px;
+    }
+
+    .jalali-persian-datetime-picker-container .dropdown-item {
+        padding-bottom: 1px;
+        cursor: pointer;
+        text-align: center;
+    }
+
+        .jalali-persian-datetime-picker-container .dropdown-item:not(.disabled):hover {
+            background-color: #ccc;
+        }
+
+        .jalali-persian-datetime-picker-container .dropdown-item.disabled {
+            opacity: 0.2;
+            cursor: default;
+        }
+
+    .jalali-persian-datetime-picker-container .dropdown-divider {
+        margin-bottom: 1px;
+        cursor: default;
+    }
+
+.jalali-persian-datetime-picker-popover {
+    -webkit-box-shadow: 0 5px 15px 1px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 5px 15px 1px rgba(0, 0, 0, 0.1);
+    z-index: 999999999;
+}
+
+.popover-header {
+    background-color: #ffffff;
+}
+
+.jalali-persian-datetime-picker-container table table tbody.days td[data-pm], .jalali-persian-datetime-picker-container table table tbody.days td[data-nm], .jalali-persian-datetime-picker-container table table tbody.days td[disabled] {
+    padding: 4px !important;
+}
+
+.table-striped tbody tr:nth-of-type(odd) {
+    background-color: rgb(255, 255, 255);
+    padding: 4px !important;
+}
+
+.popover {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1060;
+    display: block;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji";
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.5;
+    text-align: left;
+    text-align: start;
+    text-decoration: none;
+    text-shadow: none;
+    text-transform: none;
+    letter-spacing: normal;
+    word-break: normal;
+    word-spacing: normal;
+    white-space: normal;
+    line-break: auto;
+    font-size: .875rem;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: .3rem;
+}

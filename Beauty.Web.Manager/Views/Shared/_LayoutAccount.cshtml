@@ -1,0 +1,66 @@
+﻿<!DOCTYPE html>
+<html lang="en" data-textdirection="rtl">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta name="description" content="Vuexy admin is super flexible, powerful, clean &amp; modern responsive bootstrap 4 admin template with unlimited possibilities.">
+    <meta name="keywords" content="admin template, Vuexy admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="PIXINVENT">
+    <title>@ViewData["Title"] - بیوتیکا</title>
+
+    <link rel="apple-touch-icon" href="~/theme/app-assets/images/ico/apple-icon-120.html">
+    <link rel="shortcut icon" type="image/x-icon" href="~/favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="~/theme/assets/loader.css" />
+    <link rel="stylesheet" type="text/css" href="~/theme/app-assets/vendors/css/vendors-rtl.min.css" />
+    <link rel="stylesheet" type="text/css" href="~/theme/app-assets/css-rtl/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="~/theme/app-assets/css-rtl/bootstrap-extended.min.css">
+    <link rel="stylesheet" type="text/css" href="~/theme/app-assets/css-rtl/colors.min.css">
+    <link rel="stylesheet" type="text/css" href="~/theme/app-assets/css-rtl/components.min.css">
+    <link rel="stylesheet" type="text/css" href="~/theme/app-assets/css-rtl/themes/dark-layout.min.css">
+    <link rel="stylesheet" type="text/css" href="~/theme/app-assets/css-rtl/themes/semi-dark-layout.min.css">
+    <link rel="stylesheet" type="text/css" href="~/theme/app-assets/css-rtl/core/menu/menu-types/horizontal-menu.min.css">
+    <link rel="stylesheet" type="text/css" href="~/theme/app-assets/css-rtl/core/colors/palette-gradient.min.css">
+    <link href="~/theme/app-assets/vendors/css/extensions/toastr.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="~/theme/app-assets/css-rtl/pages/authentication.css">
+    <link rel="stylesheet" type="text/css" href="~/theme/app-assets/css-rtl/custom-rtl.min.css">
+    <link rel="stylesheet" type="text/css" href="~/theme/assets/css/style-rtl.css">
+    <link href="~/lib/ladda-button/ladda-themeless.css" rel="stylesheet" />
+    <link href="~/theme/app-assets/css-rtl/fonts-fa.css" rel="stylesheet" />
+</head>
+<body class="horizontal-layout horizontal-menu 1-column  navbar-floating footer-static bg-full-screen-image  blank-page blank-page" data-open="hover" data-menu="horizontal-menu" data-col="1-column">
+    <div id="loading-bg">
+        <div class="loading-logo">
+            <img src="~/theme/app-assets/images/logo/logo.png" alt="Logo">
+        </div>
+        <div class="loading">
+            <div class="effect-1 effects"></div>
+            <div class="effect-2 effects"></div>
+            <div class="effect-3 effects"></div>
+        </div>
+    </div>
+    <div class="app-content content">
+        <div class="content-overlay"></div>
+        <div class="header-navbar-shadow"></div>
+        <div class="content-wrapper">
+            <div class="content-header row">
+            </div>
+            <div class="content-body">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+    <script src="~/theme/app-assets/vendors/js/vendors.min.js"></script>
+    <script src="~/theme/app-assets/vendors/js/ui/jquery.sticky.js"></script>
+    <script src="~/theme/app-assets/js/core/app-menu.min.js"></script>
+    <script src="~/theme/app-assets/js/core/app.min.js"></script>
+    <script src="~/theme/app-assets/js/scripts/components.min.js"></script>
+    <script src="~/theme/app-assets/vendors/js/extensions/toastr.min.js"></script>
+    <script src="~/lib/ladda-button/ladda.jquery.min.js"></script>
+    <script src="~/lib/ladda-button/spin.js"></script>
+    <script src="~/lib/ladda-button/ladda.js"></script>
+    <script src="~/theme/app-assets/js/core/app.core.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

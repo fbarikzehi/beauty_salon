@@ -1,0 +1,109 @@
+﻿@model Beauty.Application.Modules.Service.Messaging.UpdateRequest
+@{
+    ViewData["Title"] = "Update";
+}
+
+<div class="beauty-subheader   beauty-grid__item" id="Beauty_subheader">
+    <div class="beauty-container  beauty-container--fluid ">
+        <div class="beauty-subheader__main">
+            <span class="beauty-subheader__separator beauty-hidden"></span>
+        </div>
+        <div class="beauty-subheader__toolbar">
+            <div class="beauty-subheader__wrapper">
+            </div>
+        </div>
+    </div>
+</div>
+<div class="beauty-content  beauty-grid__item beauty-grid__item--fluid beauty-grid beauty-grid--hor" id="Beauty_content">
+    <div class="beauty-container  beauty-container--fluid  beauty-grid__item beauty-grid__item--fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="beauty-portlet" id="Beauty_page_portlet">
+                    <div class="beauty-portlet__head beauty-portlet__head--lg">
+                        <div class="beauty-portlet__head-label">
+                            <h3 class="beauty-portlet__head-title">ویرایش خدمت</h3>
+                        </div>
+                        <div class="beauty-portlet__head-toolbar">
+                            <div class="btn-group  beauty-margin-r-10">
+                                <button type="button" id="Beauty_services_submit" class="btn btn-primary">
+                                    <i class="flaticon-download mr-3"></i>
+                                    <span class="beauty-hidden-mobile">ثبت تغییرات </span>
+                                </button>
+                            </div>
+                            <a href="/Service/Index" class="btn btn-secondary">
+                                <i class="flaticon2-left-arrow"></i>
+                                <span class="beauty-hidden-mobile">بازگشت به لیست خدمات</span>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="beauty-portlet__body">
+                        <div class="row">
+                            <div class="col-xl-12 col-md-12 col-sm-12">
+                                @using (Html.BeginForm("Update", "Personnel", FormMethod.Post, new { @class = "beauty-form", id = "service_form" }))
+                                {
+                                    @Html.HiddenFor(x => x.Entity.Id)
+                                    <div class="row">
+                                        <div class="col-lg-2 col-md-2 col-sm-12">
+                                            <div class="form-group">
+                                                @Html.LabelFor(x => x.Entity.Title)
+                                                @Html.TextBoxFor(x => x.Entity.Title, null, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.Entity.Title, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2 col-md-2 col-sm-12">
+                                            <div class="form-group">
+                                                @Html.LabelFor(x => x.Entity.DurationMinutes)
+                                                @Html.TextBoxFor(x => x.Entity.DurationMinutes, null, new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.Entity.DurationMinutes, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2 col-md-2 col-sm-12">
+                                            <div class="form-group">
+                                                @Html.LabelFor(x => x.Entity.Price)
+                                                @Html.TextBoxFor(x => x.Entity.Price, null, new { @class = "form-control" })
+                                                <span class="form-text text-muted">قیمت فعلی: @Model.Entity.CurrentPrice تومان</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2 col-md-2 col-sm-12">
+                                            <div class="form-group">
+                                                @Html.LabelFor(x => x.Entity.Score) <span class="text-danger">*</span>
+                                                @Html.TextBoxFor(x => x.Entity.Score, null, new { @class = "form-control", type = "number", min = "0" })
+                                                @Html.ValidationMessageFor(model => model.Entity.Score, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2 col-md-2 col-sm-12">
+                                            <div class="form-group">
+                                                @Html.LabelFor(x => x.Entity.CustomerMinScore) <span class="text-danger">*</span>
+                                                @Html.TextBoxFor(x => x.Entity.CustomerMinScore, null, new { @class = "form-control", type = "number", min = "0" })
+                                                @Html.ValidationMessageFor(model => model.Entity.CustomerMinScore, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-2 col-md-2 col-sm-12">
+                                            <div class="form-group">
+                                                @Html.LabelFor(x => x.Entity.Prepayment) <span>(تومان)</span>
+                                                @Html.TextBoxFor(x => x.Entity.Prepayment, null, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="beauty-radio-inline mt-5">
+                                        <label class="beauty-radio beauty-radio--brand">
+                                            <input type="radio" id="Entity_IsActive" name="Entity.IsActive" @(Model.Entity.IsActive ? "checked" : "") value="true"> فعال
+                                            <span></span>
+                                        </label>
+                                        <label class="beauty-radio beauty-radio--success">
+                                            <input type="radio" id="Entity_IsActive" name="Entity.IsActive" @(!Model.Entity.IsActive ? "checked" : "") value="false"> غیر فعال
+                                            <span></span>
+                                        </label>
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/js/pages/service-update.js" asp-append-version="true"></script>
+}

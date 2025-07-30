@@ -1,0 +1,144 @@
+﻿@model Beauty.Application.ViewComponentViewModel.AsideViewComponentViewModel
+
+<button class="beauty-aside-close beauty-hidden " id="Beauty_aside_close_btn"><i class="la la-close"></i></button>
+<div class="beauty-aside  beauty-grid__item beauty-grid beauty-grid--ver" id="Beauty_aside" style="overflow: hidden;">
+    <div class="beauty-aside__primary">
+        <div class="beauty-aside__middle" id="menu_wrapper">
+            <ul class="beauty-aside__nav">
+                @foreach (var menu in Model.Menus)
+                {
+                    <li class="beauty-aside__nav-item">
+                        <a class="beauty-aside__nav-link main_menu @(menu.Active?"active":"")"
+                           id="main_menu_@menu.Id"
+                           onclick="get_sub('@menu.Id',this)"
+                           href="javascript:;"
+                           data-title="@menu.Title"
+                           data-placement="top"
+                           data-container="body"
+                           data-boundary="window"
+                           data-toggle="beauty-tooltip"
+                           data-load-action="action-load">
+                            @*<i class="@menu.Icon"></i>*@
+                            <img src="@menu.Icon" width="55" />
+                        </a>
+                    </li>
+                }
+            </ul>
+        </div>
+        <div class="beauty-aside__bottom">
+            <ul class="beauty-aside__nav">
+                <li class="beauty-aside__nav-item">
+                    <a href="#" class="beauty-aside__nav-link" id="Beauty_offcanvas_toolbar_search_toggler_btn">
+                        <i class="flaticon2-search-1"></i>
+                    </a>
+                </li>
+                <li class="beauty-aside__nav-item">
+                    <a href="#" class="beauty-aside__nav-link"
+                       id="Beauty_offcanvas_toolbar_notifications_toggler_btn"
+                       data-toggle="beauty-tooltip"
+                       data-title="Recent notifications"
+                       data-placement="right"
+                       data-container="body"
+                       data-boundary="window">
+                        <i class="flaticon2-bell-alarm-symbol"></i>
+                        <span class="beauty-badge beauty-badge--danger">3</span>
+                    </a>
+                </li>
+                <li class="beauty-aside__nav-item">
+                    <a href="#" class="beauty-aside__nav-link" id="Beauty_quick_panel_toggler_btn">
+                        <i class="flaticon2-grids"></i>
+                    </a>
+                </li>
+                <li class="beauty-aside__nav-item dropdown">
+                    <a href="#" class="beauty-aside__nav-link" data-toggle="dropdown"
+                       data-offset="100px, -50px">
+                        <img class="beauty-aside__nav-langs"
+                             src="https://keenthemes.com/keen/themes/keen/theme/demo6/dist/assets/media/flags/226-united-states.svg"
+                             alt="">
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-fit dropdown-menu-left dropdown-menu-anim">
+                        <ul class="beauty-nav beauty-margin-t-10 beauty-margin-b-10">
+                            <li class="beauty-nav__item beauty-nav__item--active">
+                                <a href="#" class="beauty-nav__link">
+                                    <span class="beauty-nav__link-icon">
+                                        <img src="https://keenthemes.com/keen/themes/keen/theme/demo6/dist/assets/media/flags/226-united-states.svg"
+                                             alt="" />
+                                    </span>
+                                    <span class="beauty-nav__link-text">English</span>
+                                </a>
+                            </li>
+                            <li class="beauty-nav__item">
+                                <a href="#" class="beauty-nav__link">
+                                    <span class="beauty-nav__link-icon">
+                                        <img src="https://keenthemes.com/keen/themes/keen/theme/demo6/dist/assets/media/flags/128-spain.svg"
+                                             alt="" />
+                                    </span>
+                                    <span class="beauty-nav__link-text">Spanish</span>
+                                </a>
+                            </li>
+                            <li class="beauty-nav__item">
+                                <a href="#" class="beauty-nav__link">
+                                    <span class="beauty-nav__link-icon">
+                                        <img src="https://keenthemes.com/keen/themes/keen/theme/demo6/dist/assets/media/flags/162-germany.svg"
+                                             alt="" />
+                                    </span>
+                                    <span class="beauty-nav__link-text">German</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+                <li class="beauty-aside__nav-item">
+                    <a href="#" class="beauty-aside__nav-link" id="Beauty_offcanvas_toolbar_profile_toggler_btn">
+                        <i class="flaticon2-hourglass-1 beauty-hidden"></i>
+                        <img class="beauty-hidden-" alt=""
+                             src="~/images/profile.png">
+                        <span class="beauty-aside__nav-username beauty-bg-brand beauty-hidden">S</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="beauty-aside__secondary">
+        <div class="beauty-aside__secondary-top" id="app_name">
+            <div class="beauty-portlet__body">
+                <div class="beauty-widget beauty-widget--general-1">
+                    <div class="beauty-media beauty-media--brand beauty-media--md beauty-media--circle">
+                        <img src="@(string.IsNullOrWhiteSpace(Model.SalonLogo)?"~/images/profile.png":Model.SalonLogo)" alt="image" class="salon_logo">
+                    </div>
+                    <div class="beauty-widget__wrapper">
+                        <div class="beauty-widget__label">
+                            <a href="@Url.Action("Index","Salon")" class="beauty-widget__title" style="font-size: 12px;">
+                                @(string.IsNullOrWhiteSpace(Model.SalonTitle)? "اطلاعات سالن ثبت نشده" : Model.SalonTitle)
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="beauty-separator beauty-separator--border-solid beauty-separator--portlet-fit beauty-separator--space-xs"></div>
+        <div class="beauty-aside__secondary-bottom" id="submenu_wrapper">
+            @foreach (var menu in Model.Menus)
+            {
+                <div id="Beauty_aside_menu" class="beauty-aside-menu  aziko " data-Beautymenu-vertical="1"
+                     data-Beautymenu-scroll="1">
+                    <ul class="beauty-menu__nav ">
+                        @foreach (var sub in menu.SubMenus)
+                        {
+                            <li class="beauty-menu__item @(sub.Active?"active":"")" aria-haspopup="true">
+                                <a href="@sub.Url" class="beauty-menu__link ">
+                                    <span class="beauty-menu__link-text">
+                                        <i class="@sub.Icon sub_menu_icon"></i>
+                                        @sub.Title
+                                    </span>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<script src="~/js/pages/aside.js" asp-append-version="true"></script>

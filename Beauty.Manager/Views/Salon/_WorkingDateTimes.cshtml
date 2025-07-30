@@ -1,0 +1,79 @@
+﻿@model Beauty.Application.Modules.Salon.ViewModel.SalonViewModel
+@using Common.Crosscutting.Utility;
+@{
+
+    var daysOfWeek = DateTimeUtility.GetDaysOfWeek();
+    var years = DateTimeUtility.GetYearRange(null, 3);
+}
+
+@using (Html.BeginForm("UpdateSalon", "Salon", FormMethod.Post, new { id = "saloninfo_frm" }))
+{
+
+    <div id="selected_WorkingDateTimes">
+
+    </div>
+
+    <div class="beauty-portlet">
+        <div class="beauty-portlet__head">
+            <div class="beauty-portlet__head-label">
+                <h3 class="beauty-portlet__head-title"> ساعات کاری سالن </h3>
+            </div>
+        </div>
+        <div class="beauty-portlet__body">
+            <div class="beauty-section beauty-section--first">
+                <div class="beauty-section__body">
+                    <div class="form-group row">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div class="form-group row">
+                                <div class="col-md-2  col-lg-2 col-sm-12">
+                                    <select class="form-control form-control-sm" id="cal_year">
+                                        @for (int i = 0; i < years.Count; i++)
+                                        {
+                                            <option value="@years[i]">@years[i]</option>
+                                        }
+                                    </select>
+                                </div>
+                                <div class="col-md-6  col-lg-6 col-sm-12">
+                                    <span class="beauty-badge beauty-badge--md beauty-badge--warning">1</span> کنسل شده&nbsp;
+                                    <span class="beauty-badge beauty-badge--md beauty-badge--metal">1</span> انتخاب نشده&nbsp;
+                                    <span class="beauty-badge beauty-badge--md beauty-badge--success">1</span> انتخاب شده&nbsp;
+                                    <span class="beauty-badge beauty-badge--md beauty-badge--danger">1</span> تعطیل رسمی
+                                </div>
+                                <div class="col-md-2 col-lg-2 col-sm-12">
+                                    <span class="badge badge-primary">ساعت شروع کار سالن: @Model.OpeningTime</span>
+                                </div>
+                                <div class="col-md-2 col-lg-2 col-sm-12">
+                                    <span class="badge badge-primary">ساعت پایان کار سالن: @Model.ClosingTime</span>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-md-12  col-lg-12 col-sm-12">
+                                    <div id="days_calendar">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="beauty-portlet__foot">
+            <div class="beauty-form__actions">
+                <div class="row">
+                    <div class="col-lg-12 col-xl-12 col-sm-12">
+                        <button type="button" class="btn btn-brand btn-bold" id="save_btn" onclick="submit_salon_info()">
+                            <i class="flaticon-download mr-2"></i>
+                            ثبت تغییرات
+                        </button>&nbsp;
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}
+
+<script src="~/lib/persian-date.js"></script>
+<script src="~/js/pages/_workingDateTimes.js"></script>
+

@@ -1,0 +1,47 @@
+﻿@model Beauty.Application.Modules.Personnel.ViewModel.PersonnelAccountViewModel
+
+@using (Html.BeginForm((Model.UserId == Guid.Empty ? "CreateAccount" : "UpdateAccount"), "Personnel", FormMethod.Post, new { id = "account_frm", autocomplete = "off" }))
+{
+    @Html.HiddenFor(x => x.UserId)
+    @Html.HiddenFor(x => x.PersonnelId)
+    <div class="row">
+        <div class="col-12 col-lg-4 col-md-9 col-sm-12">
+            <div class="form-group">
+                <div class="controls">
+                    @Html.LabelFor(x => x.Username)
+                    @Html.TextBoxFor(x => x.Username, null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger", autocomplete = "user-name" })
+                    <span class="form-text text-muted ">در صورت وارد نکردن مقدار نام کاربری,رمزعبور و ثبت,بصورت خودکار تولید خواهد شد</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-4 col-md-9 col-sm-12">
+            <div class="form-group">
+                <div class="controls">
+                    @Html.LabelFor(x => x.Password)
+                    @Html.PasswordFor(x => x.Password, new { @class = "form-control", autocomplete = "new-password" })
+                    <div class="vs-checkbox-con vs-checkbox-primary">
+                        <input type="checkbox" value="false" onchange="show_hide_switch(this)">
+                        <span class="vs-checkbox vs-checkbox-sm">
+                            <span class="vs-checkbox--check">
+                                <i class="vs-icon feather icon-check"></i>
+                            </span>
+                        </span>
+                        <span class="">پنهان کردن/نمایش رمز عبور</span>
+                    </div>
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-4 col-md-9 col-sm-12">
+            <div class="form-group">
+                <div class="controls  icon-ba">
+                    @Html.LabelFor(x => x.ConfirmPassword)
+                    @Html.PasswordFor(x => x.ConfirmPassword, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+
+}

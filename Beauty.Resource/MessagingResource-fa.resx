@@ -1,0 +1,483 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="AppoinmentAddDiscountSucceed" xml:space="preserve">
+    <value>تخفیف با موفقیت برای نوبت ثبت شد</value>
+  </data>
+  <data name="AppoinmentAddPaymentSucceed" xml:space="preserve">
+    <value>پرداخت مبلغ نوبت با موفقیت ثبت شد</value>
+  </data>
+  <data name="AppoinmentCancelSucceed" xml:space="preserve">
+    <value>نوبت با موفقیت کنسل شد</value>
+  </data>
+  <data name="AppoinmentCreateSucceed" xml:space="preserve">
+    <value>نوبت با موفقیت ثبت شد</value>
+  </data>
+  <data name="AppoinmentDeleteDiscountSucceed" xml:space="preserve">
+    <value>تخفیف نوبت با موفقیت حذف شد</value>
+  </data>
+  <data name="AppoinmentDeletePaymentSucceed" xml:space="preserve">
+    <value>حذف پرداخت با موفقیت انجام شد</value>
+  </data>
+  <data name="AppoinmentDeleteSucceed" xml:space="preserve">
+    <value>نوبت با موفقیت حذف شد</value>
+  </data>
+  <data name="AppoinmentDoneSucceed" xml:space="preserve">
+    <value>نوبت انجام شد</value>
+  </data>
+  <data name="AppoinmentNotCancel" xml:space="preserve">
+    <value>نوبت بعلت وجود خدمت انجام  شده قابل لغو شدن نیست</value>
+  </data>
+  <data name="AppoinmentNotDelete" xml:space="preserve">
+    <value>نوبت بعلت وجود خدمت انجام شده یا کنسل شده قابل حذف نیست</value>
+  </data>
+  <data name="AppoinmentPaymentSumCanNotBeGreaterThanTotalPrice" xml:space="preserve">
+    <value>جمع پرداختی ها نمیتواند بزرگتر از مبلغ کل نوبت باشد</value>
+  </data>
+  <data name="AppoinmentServiceDeleteSucceed" xml:space="preserve">
+    <value>خدمت از نوبت با موفقیت حذف شد</value>
+  </data>
+  <data name="AppoinmentUpdateSucceed" xml:space="preserve">
+    <value>نوبت با موفقیت ویرایش شد</value>
+  </data>
+  <data name="AppointmentDateIsRequierd" xml:space="preserve">
+    <value>انتخاب تاریخ نوبت اجباری می باشد</value>
+  </data>
+  <data name="AppointmentDateMustBeGreaterThanNow" xml:space="preserve">
+    <value>تاریخ مراجعه نوبت باید بزرگتر از تاریخ امروز باشد</value>
+  </data>
+  <data name="AppointmentExistByCustomerAndDate" xml:space="preserve">
+    <value>نوبت با این مشتری و تاریخ قبلا ثبت شده</value>
+  </data>
+  <data name="AppointmentNotExist" xml:space="preserve">
+    <value>نوبت یافت نشد</value>
+  </data>
+  <data name="AppointmentNotExistByCustomerAndDate" xml:space="preserve">
+    <value>نوبتی برای این مشتری در تاریخ انتخاب شده یافت نشد</value>
+  </data>
+  <data name="AppointmentPaymentNotExist" xml:space="preserve">
+    <value>پرداخت نوبت یافت نشد</value>
+  </data>
+  <data name="AppointmentServiceDetailsCreateSucceed" xml:space="preserve">
+    <value>زیرهزینه های خدمت با موفقیت ثبت شد</value>
+  </data>
+  <data name="AppointmentServiceDetailsNotExist" xml:space="preserve">
+    <value>ریزهزینه های خدمت یافت نشد</value>
+  </data>
+  <data name="AppointmentServiceDoneNotFound" xml:space="preserve">
+    <value>خدمت قبلا انجام شده</value>
+  </data>
+  <data name="AppointmentServiceDoneSucceed" xml:space="preserve">
+    <value>خدمت نوبت انجام شد</value>
+  </data>
+  <data name="AppointmentServiceDuplicates" xml:space="preserve">
+    <value>خدمت نوبت تکراری ثبت شده</value>
+  </data>
+  <data name="AppointmentServiceExistForCustomer" xml:space="preserve">
+    <value>خدمت تکراری: این خدمت به نوبت مشتری قبلا اضافه شده</value>
+  </data>
+  <data name="AppointmentServiceIsRequired" xml:space="preserve">
+    <value>انتخاب خدمت یا خدمات  نوبت  اجباری می باشد</value>
+  </data>
+  <data name="CustomerChequeAlreadyAdded" xml:space="preserve">
+    <value>چکی با این مشخصات به مشتری افزوده شده</value>
+  </data>
+  <data name="CustomerChequeCreateSucceed" xml:space="preserve">
+    <value>چک با موفقیت به مشتری افزوده شد</value>
+  </data>
+  <data name="CustomerContactDeleteSucceed" xml:space="preserve">
+    <value>مخاطب با موفقیت حذف شد</value>
+  </data>
+  <data name="CustomerContactExist" xml:space="preserve">
+    <value>اطلاعات تماس برای مشتری دیگری ثبت شده</value>
+  </data>
+  <data name="CustomerCreateSucceed" xml:space="preserve">
+    <value>اطلاعات مشتری با موفقیت ثبت شد</value>
+  </data>
+  <data name="CustomerDeleteFaild" xml:space="preserve">
+    <value>حذف مشتری انجام نشد</value>
+  </data>
+  <data name="CustomerDeleteSucceed" xml:space="preserve">
+    <value>حذف مشتری با موفقیت انجام شد</value>
+  </data>
+  <data name="CustomerExist" xml:space="preserve">
+    <value>مشتری با این مشخصات قبلا ثبت شده میتوانید آنرا ویرایش نمایید</value>
+  </data>
+  <data name="CustomerIsRequierd" xml:space="preserve">
+    <value>انتخاب مشتری اجباری می باشد</value>
+  </data>
+  <data name="CustomerNameAndLastName" xml:space="preserve">
+    <value>مشتری با این نام و نام خوانوادگی قبلا ثبت شده میتوانید آنرا ویرایش نمایید</value>
+  </data>
+  <data name="CustomerNotFound" xml:space="preserve">
+    <value>مشتری یافت نشد</value>
+  </data>
+  <data name="CustomerUpdateFaild" xml:space="preserve">
+    <value>ویرایش پروفایل انجام نشد</value>
+  </data>
+  <data name="CustomerUpdateSucceed" xml:space="preserve">
+    <value>اطلاعات مشتری با موفقیت ویرایش شد</value>
+  </data>
+  <data name="LineDeleteSucceed" xml:space="preserve">
+    <value> لاین با موفقیت حذف شد</value>
+  </data>
+  <data name="LineExist" xml:space="preserve">
+    <value>لاین قبلا ثبت شده</value>
+  </data>
+  <data name="LineIsRequired" xml:space="preserve">
+    <value>لاین اجباری می باشد</value>
+  </data>
+  <data name="LineNotFound" xml:space="preserve">
+    <value>لاین یافت نشد</value>
+  </data>
+  <data name="LineUpdateSucceed" xml:space="preserve">
+    <value>ویرایش با موفقیت انجام شد</value>
+  </data>
+  <data name="LogDataModificationCreateSucceed" xml:space="preserve">
+    <value>سابقه تغییر داده با موفقیت ثبت شد</value>
+  </data>
+  <data name="LoginSucceed" xml:space="preserve">
+    <value>ورود به حساب کاربری با موفقیت انجام شد</value>
+  </data>
+  <data name="MaxDeviceReached" xml:space="preserve">
+    <value>تعداد دستگاه موبایل مجاز نصب شده</value>
+  </data>
+  <data name="MobileDeviceNotRecognized" xml:space="preserve">
+    <value>دستگاه موبایل:اطلاعات شناسایی دستگاه ارسال نشد</value>
+  </data>
+  <data name="MobileDeviceNotRegisterd" xml:space="preserve">
+    <value>دستگاه موبای در برنامه ثبت نشده</value>
+  </data>
+  <data name="MobileIsRequired" xml:space="preserve">
+    <value>موبایل اجباری می باشد</value>
+  </data>
+  <data name="MobileMustBe11Digits" xml:space="preserve">
+    <value>موبایل باید 11 رقمی وارد شود</value>
+  </data>
+  <data name="MobileNotUserInRole" xml:space="preserve">
+    <value>حساب کاربری برای استفاده از این برنامه برای شما تعریف نشده </value>
+  </data>
+  <data name="PersonnelAccountCreateSucceed" xml:space="preserve">
+    <value>حساب کاربری پرسنل با موفقیت ایجاد شد</value>
+  </data>
+  <data name="PersonnelAccountUpdateSucceed" xml:space="preserve">
+    <value>حساب کاربری پرسنل با موفقیت ویرایش شد</value>
+  </data>
+  <data name="PersonnelContactDeleteSucceed" xml:space="preserve">
+    <value>مخاطب با موفقیت حذف شد</value>
+  </data>
+  <data name="PersonnelContactExist" xml:space="preserve">
+    <value>اطلاعات تماس قبلا برای پزسنل دیگری ثبت شده</value>
+  </data>
+  <data name="PersonnelCreateSucceed" xml:space="preserve">
+    <value>اطلاعات پرسنل با موفقیت ثبت شد</value>
+  </data>
+  <data name="PersonnelDeleteFaild" xml:space="preserve">
+    <value>حذف پرسنل انجام نشد</value>
+  </data>
+  <data name="PersonnelDeleteSucceed" xml:space="preserve">
+    <value>حذف پرسنل با موفقیت انجام شد</value>
+  </data>
+  <data name="PersonnelExist" xml:space="preserve">
+    <value>پرسنلی با این مشخصات قبلا ثبت شده میتوانید آنرا ویرایش نمایید</value>
+  </data>
+  <data name="PersonnelFinancialUpdateSucceed" xml:space="preserve">
+    <value>ویرایش مالی پرسنل با موفقیت انجام شد</value>
+  </data>
+  <data name="PersonnelMustCreateFirst" xml:space="preserve">
+    <value>ابتدا پروفایل پرسنل را ثبت کنید</value>
+  </data>
+  <data name="PersonnelNameAndLastName" xml:space="preserve">
+    <value>پرسنلی با این نام و نام خوانوادگی قبلا ثبت شده میتوانید آنرا ویرایش نمایید</value>
+  </data>
+  <data name="PersonnelNotFound" xml:space="preserve">
+    <value>پرسنل یافت نشد</value>
+  </data>
+  <data name="PersonnelServiceAddedSuccessfuly" xml:space="preserve">
+    <value>خدمت به پرسنل با موفقیت افزوده شد</value>
+  </data>
+  <data name="PersonnelServiceAlreadyAdded" xml:space="preserve">
+    <value>این خدمت در حال حاضر به پرسنل اختصاص داده شده </value>
+  </data>
+  <data name="PersonnelServiceDeletedSuccessfuly" xml:space="preserve">
+    <value>خدمت به پرسنل با موفقیت حذف شد</value>
+  </data>
+  <data name="PersonnelServiceNotFound" xml:space="preserve">
+    <value>این خدمت برای پرسنل فعلی ثبت نشده</value>
+  </data>
+  <data name="PersonnelServicesUpdateSucceed" xml:space="preserve">
+    <value>خدمات پرسنل با موفقیت ویرایش شد</value>
+  </data>
+  <data name="PersonnelUpdateFaild" xml:space="preserve">
+    <value>ویرایش پروفایل انجام نشد</value>
+  </data>
+  <data name="PersonnelUpdateSucceed" xml:space="preserve">
+    <value>ویرایش با موفقیت انجام شد</value>
+  </data>
+  <data name="PersonnelWorkingTimeUpdateFromAndToIsRequired" xml:space="preserve">
+    <value>زمان شروع و پایان اجباری می باشد</value>
+  </data>
+  <data name="PersonnelWorkingTimeUpdateSucceed" xml:space="preserve">
+    <value>ساعات کاری پرسنل با موفقیت بروزرسانی شد</value>
+  </data>
+  <data name="PhoneIsRequired" xml:space="preserve">
+    <value>تلفن اجباری می باشد</value>
+  </data>
+  <data name="ProductCreateSucceed" xml:space="preserve">
+    <value>محصول با موفقیت ایجاد شد</value>
+  </data>
+  <data name="ProductDeleteFaild" xml:space="preserve">
+    <value>حذف کالا انجام نشد</value>
+  </data>
+  <data name="ProductDeleteSucceed" xml:space="preserve">
+    <value>کالا با موفقیت حذف شد</value>
+  </data>
+  <data name="ProductExist" xml:space="preserve">
+    <value>محصولی با این نام یا کد قبلا ثبت شده</value>
+  </data>
+  <data name="ProductImageDeleteFaild" xml:space="preserve">
+    <value>حذف تصویر کالا انجام نشد</value>
+  </data>
+  <data name="ProductImageDeleteSucceed" xml:space="preserve">
+    <value>حذف تصویر کالا با موفقیت انجام شد</value>
+  </data>
+  <data name="ProductImageNotFound" xml:space="preserve">
+    <value>تصویر کالا یافت نشد</value>
+  </data>
+  <data name="ProductNotFound" xml:space="preserve">
+    <value>کالا یافت نشد</value>
+  </data>
+  <data name="RoleNotFound" xml:space="preserve">
+    <value>نقش کاربری یافت نشد</value>
+  </data>
+  <data name="RolePermissionsNotDefined" xml:space="preserve">
+    <value>دستزسی برای شما تعیین نشده</value>
+  </data>
+  <data name="RolePermissionUpdatedSucceed" xml:space="preserve">
+    <value>سطح دسترسی نقش بروزرسانی شد</value>
+  </data>
+  <data name="SalonContactDeleteSucceed" xml:space="preserve">
+    <value>مخاطب با موفقیت حذف شد</value>
+  </data>
+  <data name="SalonInfoUpdateFaild" xml:space="preserve">
+    <value>ویرایش اطلاعات سالن انجام نشد</value>
+  </data>
+  <data name="SalonInfoUpdateSucceed" xml:space="preserve">
+    <value>اطلاعات سالن با موفقیت برزورسانی شد</value>
+  </data>
+  <data name="ServiceActiveSucceed" xml:space="preserve">
+    <value>خدمت فعال شد</value>
+  </data>
+  <data name="ServiceCreateSucceed" xml:space="preserve">
+    <value>خدمت جدید با موفقیت ثبت شد</value>
+  </data>
+  <data name="ServiceDeactiveSucceed" xml:space="preserve">
+    <value>خدمت غیرفعال شد</value>
+  </data>
+  <data name="ServiceDeleteSucceed" xml:space="preserve">
+    <value>خدمت با موفقیت حذف شد</value>
+  </data>
+  <data name="ServiceDurationIsLong" xml:space="preserve">
+    <value>مدت زمان سرویس طولانی هست</value>
+  </data>
+  <data name="ServiceNameDuplicate" xml:space="preserve">
+    <value>نام سرویس تکراری وارد شده</value>
+  </data>
+  <data name="ServiceNameExist" xml:space="preserve">
+    <value>خدمتی با این عنوان قبلا ثبت شده</value>
+  </data>
+  <data name="ServiceNotFound" xml:space="preserve">
+    <value>خدمت یافت نشد</value>
+  </data>
+  <data name="ServicePackageCreateSucceed" xml:space="preserve">
+    <value>پکیج خدمات با موفقیت ایجاد شد</value>
+  </data>
+  <data name="ServicePackageDeleteFaild" xml:space="preserve">
+    <value>پکیج قابل حذف نیست</value>
+  </data>
+  <data name="ServicePackageDeleteServiceFaild" xml:space="preserve">
+    <value>خدمت پکیج قابل حذف نیست</value>
+  </data>
+  <data name="ServicePackageDeleteServiceSucceed" xml:space="preserve">
+    <value>حذف خدمت پکیج با موفقیت انجام شد</value>
+  </data>
+  <data name="ServicePackageDeleteSucceed" xml:space="preserve">
+    <value>حذف پکیج با موفقیت انجام شد</value>
+  </data>
+  <data name="ServicePackageDiscountIsRequired" xml:space="preserve">
+    <value>تخفیف کلی یا تخفیف آیتمی اجباری می باشد</value>
+  </data>
+  <data name="ServicePackageItemDuplicates" xml:space="preserve">
+    <value>خدمت نباید تکراری انتخاب شده باشد</value>
+  </data>
+  <data name="ServicePackageItemIsRequired" xml:space="preserve">
+    <value>انتخاب خدمات پکیج اجباری می باشد</value>
+  </data>
+  <data name="ServicePackageNameExist" xml:space="preserve">
+    <value>پکیجی با این عنوان قبلا ثبت شده</value>
+  </data>
+  <data name="ServicePackageUpdateSucceed" xml:space="preserve">
+    <value>پکیج خدمات با موفقیت ویرایش شد</value>
+  </data>
+  <data name="ServicePrepaymentIsGreaterThanPrice" xml:space="preserve">
+    <value>قیمت خدمت نباید بیشتر از پیش پرداخت باشد</value>
+  </data>
+  <data name="ServicePriceAndDetailsConflict" xml:space="preserve">
+    <value>تداخل قیمت و جزییات: خدمت یا باید قیمت داشته باشد یا جزییات</value>
+  </data>
+  <data name="ServicePriceIsRequired" xml:space="preserve">
+    <value>قیمت خدمت یا جزییات خدمت را وارد کنید</value>
+  </data>
+  <data name="ServiceUpdateSucceed" xml:space="preserve">
+    <value>ویرایش خدمت با موفقیت انجام شد</value>
+  </data>
+  <data name="SmsMessageExist" xml:space="preserve">
+    <value>پیامکی با این عنوان قبلا تعریف شده</value>
+  </data>
+  <data name="SmsMessageNotFound" xml:space="preserve">
+    <value>پیامک یافت نشد</value>
+  </data>
+  <data name="SmsMessageUpdateSucceed" xml:space="preserve">
+    <value> اطلاعات پیامک با موفقیت ویرایش شد</value>
+  </data>
+  <data name="UserCreateSucceed" xml:space="preserve">
+    <value>کاربر یا موفقیت ایجاد شد</value>
+  </data>
+  <data name="UserDeleteSucceed" xml:space="preserve">
+    <value>حذف کاربر با موفقیت انجام شد</value>
+  </data>
+  <data name="UserExist" xml:space="preserve">
+    <value>کاربری با این نام قبلا ثبت شده</value>
+  </data>
+  <data name="UserIsLocked" xml:space="preserve">
+    <value>کاربر غیر فعال می باشد</value>
+  </data>
+  <data name="UserNotFound" xml:space="preserve">
+    <value>کاربر یافت نشد</value>
+  </data>
+  <data name="UserUpdateSucceed" xml:space="preserve">
+    <value>کاربر با موفقیت ویرایش شد</value>
+  </data>
+  <data name="WrongPassword" xml:space="preserve">
+    <value>کاربری با این رمز عبور یافت نشد</value>
+  </data>
+  <data name="WrongUsername" xml:space="preserve">
+    <value>کاربری با این نام کاربری یافت نشد</value>
+  </data>
+</root>

@@ -1,0 +1,58 @@
+﻿@model Beauty.Application.Modules.Personnel.ViewModel.PersonnelModifyViewModel
+@{
+    ViewData["Title"] =PageTitleResource.PersonnelModify;
+}
+
+<link href="~/lib/intro.js/minified/introjs-rtl.min.css" rel="stylesheet" />
+<link href="~/lib/intro.js/minified/introjs.min.css" rel="stylesheet" />
+<link href="~/lib/intro.js/themes/introjs-modern.css" rel="stylesheet" />
+
+<section class="users-edit">
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center border-bottom pb-1">
+            <ul class="nav">
+                <li class="nav-item">
+                    <button type="button" class="btn btn-flat-primary  waves-effect waves-light choose_tab active " id="profile_tab" data-name="GetProfile">  <i class="feather icon-user mr-25"></i>پروفایل </button>
+                </li>
+                <li class="nav-item">
+                    <button type="button" class="btn btn-flat-success  waves-effect waves-light choose_tab" data-name="GetAccount">  <i class="feather icon-shield mr-25"></i>حساب کاربری </button>
+                </li>
+                <li class="nav-item">
+                    <button type="button" class="btn btn-flat-warning  waves-effect waves-light choose_tab" data-name="GetServices">  <i class="feather icon-grid mr-25"></i>خدمات </button>
+                </li>
+                <li class="nav-item">
+                    <button type="button" class="btn btn-flat-danger  waves-effect waves-light choose_tab" data-name="GetFinancial">  <i class="feather icon-credit-card mr-25"></i>تنظیمات مالی </button>
+                </li>
+                <li class="nav-item">
+                    <button type="button" class="btn btn-flat-dark waves-effect waves-light choose_tab" data-name="GetWorkingTime">  <i class="feather icon-clock mr-25"></i>تنظیمات ساعات کاری </button>
+                </li>
+            </ul>
+            <div class="alert" style="padding: 10px; border-radius: 4px; color: white; background: #640064;width: 15%;">
+                کد پرسنلی: <span id="personnel_code">@Model.PersonnelCode</span>
+            </div>
+        </div>
+        <div class="card-content">
+            <div class="card-body">
+                <input id="personnelId" value="@Model.PersonnelId" type="hidden" />
+                <div id="tab_content">
+
+                </div>
+                <div class="row">
+
+                    <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-1">
+                        <button type="button" class="btn btn-primary glow mb-1 mb-sm-0 mr-0 mr-sm-1" id="save_btn">
+                            ثبت
+                        </button>
+                        <a href="@Url.Action("Index","Personnel")" class="btn btn-outline-warning">انصراف</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts{
+    <script src="~/lib/jquery-inputmask.js"></script>
+    <script src="~/lib/mustache.js"></script>
+    <script src="~/js/pages/personnel-modify.js" asp-append-version="true"></script>
+}

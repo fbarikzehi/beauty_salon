@@ -1,0 +1,424 @@
+﻿@model Beauty.Application.Modules.Appointment.ViewModel.AppointmentQuickViewViewModel
+@{
+    ViewData["Title"] = "Index";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="fa" direction="rtl" style="direction: rtl;">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@ViewData["Title"] - Beauty</title>
+    <meta name="description" content="Beauty">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <link href="~/css/plugins/fullcalendar/fullcalendar.rtl.css" rel="stylesheet" />
+
+    <link href="~/css/global/plugins.css" rel="stylesheet" />
+    <link href="~/css/common/style.css" rel="stylesheet" />
+    <link href="~/css/common/fonts-fa.css" rel="stylesheet" />
+
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+</head>
+
+<body class="beauty-demo-panel--right beauty-header-mobile--fixed beauty-page-content-white beauty-subheader--enabled beauty-aside--secondary-enabled beauty-offcanvas-panel--left beauty-aside--left">
+    <div class="beauty-grid beauty-grid--ver beauty-grid--root">
+        <div class="beauty-portlet" id="Beauty_page_portlet">
+            <div class="beauty-portlet__head beauty-portlet__head--lg">
+                <div class="beauty-portlet__head-label">
+                    <h3 class="beauty-portlet__head-title">مدیریت نوبت</h3>
+                </div>
+                <div class="beauty-portlet__head-toolbar">
+                    <div class="btn-group  beauty-margin-r-10">
+                        <button type="button" id="Beauty_appointment_modal_btn" class="btn btn-focus btn-elevate" data-toggle="modal" data-target="#create_appointment">
+                            <i class="la la-plus-circle"></i>
+                            <span class="beauty-hidden-mobile">ثبت نوبت جدید</span>
+                        </button>
+                    </div>
+                    <div class="btn-group  beauty-margin-r-10">
+                        <button type="button" id="Beauty_customer_modal_btn" class="btn btn-brand btn-elevate" data-toggle="modal" data-target="#create_customer">
+                            <i class="la la-user-plus"></i>
+                            <span class="beauty-hidden-mobile">ثبت مشتری جدید</span>
+                        </button>
+                    </div>
+                    <div class="btn-group  beauty-margin-r-10">
+                        <button type="button" onclick="build_calendar()" class="btn btn-secondary btn-elevate">
+                            <i class="la la-rotate-left"></i>
+                            <span class="beauty-hidden-mobile">بروزرسانی</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            <div class="beauty-portlet__body">
+                <div class="row">
+                    <div class="col-xl-12 col-md-12 col-sm-12">
+                        <div id="Beauty_calendar"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    @using (Html.BeginForm("Create", "Appointment", FormMethod.Post, new { id = "appointment_frm", autocomplete = "off" }))
+    {
+        <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="appointmentModalLabel" aria-hidden="true" id="create_appointment">
+            <div class="modal-dialog modal-xxl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">ثبت نوبت</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-sm-12">
+                                <div class="form-group">
+                                    <input type="hidden" id="CustomerProfileId" name="CustomerProfileId" />
+                                    <label for="CustomerProfileName">نام مشتری</label>
+                                    <input class="form-control customerProfile_title" id="CustomerProfileName" name="CustomerProfileName" type="text" onkeyup="customer_dropselect(this.value)">
+                                    <ul id="customerProfile_search_item" class="select-dropdown hide-select-dropdown"></ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-3 col-sm-12">
+                                <div class="form-group">
+                                    <label for="MemberCode">کد مشتری</label>
+                                    <input class="form-control" id="MemberCode" name="MemberCode" type="text" readonly="readonly">
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-3 col-sm-12">
+                                <div class="form-group">
+                                    <label for="MemberCode">موبایل مشتری</label>
+                                    <input class="form-control" id="CustomerMobile" name="CustomerMobile" type="text" readonly="readonly">
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-3 col-sm-12">
+                                <div class="form-group">
+                                    <label for="Date">تاریخ مراجعه</label>
+                                    <input class="form-control" id="Date" name="Date" type="text" readonly="readonly">
+                                </div>
+                            </div>
+                            <div class="col-lg-1 col-md-2 col-sm-12">
+                                <div class="form-group">
+                                    <label for="Time">زمان مراجعه</label>
+                                    <input class="form-control" id="Time" name="Time" type="time" min="@Model.SalonOpeningTime" max="@Model.SalonClosingTime">
+                                </div>
+                            </div>
+                            <div class="col-lg-2 col-md-3 col-sm-12">
+                                <div class="form-group">
+                                    <label for="CreateDateTime">تاریخ ثبت نوبت</label>
+                                    <input class="form-control" id="CreateDateTime" name="CreateDateTime" type="text" readonly="readonly" value="@Model.DefaultCreateDateTime">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="beauty-separator beauty-separator--border-dashed beauty-separator--portlet-fit beauty-separator--space-xs"></div>
+                        <div id="services_wrapper"></div>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-3 col-sm-12">
+                                <button type="button" class="btn btn-primary btn-wide" id="add_service">افزودن خدمت بیشتر <i class="la la-plus-circle"></i></button>
+                            </div>
+                        </div>
+                        <div class="beauty-separator beauty-separator--border-dashed beauty-separator--portlet-fit beauty-separator--space-xs"></div>
+                        <div class="row">
+                            <div class="col-lg-6 col-md-6 col-sm-12">
+                            </div>
+                            <div class="col-lg-2 col-md-3 col-sm-12">
+                                <label for="MemberCode">مبلغ کل</label>
+                                <span class="badge badge-warning" id="TotalPrice">0</span>
+                                <span class="badge badge-light">تومان</span>
+                            </div>
+                            <div class="col-lg-2 col-md-3 col-sm-12">
+                                <label for="MemberCode">مبلغ کل پیش پرداخت</label>
+                                <span class="badge badge-warning" id="TotalPrepayment">0</span>
+                                <span class="badge badge-light">تومان</span>
+                            </div>
+                            <div class="col-lg-2 col-md-3 col-sm-12">
+                                <label for="MemberCode">مبلغ باقی مانده</label>
+                                <span class="badge badge-warning  " id="TotalPostpayment">0</span>
+                                <span class="badge badge-light">تومان</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-sm" id="save_appointment"><i class="la la-download"></i> ثبت نوبت</button>
+                        <button type="button" class="btn btn-outline-brand btn-sm" data-dismiss="modal" onclick="reset_frm_appointment()"><i class="la la-close"></i>  انصراف</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    @using (Html.BeginForm("Create", "Customer", FormMethod.Post, new { id = "customer_frm", autocomplete = "off" }))
+    {
+        <div class="modal fade bd-example-modal-xl" tabindex="-1" role="dialog" aria-labelledby="customerModalLabel" aria-hidden="true" id="create_customer">
+            <div class="modal-dialog modal-xl">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">ثبت مشتری</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="col-lg-2 col-md-2 col-sm-12">
+                                <div class="beauty-avatar beauty-avatar--outline beauty-avatar--success" id="Beauty_profile_avatar_3">
+                                    <div class="beauty-avatar__holder" id="avatar_holder" style="background-image: url(/images/avatar-placeholder.png)"></div>
+                                    <label class="beauty-avatar__upload" data-toggle="beauty-tooltip" title="انتخاب تصویر">
+                                        <i class="fa fa-pen"></i>
+                                        <input type="file" id="avatar_file" name="avatar_file" accept=".png, .jpg, .jpeg" onchange="avatar_change(this)">
+                                    </label>
+                                    <span class="beauty-avatar__cancel" data-toggle="beauty-tooltip" title="حذف تصویر">
+                                        <i class="fa fa-times"></i>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="col-lg-10 col-md-10 col-sm-12">
+                                <div class="row">
+                                    <div class="col-lg-4 col-md-3 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="CustomerProfileName">نام </label>
+                                            <input class="form-control" id="Name" name="Name" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-3 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="MemberCode">نام خانوادگی</label>
+                                            <input class="form-control" id="LastName" name="LastName" type="text">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-3 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="Date">تاریخ تولد</label>
+                                            <input class="form-control" id="Birthdate" name="Birthdate" type="text" readonly="readonly">
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-3 col-sm-12">
+                                        <div class="form-group">
+                                            <label for="Date">شماره موبایل</label>
+                                            <input class="form-control" id="Mobile" name="Mobile" type="text">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary btn-sm" id="save_customer"><i class="la la-download"></i> ثبت اطلاعات مشتری</button>
+                        <button type="button" class="btn btn-outline-brand btn-sm" data-dismiss="modal"><i class="la la-close"></i>  انصراف</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <button type="button" style="display:none" id="Beauty_demo_panel_toggle"></button>
+    <div id="Beauty_demo_panel" class="beauty-demo-panel beauty-demo-panel-60">
+
+    </div>
+
+    <script type="text/template" id="service_template">
+        <div class="row" id="Services_{{index}}" data-index="{{index}}">
+            <div class="col-lg-3 col-md-3 col-sm-12">
+                <div class="form-group">
+                    <input type="hidden" id="Services_{{index}}__ServiceId" name="Services[{{index}}].ServiceId" value="{{ServiceId}}" />
+                    <input class="form-control services_title" id="Services_{{index}}__ServiceTitle" name="Services[{{index}}].ServiceTitle" value="{{ServiceTitle}}" type="text" placeholder="عنوان خدمت" onkeyup="service_dropselect(this.value, '{{index}}')">
+                    <ul id="Services_{{index}}_search_item" class="select-dropdown hide-select-dropdown"></ul>
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-12">
+                <div class="form-group">
+                    <input class="form-control" id="Services_{{index}}__DurationMinutes" name="Services[{{index}}].DurationMinutes" value="{{DurationMinutes}}" type="text" placeholder="مدت زمان" readonly="readonly">
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-12">
+                <div class="form-group">
+                    <input class="form-control service_price" id="Services_{{index}}__Price" name="Services[{{index}}].Price" value="{{Price}}" type="text" placeholder="مبلغ" readonly="readonly">
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-12">
+                <div class="form-group">
+                    <input class="form-control service_prepayment" id="Services_{{index}}__Prepayment" name="Services[{{index}}].Prepayment" value="{{Prepayment}}" type="text" placeholder="مبلغ پیش پرداخت" readonly="readonly">
+                </div>
+            </div>
+            <div class="col-lg-2 col-md-2 col-sm-12">
+                <div class="form-group">
+                    <select class="form-control service_personnelId" id="Services_{{index}}__PersonnelId" name="Services[{{index}}].PersonnelId" value="{{PersonnelId}}">
+                        <option>پرسنل را انتخاب کنید</option>
+                        @foreach (var personnel in Model.Personnels)
+                        {
+                            <option value="@personnel.Value">@personnel.Text</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-1 col-md-1 col-sm-12">
+                <button type="button" class="btn btn-danger btn-elevate btn-circle btn-icon" onclick="delete_service('{{index}}')"> <i class="la la-close"></i></button>
+            </div>
+        </div>
+    </script>
+
+
+
+    <script type="text/template" id="app_info_template">
+        <div class="beauty-demo-panel__head">
+            <h3 class="beauty-demo-panel__title">
+                {{customerFullName}} ({{customerMobile}})
+            </h3>
+            <a href="#" class="beauty-demo-panel__close" id="Beauty_demo_panel_close"><i class="flaticon2-delete"></i></a>
+        </div>
+        <div class="beauty-demo-panel__body">
+            <div class="beauty-demo-panel__item ">
+                <div class="beauty-portlet__body">
+                    <div class="beauty-portlet__content">
+                        <button type="button" class="btn btn-success btn-sm" id="appointment_done" onclick="appointment_done('{{id}}')"><i class="la la-check-circle-o"></i> انجام شد</button>
+                        <button type="button" class="btn btn-warning btn-sm" id="appointment_cancel" onclick="appointment_cancel('{{id}}')"><i class="la la-close"></i> کنسل شد</button>
+                        <button type="button" class="btn btn-danger btn-sm" id="appointment_delete" onclick="appointment_delete('{{id}}')"><i class="la la-close"></i> حذف نوبت</button>
+                        <button type="button" class="btn btn-primary btn-sm" data-id="{{id}}"><i class="la la-edit"></i> ویرایش</button>
+                    </div>
+                    <div class="beauty-separator beauty-separator--border-dashed beauty-separator--portlet-fit beauty-separator--space-xs"></div>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>عنوان خدمت</th>
+                                    <th>پرسنل</th>
+                                    <th style="width: 15%;">مبلغ(تومان)</th>
+                                    <th style="width: 15%;">پیش پرداخت(تومان)</th>
+                                    <th>عملیات</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#services}}
+                                <tr>
+                                    <td>{{serviceTitle}}</td>
+                                    <td>{{personnelFullname}}</td>
+                                    <td>{{price}}</td>
+                                    <td>{{prepayment}}</td>
+                                    <td id="cell_opt_{{id}}">
+                                        {{#doneAction}}
+                                        <button type="button" class="btn btn-success btn-sm" onclick="appointment_service_done('{{id}}', '{{appointmentServiceId}}', this)"><i class="la la-check-circle-o"></i> انجام شد</button>
+                                        {{/doneAction}}
+                                    </td>
+                                </tr>
+                                {{/services}}
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td style="border: none;"></td>
+                                    <td style="border: none;"></td>
+                                    <td style="background: aliceblue;">{{totalPrice}}</td>
+                                    <td style="background: #9ca7ff40;">{{totalPrepayment}}</td>
+                                    <td style="background: #e5e2df40;">مبلغ باقی مانده: {{totalRemainingPrice}} تومان</td>
+                                </tr>
+                                <tr>
+                                    <td style="border: none;"></td>
+                                    <td style="border: none;"></td>
+                                    <td style="border: none;"></td>
+                                    <td style="border: none;"></td>
+                                    <td style="border: none;padding: 3px 0;" colspan="2">
+                                        <input class="form-control" style="border: 1px solid #dd5858;" id="pay_amount" name="pay_amount" type="text" placeholder="مبلغ پرداخت شده مشتری(تومان)">
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td style="border: none;"></td>
+                                    <td style="border: none;"></td>
+                                    <td style="border: none;"></td>
+                                    <td style="border: none;"></td>
+                                    <td style="border: none;padding: 2px 0;" colspan="2">
+                                        <button type="button" class="btn btn-primary col-md-12" onclick="appointment_add_pay('{{id}}')"><i class="la la-check-circle-o"></i> ثبت مبلغ پرداخت شده مشتری</button>
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div class="beauty-separator beauty-separator--border-dashed beauty-separator--portlet-fit beauty-separator--space-xs"></div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <ul class="list-group">
+                                <li class="list-group-item list-group-item-action active">لیست پرداخت های مشتری برای این نوبت</li>
+                                {{#payments}}
+                                <li class="list-group-item d-flex justify-content-between align-items-center">
+                                    {{amount}} تومان
+                                    <span class="badge badge-primary badge-pill">در تاریخ و ساعت {{createDateTime}}</span>
+                                </li>
+                                {{/payments}}
+                            </ul>
+                        </div>
+                        <div class="col-md-8">
+                            <table class="table table-bordered m-table">
+                                <thead>
+                                    <tr>
+                                        <th>نام پرسنل</th>
+                                        <th>درصد پرسنل</th>
+                                        <th>سهم پرسنل(تومان)</th>
+                                        <th>سهم سالن(تومان)</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {{#paymentDetials}}
+                                    <tr>
+                                        <td>{{personnelFullName}}</td>
+                                        <td>{{personnelPercentage}} <span>%</span></td>
+                                        <td>{{personnelShare}}</td>
+                                        <td>{{salonShare}}</td>
+                                    </tr>
+                                    {{/paymentDetials}}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </script>
+
+    <script>
+        var BeautyAppOptions = {
+            "colors": {
+                "state": {
+                    "brand": "#3699ff",
+                    "metal": "#c4c5d6",
+                    "light": "#ffffff",
+                    "accent": "#00c5dc",
+                    "primary": "#5867dd",
+                    "success": "#34bfa3",
+                    "info": "#36a3f7",
+                    "warning": "#ffb822",
+                    "danger": "#fd3995",
+                    "focus": "#9816f4"
+                },
+                "base": {
+                    "label": [
+                        "#c5cbe3",
+                        "#a1a8c3",
+                        "#3d4465",
+                        "#3e4466"
+                    ],
+                    "shape": [
+                        "#f0f3ff",
+                        "#d9dffa",
+                        "#afb4d4",
+                        "#646c9a"
+                    ]
+                }
+            }
+        };
+
+    </script>
+    <script src="~/lib/persianDate.js"></script>
+    <script src="~/css/plugins/intro.js/minified/intro.min.js" asp-append-version="true"></script>
+    <script src="~/js/plugins.js"></script>
+    <script src="~/js/scripts.js"></script>
+    <link href="~/css/plugins/jalali.datetimepicker/jalali.datetimepicker.css" rel="stylesheet" />
+    <script src="~/css/plugins/jalali.datetimepicker/jalali.datetimepicker.js"></script>
+    <script src="~/lib/mustache.js"></script>
+    <script src="~/css/plugins/fullcalendar/fullcalendar.js"></script>
+    <script src="~/lib/mustache.js" asp-append-version="true"></script>
+    <script src="~/lib/humanize.js"></script>
+
+    <script src="~/js/pages/appointment-index.js" asp-append-version="true"></script>
+</body>
+</html>

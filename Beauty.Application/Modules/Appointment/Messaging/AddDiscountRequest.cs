@@ -1,0 +1,11 @@
+﻿using Common.Application.MessagingBase;
+using System;
+
+namespace Beauty.Application.Modules.Appointment.Messaging
+{
+    public class AddDiscountRequest : RequestBase
+    {
+        public Guid AppointmentId { get; set; }
+        public string Amount { get; set; }
+    }
+}

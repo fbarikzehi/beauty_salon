@@ -1,0 +1,213 @@
+﻿@model Beauty.Application.Modules.Salon.ViewModel.SalonViewModel
+@using Common.Crosscutting.Enum;
+@using Common.Crosscutting.Extensions;
+
+@using (Html.BeginForm("UpdateSalon", "Salon", FormMethod.Post, new { id = "saloninfo_frm" }))
+{
+    @Html.HiddenFor(x => x.Id)
+    <div class="beauty-portlet">
+        <div class="beauty-portlet__head">
+            <div class="beauty-portlet__head-label">
+                <h3 class="beauty-portlet__head-title"> اطلاعات سالن </h3>
+            </div>
+        </div>
+        <div class="beauty-portlet__body">
+            <div class="beauty-section beauty-section--first">
+                <div class="beauty-section__body">
+                    <div class="form-group row">
+                        <div class="col-md-2 col-lg-2 col-sm-12">
+                            <div class="beauty-avatar beauty-avatar--outline beauty-avatar--danger beauty-avatar--circle" id="Beauty_salon_logo_4">
+                                <div class="beauty-avatar__holder" id="logo_holder" style="background-image: url(@(string.IsNullOrEmpty(Model.Logo)?"/images/profile.png":Model.Logo))"></div>
+                                <label class="beauty-avatar__upload" data-toggle="beauty-tooltip" title="" data-original-title="ویرایش لوگوی سالن">
+                                    <i class="flaticon-edit"></i>
+                                    <input type="file" id="FileLogo" name="FileLogo" accept=".png, .jpg, .jpeg" onchange="logo_change(this)">
+                                </label>
+                                <span class="beauty-avatar__cancel" data-toggle="beauty-tooltip" title="" data-original-title="حذف لوگوی سالن">
+                                    <i class="flaticon2-cancel-music"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="col-md-10  col-lg-10 col-sm-12">
+                            <div class="form-group row">
+                                <div class="col-lg-12 col-md-12 col-sm-12">
+                                    @Html.LabelFor(x => x.Title) <span class="text-danger">*</span>
+                                    @Html.TextBoxFor(x => x.Title, null, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-lg-4 col-md-9 col-sm-12">
+                                    @Html.LabelFor(x => x.EstablishYear)
+                                    @Html.TextBoxFor(x => x.EstablishYear, null, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.EstablishYear, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-lg-4 col-md-9 col-sm-12">
+                                    @Html.LabelFor(x => x.OpeningTime) <span class="text-danger">*</span>
+                                    @Html.TextBoxFor(x => x.OpeningTime, null, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.OpeningTime, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="col-lg-4 col-md-9 col-sm-12">
+                                    @Html.LabelFor(x => x.ClosingTime) <span class="text-danger">*</span>
+                                    @Html.TextBoxFor(x => x.ClosingTime, null, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.ClosingTime, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="beauty-separator beauty-separator--border-dashed beauty-separator--portlet-fit beauty-separator--space-lg"></div>
+                    <div class="form-group row">
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            @Html.LabelFor(x => x.About)
+                            @Html.TextAreaFor(x => x.About, new { @class = "form-control", style = "resize:none" })
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                            @Html.LabelFor(x => x.Address) <span class="text-danger">*</span>
+                            @Html.TextAreaFor(x => x.Address, new { @class = "form-control", style = "resize:none" })
+                        </div>
+                    </div>
+                    <div class="beauty-separator beauty-separator--border-dashed beauty-separator--portlet-fit beauty-separator--space-lg"></div>
+                    <div class="row">
+                        <div class="col-lg-12 col-xl-12">
+                            <h3 class="beauty-section__title beauty-section__title-sm">اطلاعات تماس: </h3>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-lg-12 col-md-12 col-sm-12">
+                            <div id="contacts_wrapper">
+                                @for (int i = 0; i < Model.Contacts.Count; i++)
+                                {
+                                    <input type="hidden" id="contacts_index_@i" value="@i">
+                                    <div style="margin-bottom: 2%;" id="contact_item_@i">
+                                        <div class="card">
+                                            <div class="card-body">
+                                                <input type="hidden" id="Contacts_@(i)__Id" name="Contacts[@i].Id" value="@Model.Contacts[i].Id">
+                                                <div class="row">
+                                                    <div class="col-lg-3">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(x => x.Contacts[i].Type)  <span class="text-danger">*</span>
+                                                            <select class="form-control  mb-3" id="Contacts_@(i)__Type" name="Contacts[@(i)].Type">
+                                                                @foreach (ContactTypeEnum contact in Enum.GetValues(typeof(ContactTypeEnum)))
+                                                                {
+                                                                    <!option value="@((int)contact)" @(Model.Contacts[i].Type == contact ? "selected" : "")>
+                                                                        @(EnumExtensions<ContactTypeEnum>.GetPersianName(contact))
+                                                                    </!option>
+                                                                }
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <div class="form-group">
+                                                            @Html.LabelFor(x => x.Contacts[i].Value)  <span class="text-danger">*</span>
+                                                            @Html.TextBoxFor(x => x.Contacts[i].Value, null, new { @class = "form-control" })
+                                                            @Html.ValidationMessageFor(model => model.Contacts[i].Value, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <div class="form-group">
+                                                            <div class="beauty-radio-inline mt-4">
+                                                                <label class="beauty-radio beauty-radio--brand">
+                                                                    <input type="radio" id="Contacts_@(i)__IsActive" name="Contacts[@(i)].IsActive" value="false" @(Model.Contacts[i].IsActive ? "" : "checked")>
+                                                                    فعال
+                                                                    <span></span>
+                                                                </label>
+                                                                <label class="beauty-radio beauty-radio--success">
+                                                                    <input type="radio" id="Contacts_@(i)__NotActive" name="Contacts[@(i)].IsActive" value="true" @(Model.Contacts[i].IsActive ? "checked" : "")>
+                                                                    غیر فعال
+                                                                    <span></span>
+                                                                </label>
+                                                            </div>
+                                                            <span class="form-text text-muted">* در صورت فعال بودن, برای تماس استفاده یا نمایش داده میشود </span>
+                                                        </div>
+                                                    </div>
+                                                    <div class="col-lg-3">
+                                                        <div class="form-group" style="margin-bottom: 0rem;margin-top: 2rem;">
+                                                            <button type="button" class="btn btn-danger btn-elevate btn-circle btn-icon delete_btn_@i" onclick="delete_contact('@Model.Contacts[i].Id','@i')" style="height: 3rem;float:left"><i class="flaticon-delete"></i></button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                            </div>
+                            <button type="button" class="btn btn-primary btn-wide" id="contact_count" onclick="add_contact(this)" value="@(Model.Contacts.Count)">
+                                <i class="flaticon-add-circular-button mr-2"></i>
+                                افزودن اطلاعات تماس بیشتر
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="beauty-portlet__foot">
+            <div class="beauty-form__actions">
+                <div class="row">
+                    <div class="col-lg-12 col-xl-12 col-sm-12">
+                        <button type="button" class="btn btn-brand btn-bold" id="save_btn" onclick="submit_salon_info()">
+                            <i class="flaticon-download mr-2"></i>
+                            ثبت تغییرات
+                        </button>&nbsp;
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script type="text/template" id="contact_template">
+    <input type="hidden" id="contacts_index_{{index}}" value="{{index}}">
+    <div style="margin-bottom: 2%;" id="contact_item_{{index}}">
+        <div class="card">
+            <div class="card-body">
+                <input type="hidden" id="Contacts_{{index}}__Id" name="Contacts[{{index}}].Id" value="0">
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label>نوع</label>
+                            <select class="form-control  mb-3" id="Contacts_{{index}}__Type" name="Contacts[{{index}}].Type">
+                                @foreach (ContactTypeEnum contact in Enum.GetValues(typeof(ContactTypeEnum)))
+                                {
+                                    <option value="@((int)contact)">@(EnumExtensions<ContactTypeEnum>.GetPersianName(contact))</option>
+                                }
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <label>مقدار</label>
+                            <input type="text" class="form-control" id="Contacts_{{index}}__Value" name="Contacts[{{index}}].Value" value="">
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group">
+                            <div class="beauty-radio-inline mt-4">
+                                <label class="beauty-radio beauty-radio--brand">
+                                    <input type="radio" id="Contacts_{{index}}__IsActive" name="Contacts[{{index}}].IsActive" value="false" checked>
+                                    فعال
+                                    <span></span>
+                                </label>
+                                <label class="beauty-radio beauty-radio--success">
+                                    <input type="radio" id="Contacts_{{index}}__IsActive" name="Contacts[{{index}}].IsActive" value="true">
+                                    غیر فعال
+                                    <span></span>
+                                </label>
+                            </div>
+                            <span class="form-text text-muted">* در صورت فعال بودن, برای تماس استفاده یا نمایش داده میشود </span>
+                        </div>
+                    </div>
+                    <div class="col-lg-3">
+                        <div class="form-group" style="margin-bottom: 0rem;margin-top: 2rem;">
+                            <button type="button" class="btn btn-danger btn-elevate btn-circle btn-icon" value="{{index}}" style="height: 3rem;float:left"><i class="flaticon-delete"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<script>
+    $("#OpeningTime,#ClosingTime").inputmask("99:99", {
+        numericInput: !0
+    });
+</script>

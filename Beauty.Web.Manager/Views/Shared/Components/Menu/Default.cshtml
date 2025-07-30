@@ -1,0 +1,36 @@
+﻿@model Beauty.Application.ViewComponentViewModel.MenuViewComponentViewModel
+
+<div class="navbar-container main-menu-content" data-menu="menu-container">
+    <ul class="nav navbar-nav" id="main-menu-navigation" data-menu="menu-navigation">
+        @foreach (var menu in Model.Menus)
+        {
+            if (menu.SubMenus.Count > 0)
+            {
+                <li class="dropdown nav-item" data-menu="dropdown">
+                    <a class="dropdown-toggle nav-link" href="#" data-toggle="dropdown">
+                        <i class="@menu.Icon"></i><span data-i18n="Apps">@menu.Title</span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        @foreach (var subMenu in menu.SubMenus)
+                        {
+                            <li data-menu="">
+                                <a class="dropdown-item" href="@subMenu.Url" data-toggle="dropdown" data-i18n="Email">
+                                    <i class="@subMenu.Icon"></i>@subMenu.Title
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </li>
+            }
+            else
+            {
+                <li class="nav-item">
+                    <a class="nav-link" href="@menu.Url">
+                        <i class="@menu.Icon"></i><span data-i18n="Dashboard">@menu.Title</span>
+                    </a>
+                </li>
+            }
+        }
+    </ul>
+</div>
+

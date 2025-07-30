@@ -1,0 +1,125 @@
+﻿@{
+    ViewData["Title"] = "اطلاعات سالن";
+}
+
+<input type="hidden" id="s_id" value="00000000-0000-0000-0000-000000000000" />
+<div class="beauty-subheader   beauty-grid__item" id="Beauty_subheader">
+    <div class="beauty-container  beauty-container--fluid ">
+        <div class="beauty-subheader__main">
+        </div>
+        <div class="beauty-subheader__toolbar">
+        </div>
+    </div>
+</div>
+<div class="beauty-content  beauty-grid__item beauty-grid__item--fluid beauty-grid beauty-grid--hor" id="Beauty_content">
+    <div class="beauty-container  beauty-container--fluid  beauty-grid__item beauty-grid__item--fluid">
+        <div class="beauty-grid beauty-grid--desBeautyop beauty-grid--ver beauty-grid--ver-desBeautyop beauty-app">
+            <button class="beauty-app__aside-close" id="Beauty_profile_aside_close">
+                <i class="la la-close"></i>
+            </button>
+            <div class="beauty-grid__item beauty-app__toggle beauty-app__aside beauty-app__aside--sm beauty-app__aside--fit" id="Beauty_profile_aside">
+                <div class="beauty-portlet">
+                    <div class="beauty-portlet__body">
+                        <div class="beauty-widget beauty-widget--general-1">
+                            <div class="beauty-media beauty-media--brand beauty-media--md beauty-media--circle">
+                                <img src="~/images/profile.png" alt="image" class="salon_logo" id="salon_logo">
+                            </div>
+                            <div class="beauty-widget__wrapper">
+                                <div class="beauty-widget__label">
+                                    <a href="#" class="beauty-widget__title" id="salon_title">
+                                        اطلاعات سالن ثبت نشده
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="beauty-portlet__separator"></div>
+
+                    <div class="beauty-portlet__body">
+                        <ul class="beauty-nav beauty-nav--bolder beauty-nav--fit-ver beauty-nav--v4">
+                            <li class="beauty-nav__item  ">
+                                <a class="beauty-nav__link active" href="javascript:;" role="tab" onclick="fetch_tab('salon_info')">
+                                    <span class="beauty-nav__link-icon"><i class="flaticon2-user"></i></span>
+                                    <span class="beauty-nav__link-text"> سالن</span>
+                                </a>
+                            </li>
+                            <li class="beauty-nav__item  ">
+                                <a class="beauty-nav__link" href="javascript:;" role="tab" onclick="fetch_tab('working_time')">
+                                    <span class="beauty-nav__link-icon"><i class="flaticon-feed"></i></span>
+                                    <span class="beauty-nav__link-text"> ساعات کاری</span>
+                                </a>
+                            </li>
+                            <li class="beauty-nav__item  ">
+                                <a class="beauty-nav__link" href="javascript:;" role="tab" onclick="fetch_tab('account')">
+                                    <span class="beauty-nav__link-icon"><i class="flaticon2-settings"></i></span>
+                                    <span class="beauty-nav__link-text"> حساب کاربری</span>
+                                </a>
+                            </li>
+
+                            <li class="beauty-nav__item  ">
+                                <a class="beauty-nav__link" href="javascript:;" role="tab" onclick="fetch_tab('sms')">
+                                    <span class="beauty-nav__link-icon"><i class="flaticon-feed"></i></span>
+                                    <span class="beauty-nav__link-text"> پیامک</span>
+                                </a>
+                            </li>
+                            <li class="beauty-nav__item  ">
+                                <a class="beauty-nav__link" href="javascript:;" role="tab" onclick="fetch_tab('sms')">
+                                    <span class="beauty-nav__link-icon"><i class="la la-money"></i></span>
+                                    <span class="beauty-nav__link-text"> مالی</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="beauty-portlet__separator"></div>
+                    <div class="beauty-portlet__body">
+                        <ul class="beauty-nav beauty-nav--bolder beauty-nav--fit-ver beauty-nav--v4" role="tablist">
+                            <li class="beauty-nav__item">
+                                <a class="beauty-nav__link" href="javascript:;" role="tab" onclick="load_view('appointment')">
+                                    <span class="beauty-nav__link-icon"><i class="flaticon2-chart2"></i></span>
+                                    <span class="beauty-nav__link-text">نوبت دهی</span>
+                                </a>
+                            </li>
+                            <li class="beauty-nav__item">
+                                <a class="beauty-nav__link" href="javascript:;" role="tab" onclick="load_view('personnel')">
+                                    <span class="beauty-nav__link-icon"><i class="flaticon-safe-shield-protection"></i></span>
+                                    <span class="beauty-nav__link-text">پرسنل</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="beauty-portlet beauty-portlet--head-noborder">
+                    <div class="beauty-portlet__head">
+                        <div class="beauty-portlet__head-label">
+                            <h3 class="beauty-portlet__head-title  beauty-font-danger">
+                                پیغام سیستم
+                            </h3>
+                        </div>
+                        <div class="beauty-portlet__head-toolbar">
+                            <span class="beauty-badge beauty-badge--bolder beauty-badge beauty-badge--inline beauty-badge--danger"> ساعت 11 و 25 دقیقه </span>
+                        </div>
+                    </div>
+                    <div class="beauty-portlet__body beauty-portlet__body--fit-top">
+                        <div class="beauty-section beauty-section--space-sm">
+                            سیستم بروزرسانی تنظیمات را درخواست کرده
+                        </div>
+                        <div class="beauty-section beauty-section--last">
+                            <a href="#" class="btn btn-brand btn-sm btn-bold"><i class=""></i> بروزرسانی تنظیمات</a>&nbsp;
+                            <a href="#" class="btn btn-clean btn-sm btn-bold">متوجه شدم</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="beauty-grid__item beauty-grid__item--fluid beauty-app__content" id="content_wrapper">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts{
+    <script src="~/lib/mustache.js"></script>
+    <script src="~/js/pages/salon-index.js" asp-append-version="true"></script>
+}

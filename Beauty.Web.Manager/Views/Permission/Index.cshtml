@@ -1,0 +1,112 @@
+﻿@model Beauty.Application.Modules.Account.Role.ViewModel.RolePermissionIndexViewModel
+@{
+    ViewData["Title"] = PageTitleResource.PermissionIndex;
+}
+
+<section>
+    <div id="basic-examples">
+        <div class="row">
+            <div class="col-12 col-md-12 col-lg-12 col-sm-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h4 class="card-title">سطح دسترسی برای هر نقش را ویرایش کنید</h4>
+                    </div>
+                    <div class="card-content">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-12 col-md-5 col-lg-3 col-sm-12">
+                                    <fieldset class="form-group">
+                                        @Html.DropDownListFor(x => x.RoleId, Model.Roles, "نقش کاربری را انتخاب کنید", new { @class = "form-control" })
+                                    </fieldset>
+                                </div>
+                            </div>
+                            <fieldset style="border: .5px solid #bdbcbc;padding: revert;">
+                                <legend style="width: auto; padding: -1px; margin-right: 13px; font-size: 16px;">لیست منوها و عملیات های برنامه</legend>
+                                <div id="permissions_wrapper">
+                                    <div class="alert alert-primary mb-2" role="alert"> برای ویرایش سطح دسترسی هر نقش ابتدا نقش را انتخاب کنید </div>
+                                </div>
+                            </fieldset>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/template" id="permissions_template">
+    <div class="vs-checkbox-con vs-checkbox-primary  mb-1 ml-3-75">
+        <input type="checkbox" id="permission_checked_all" onchange="update_all_permission(this)">
+        <span class="vs-checkbox vs-checkbox-sm">
+            <span class="vs-checkbox--check">
+                <i class="vs-icon feather icon-check"></i>
+            </span>
+        </span>
+        <span class="">انتخاب همه</span>
+    </div>
+    <div class="row">
+        <div class="col-12 col-md-12 col-lg-12 col-sm-12">
+            <ul class="list-group">
+                {{#data}}
+                <li class="list-group-item">
+                    <span class="nav-link d-flex py-75 active" style="color: #045dfc;">
+                        <i class="{{icon}} mr-50 font-medium-3"></i>
+                        {{title}}
+                       
+                    </span>
+                    <ul class="list-unstyled mb-0">
+                        {{#rolePermissionActions}}
+                        <li class="d-inline-block mb-0 ml-3-75">
+                            <fieldset>
+                                <div class="custom-control custom-checkbox">
+                                    <input {{checked}} value="{{selected}}" onchange="update_permission('{{id}}','{{actionId}}',this)" type="checkbox" class="custom-control-input permission_check" name="customCheck_{{id}}_{{actionId}}" id="customCheck_{{id}}_{{actionId}}">
+                                    <label class="custom-control-label" for="customCheck_{{id}}_{{actionId}}">{{actionTitle}}</label>
+                                </div>
+                            </fieldset>
+
+                        </li>
+                        {{/rolePermissionActions}}
+                    </ul>
+                    <ul class="list-group  ml-3-75">
+                        {{#roleSubPermissions}}
+                        <li class="d-inline-block mr-5">
+                            <span class="nav-link d-flex py-75 active" style="color: #00a587;">
+                                <i class="{{icon}} mr-50 font-medium-3"></i>
+                                {{title}}
+                                
+                            </span>
+                            <ul class="list-unstyled mb-0 ml-3-75" style="margin-right: 2%;">
+                                {{#rolePermissionActions}}
+                                <li class="d-inline-block mr-2">
+                                    <fieldset>
+                                        <div class="vs-checkbox-con vs-checkbox-primary">
+                                            <input type="checkbox" class="permission_check" {{checked}} value="{{selected}}" onchange="update_permission('{{id}}','{{actionId}}',this)">
+                                            <span class="vs-checkbox vs-checkbox-sm">
+                                                <span class="vs-checkbox--check">
+                                                    <i class="vs-icon feather icon-check"></i>
+                                                </span>
+                                            </span>
+                                            <span class="">{{actionTitle}}</span>
+                                        </div>
+                                    </fieldset>
+                                </li>
+                                {{/rolePermissionActions}}
+                            </ul>
+                        </li>
+                        {{/roleSubPermissions}}
+                    </ul>
+                </li>
+                {{/data}}
+            </ul>
+        </div>
+    </div>
+    <script>
+        $("#permission_checked_all").prop('checked', $('.permission_check:checked').length == $('.permission_check').length)
+    </script>
+</script>
+
+@section Scripts{
+    <script src="~/lib/mustache.js"></script>
+    <script src="~/theme/app-assets/vendors/js/extensions/sweetalert2.all.min.js"></script>
+    <script src="~/js/pages/permission-index.js" asp-append-version="true"></script>
+}

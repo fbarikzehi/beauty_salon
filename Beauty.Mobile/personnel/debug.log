@@ -1,0 +1,5 @@
+[1006/235736.238:ERROR:crash_report_database_win.cc(428)] unexpected header
+[1006/235750.765:ERROR:crash_report_database_win.cc(428)] unexpected header
+[1006/235809.021:ERROR:crash_report_database_win.cc(428)] unexpected header
+[1006/235813.153:ERROR:crash_report_database_win.cc(428)] unexpected header
+[1007/232251.338:ERROR:file_io.cc(135)] WriteFile: The pipe is being closed. (0xE8)

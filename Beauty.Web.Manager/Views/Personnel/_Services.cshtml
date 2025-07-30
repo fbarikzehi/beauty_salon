@@ -1,0 +1,59 @@
+﻿@model Beauty.Application.Modules.Personnel.ViewModel.PersonnelServicesViewModel
+
+@using (Html.BeginForm("UpdateServices", "Personnel", FormMethod.Post, new { id = "services_frm", autocomplete = "off" }))
+{
+    @Html.HiddenFor(x => x.PersonnelId)
+    <h4 class="card-title">این پرسنل چه خدماتی انجام میدهد؟</h4>
+    <div class="row">
+        <div class="col-12 col-lg-4 col-md-9 col-sm-12">
+            <div class="form-group">
+                <div class="controls">
+                    <label for="search">جستجو و افزودن خدمت</label>
+                    <input class="form-control" id="search" onkeyup="search_service(this)" type="text">
+                    <ul id="search_select" class="search_dropdown"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row" id="selected_services">
+        @foreach (var service in Model.Services)
+        {
+            <div class="col-md-3 col-lg-2 col-sm-12" id="service_card_@service.ServiceId">
+                <div class="card" style="background: aliceblue; margin-bottom: 1.2rem; padding-bottom: 1rem;">
+                    <div class="card-header">
+                        <p class="card-title" style="font-size: 12px;">@service.ServiceTitle</p>
+                        <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+                        <div class="heading-elements" style="top: 12px;left: 4px;">
+                            <ul class="list-inline mb-0">
+                                <li style=" top: 11px; left: 11px;">
+                                    <button onclick="delete_service('@service.ServiceId')" type="button" class="btn btn-icon btn-icon rounded-circle btn-warning mr-1 mb-1 waves-effect waves-light">
+                                        <i class="feather icon-trash-2"></i>
+                                    </button>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+    <hr />
+    <h4 class="card-title">این پرسنل در چه لاین هایی خدمت ارائه میدهد؟</h4>
+    <div class="row">
+        @foreach (var line in Model.Lines)
+        {
+            <div class="col-12 col-lg-2 col-md-3 col-sm-12">
+                <div class="card" style="background: #dadadf; margin-bottom: 1.2rem; padding-bottom: 1rem;">
+                    <div class="card-header">
+                        <fieldset>
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" @(line.Selected ? "checked" : "") name="customCheck_@line.Id" id="customCheck_@line.Id" onchange="update_line(this,'@Model.PersonnelId','@line.Id')">
+                                <label class="custom-control-label" for="customCheck_@line.Id">@line.Title</label>
+                            </div>
+                        </fieldset>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+}

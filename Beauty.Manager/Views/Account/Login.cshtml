@@ -1,0 +1,52 @@
+﻿@model Beauty.Application.Modules.Account.User.Messaging.LoginRequest
+@{
+    ViewData["Title"] = "ورود به حساب کاربری";
+    Layout = "_LayoutAccount";
+}
+
+<div class="beauty-login-v2__wrapper">
+    <div class="beauty-login-v2__container">
+        <div class="beauty-login-v2__title">
+            <h3>وارد حساب کاربری خود شوید</h3>
+        </div>
+        <form class="beauty-login-v2__form beauty-form" asp-controller="" asp-action="" autocomplete="off" id="Beauty_login_form">
+            <div class="form-group">
+                <input class="form-control" type="text" placeholder="نام کاربری" asp-for="Entity.Username" autocomplete="off">
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="password" placeholder="رمزعبور" asp-for="Entity.Password" autocomplete="off">
+            </div>
+            <div class="beauty-login-v2__actions">
+                <a asp-area="" asp-controller="Home" asp-action="Index" class="beauty-link beauty-link--brand">
+                    رمزعبور خود را فراموش کرده ام؟
+                </a>
+                <button type="submit" class="btn btn-brand btn-elevate btn-pill" id="Beauty_login_submit">ورود</button>
+            </div>
+        </form>
+        <div class="beauty-separator beauty-separator--space-lg  beauty-separator--border-solid"></div>
+        <h3 class="beauty-login-v2__desc">با شبکه های اجتماعی وارد شوید</h3>
+
+        <div class="beauty-login-v2__options">
+            <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-facebook btn-pill">
+                <i class="fab fa-facebook-f"></i>
+                Facebook
+            </a>
+            <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-twitter btn-pill">
+                <i class="fab fa-twitter"></i>
+                Twitter
+            </a>
+            <a asp-area="" asp-controller="Home" asp-action="Index" class="btn btn-google btn-pill">
+                <i class="fab fa-google"></i>
+                Google
+            </a>
+        </div>
+    </div>
+</div>
+<div class="beauty-login-v2__image">
+    <img src="~/images/login1 (4).png" alt="" />
+</div>
+
+@section Scripts{
+    <script src="~/js/pages/login.js" asp-append-version="true"></script>
+
+}

@@ -1,0 +1,51 @@
+﻿@model Beauty.Application.Modules.Personnel.ViewModel.PersonnelServicesViewModel
+
+@using (Html.BeginForm("UpdateServices", "Personnel", FormMethod.Post, new { id = "services_frm", autocomplete = "off" }))
+{
+    @Html.HiddenFor(x => x.PersonnelId)
+    <div class="beauty-form beauty-form--label-right">
+        <div class="beauty-form__body">
+            <div class="beauty-section beauty-section--first">
+                <div class="beauty-section__body">
+                    <div class="row">
+                        <label class="col-xl-3"></label>
+                        <div class="col-lg-12 col-xl-12 col-sm-12">
+                            <h3 class="beauty-section__title beauty-section__title-sm">این پرسنل چه خدماتی انجام میدهد؟ <a href="@Url.Action("CreateRange","Service")" target="_blank" class="btn btn-outline-hover-success">(<i class="la la-plus-circle"></i> ثبت خدمت جدید )</a></h3>
+
+                        </div>
+                    </div>
+                    <div class="form-group form-group-last row">
+                        <div class="col-lg-9 col-xl-6">
+                            <div class="beauty-checkbox-list">
+                                <div id="selected_services">
+                                    @for (int i = 0; i < Model.Services.Count; i++)
+                                    {
+                                        <input name="Services[@i].ServiceId" id="selected_service_@(Model.Services[i].ServiceId)" type="hidden" value="@(Model.Services[i].ServiceId)">
+                                        <input name="Services[@i].Selected" id="selected_service_check_@(Model.Services[i].ServiceId)" type="hidden" value="@(Model.Services[i].Selected.ToString())">
+                                    }
+                                </div>
+                                <label class="beauty-checkbox beauty-checkbox--focus">
+                                    <input type="checkbox" id="select__all" onchange="select_all_sevices(this)" @(Model.Services.All(x => x.Selected) ? "checked=\"checked\"" : "")> همه
+                                    <span></span>
+                                </label>
+                                <div class="beauty-separator beauty-separator--border-dashed beauty-separator--portlet-fit beauty-separator--space-xs"></div>
+                                @foreach (var service in Model.Services)
+                                {
+                                    <label class="beauty-checkbox beauty-checkbox--brand">
+                                        <input type="checkbox"
+                                               id="service___@service.ServiceId"
+                                               data-id="@service.ServiceId"
+                                               data-title="@service.ServiceTitle"
+                                               @(service.Selected ? "checked=\"checked\"" : "")
+                                               onchange="selected_services_changed('@service.ServiceId',this)" /> @service.ServiceTitle
+                                            <span></span>
+                                        </label>
+                                    }
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}

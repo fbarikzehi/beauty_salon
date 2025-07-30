@@ -1,0 +1,352 @@
+body {
+    padding: 0 !important
+}
+
+.beauty-login-v2 {
+    background-color: #fff
+}
+
+    .beauty-login-v2 .beauty-login-v2__head {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        -webkit-box-orient: horizontal;
+        -webkit-box-direction: normal;
+        -ms-flex-flow: row wrap;
+        flex-flow: row wrap;
+        padding: 2rem 3rem
+    }
+
+        .beauty-login-v2 .beauty-login-v2__head .beauty-login-v2__logo > a {
+            display: inline-block
+        }
+
+        .beauty-login-v2 .beauty-login-v2__head .beauty-login-v2__signup {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-align: center;
+            -ms-flex-align: center;
+            align-items: center
+        }
+
+            .beauty-login-v2 .beauty-login-v2__head .beauty-login-v2__signup > span {
+                margin-bottom: 0;
+                color: #9d9fb1;
+                font-size: 1.1rem;
+                padding-left: .5rem;
+                font-weight: 500
+            }
+
+            .beauty-login-v2 .beauty-login-v2__head .beauty-login-v2__signup > a {
+                font-weight: 500;
+                font-size: 1.1rem
+            }
+
+    .beauty-login-v2 .beauty-login-v2__body {
+        width: 100%;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        padding: 0 3rem
+    }
+
+        .beauty-login-v2 .beauty-login-v2__body .beauty-login-v2__wrapper {
+            width: 50%;
+            -webkit-box-pack: end;
+            -ms-flex-pack: end;
+            justify-content: flex-end;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex
+        }
+
+            .beauty-login-v2 .beauty-login-v2__body .beauty-login-v2__wrapper .beauty-login-v2__container {
+                width: 100%;
+                max-width: 500px;
+                -webkit-box-shadow: 0 0 80px 0 rgba(77,84,124,.09);
+                box-shadow: 0 0 80px 0 rgba(77,84,124,.09);
+                border-radius: .6rem
+            }
+
+                .beauty-login-v2 .beauty-login-v2__body .beauty-login-v2__wrapper .beauty-login-v2__container .beauty-login-v2__title {
+                    text-align: center
+                }
+
+                    .beauty-login-v2 .beauty-login-v2__body .beauty-login-v2__wrapper .beauty-login-v2__container .beauty-login-v2__title > h3 {
+                        color: #636576;
+                        margin-top: 3rem;
+                        font-size: 1.5rem
+                    }
+
+                .beauty-login-v2 .beauty-login-v2__body .beauty-login-v2__wrapper .beauty-login-v2__container .beauty-login-v2__form {
+                    padding: 3rem 4rem 2rem 4rem
+                }
+
+                    .beauty-login-v2 .beauty-login-v2__body .beauty-login-v2__wrapper .beauty-login-v2__container .beauty-login-v2__form .form-control {
+                        border-top: 0;
+                        border-right: 0;
+                        border-left: 0;
+                        /*border-radius: 0;*/
+                        padding-right: 11px;
+                    }
+
+                .beauty-login-v2 .beauty-login-v2__body .beauty-login-v2__wrapper .beauty-login-v2__container .beauty-login-v2__actions {
+                    display: -webkit-box;
+                    display: -ms-flexbox;
+                    display: flex;
+                    -webkit-box-pack: justify;
+                    -ms-flex-pack: justify;
+                    justify-content: space-between;
+                    -webkit-box-align: center;
+                    -ms-flex-align: center;
+                    align-items: center;
+                    width: 100%;
+                    padding: 0;
+                    margin-top: 3rem
+                }
+
+                    .beauty-login-v2 .beauty-login-v2__body .beauty-login-v2__wrapper .beauty-login-v2__container .beauty-login-v2__actions a {
+                        display: inline-block
+                    }
+
+                        .beauty-login-v2 .beauty-login-v2__body .beauty-login-v2__wrapper .beauty-login-v2__container .beauty-login-v2__actions a span {
+                            font-size: 1rem;
+                            font-weight: 500
+                        }
+
+                    .beauty-login-v2 .beauty-login-v2__body .beauty-login-v2__wrapper .beauty-login-v2__container .beauty-login-v2__actions .btn {
+                        padding: 1rem 3rem;
+                        color: #fff;
+                        font-size: 1.2rem;
+                        font-weight: 500
+                    }
+
+                .beauty-login-v2 .beauty-login-v2__body .beauty-login-v2__wrapper .beauty-login-v2__container .beauty-login-v2__desc {
+                    text-align: center;
+                    color: #a5a7bb;
+                    font-size: 1.2rem;
+                    font-weight: 400
+                }
+
+                .beauty-login-v2 .beauty-login-v2__body .beauty-login-v2__wrapper .beauty-login-v2__container .beauty-login-v2__options {
+                    display: -webkit-box;
+                    display: -ms-flexbox;
+                    display: flex;
+                    -webkit-box-pack: justify;
+                    -ms-flex-pack: justify;
+                    justify-content: space-between;
+                    padding: 2rem 4rem 3rem 4rem
+                }
+
+                    .beauty-login-v2 .beauty-login-v2__body .beauty-login-v2__wrapper .beauty-login-v2__container .beauty-login-v2__options > a {
+                        -webkit-box-flex: 1;
+                        -ms-flex: 1;
+                        flex: 1;
+                        font-weight: 400;
+                        font-size: 1rem;
+                        padding: 1rem 0;
+                        color: #fff
+                    }
+
+                        .beauty-login-v2 .beauty-login-v2__body .beauty-login-v2__wrapper .beauty-login-v2__container .beauty-login-v2__options > a > i {
+                            font-size: 1.2rem;
+                            color: rgba(255,255,255,.5);
+                            padding-left: .4rem
+                        }
+
+                        .beauty-login-v2 .beauty-login-v2__body .beauty-login-v2__wrapper .beauty-login-v2__container .beauty-login-v2__options > a:not(:first-child):not(:last-child) {
+                            margin: 0 2rem
+                        }
+
+                        .beauty-login-v2 .beauty-login-v2__body .beauty-login-v2__wrapper .beauty-login-v2__container .beauty-login-v2__options > a.btn-facebook {
+                            background-color: #3b5998
+                        }
+
+                            .beauty-login-v2 .beauty-login-v2__body .beauty-login-v2__wrapper .beauty-login-v2__container .beauty-login-v2__options > a.btn-facebook:hover {
+                                -webkit-transition: background-color .3s ease;
+                                transition: background-color .3s ease;
+                                background-color: #324c82
+                            }
+
+                        .beauty-login-v2 .beauty-login-v2__body .beauty-login-v2__wrapper .beauty-login-v2__container .beauty-login-v2__options > a.btn-twitter {
+                            background-color: #1da1f2
+                        }
+
+                            .beauty-login-v2 .beauty-login-v2__body .beauty-login-v2__wrapper .beauty-login-v2__container .beauty-login-v2__options > a.btn-twitter:hover {
+                                -webkit-transition: background-color .3s ease;
+                                transition: background-color .3s ease;
+                                background-color: #0d92e3
+                            }
+
+                        .beauty-login-v2 .beauty-login-v2__body .beauty-login-v2__wrapper .beauty-login-v2__container .beauty-login-v2__options > a.btn-google {
+                            background-color: #ea4335
+                        }
+
+                            .beauty-login-v2 .beauty-login-v2__body .beauty-login-v2__wrapper .beauty-login-v2__container .beauty-login-v2__options > a.btn-google:hover {
+                                -webkit-transition: background-color .3s ease;
+                                transition: background-color .3s ease;
+                                background-color: #e72919
+                            }
+
+        .beauty-login-v2 .beauty-login-v2__body .beauty-login-v2__image {
+            width: 50%;
+            margin-right: 8rem;
+            -webkit-box-pack: start;
+            -ms-flex-pack: start;
+            justify-content: flex-start;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex
+        }
+
+            .beauty-login-v2 .beauty-login-v2__body .beauty-login-v2__image > img {
+                width: 100%;
+                max-width: 500px
+            }
+
+    .beauty-login-v2 .beauty-login-v2__footer {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+        -webkit-box-align: center;
+        -ms-flex-align: center;
+        align-items: center;
+        padding: 2rem 3rem
+    }
+
+        .beauty-login-v2 .beauty-login-v2__footer .beauty-login-v2__info > a {
+            font-weight: 500;
+            font-size: 1rem;
+            color: #a5a7bb
+        }
+
+        .beauty-login-v2 .beauty-login-v2__footer .beauty-login-v2__link {
+            -webkit-box-ordinal-group: 3;
+            -ms-flex-order: 2;
+            order: 2
+        }
+
+            .beauty-login-v2 .beauty-login-v2__footer .beauty-login-v2__link > a {
+                color: #9c9fb1;
+                font-weight: 500;
+                font-size: 1rem
+            }
+
+                .beauty-login-v2 .beauty-login-v2__footer .beauty-login-v2__link > a:not(:first-child):not(:last-child) {
+                    margin: 0 2rem
+                }
+
+@media (max-width:1024px) {
+    .beauty-login-v2 .beauty-login-v2__head {
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column;
+        padding: 1.5rem 2rem
+    }
+
+        .beauty-login-v2 .beauty-login-v2__head .beauty-login-v2__logo {
+            margin-bottom: 2rem
+        }
+
+        .beauty-login-v2 .beauty-login-v2__head .beauty-login-v2__signup > span {
+            padding-right: 0
+        }
+
+    .beauty-login-v2 .beauty-login-v2__body {
+        padding-top: 1rem;
+        display: -webkit-box;
+        display: -ms-flexbox;
+        display: flex;
+        -webkit-box-orient: vertical;
+        -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+        flex-direction: column
+    }
+
+        .beauty-login-v2 .beauty-login-v2__body .beauty-login-v2__wrapper {
+            padding-right: 0;
+            width: 100%;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center
+        }
+
+            .beauty-login-v2 .beauty-login-v2__body .beauty-login-v2__wrapper .beauty-login-v2__container {
+                margin-right: 0
+            }
+
+                .beauty-login-v2 .beauty-login-v2__body .beauty-login-v2__wrapper .beauty-login-v2__container .beauty-login-v2__title {
+                    padding-top: 1rem
+                }
+
+                .beauty-login-v2 .beauty-login-v2__body .beauty-login-v2__wrapper .beauty-login-v2__container .beauty-login-v2__form {
+                    padding: 3rem 2rem
+                }
+
+                .beauty-login-v2 .beauty-login-v2__body .beauty-login-v2__wrapper .beauty-login-v2__container .beauty-login-v2__actions {
+                    padding: 0
+                }
+
+                .beauty-login-v2 .beauty-login-v2__body .beauty-login-v2__wrapper .beauty-login-v2__container .beauty-login-v2__options {
+                    margin: 1rem 0;
+                    padding: 2rem 2rem
+                }
+
+                    .beauty-login-v2 .beauty-login-v2__body .beauty-login-v2__wrapper .beauty-login-v2__container .beauty-login-v2__options > a > i {
+                        padding: .4rem 0 .4rem .3rem
+                    }
+
+                    .beauty-login-v2 .beauty-login-v2__body .beauty-login-v2__wrapper .beauty-login-v2__container .beauty-login-v2__options > a:not(:first-child):not(:last-child) {
+                        margin: 0 2rem
+                    }
+
+        .beauty-login-v2 .beauty-login-v2__body .beauty-login-v2__image {
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            -webkit-box-pack: center;
+            -ms-flex-pack: center;
+            justify-content: center;
+            width: 100%;
+            margin-right: 0;
+            padding: 4rem 0
+        }
+
+            .beauty-login-v2 .beauty-login-v2__body .beauty-login-v2__image > img {
+                width: 100%;
+                max-width: 500px;
+                height: 100%
+            }
+
+    .beauty-login-v2 .beauty-login-v2__footer {
+        padding: 1.5rem 2rem
+    }
+
+        .beauty-login-v2 .beauty-login-v2__footer .beauty-login-v2__info > a {
+            padding-left: .5rem
+        }
+
+        .beauty-login-v2 .beauty-login-v2__footer .beauty-login-v2__link > a:not(:first-child):not(:last-child) {
+            margin: 0 1rem
+        }
+}

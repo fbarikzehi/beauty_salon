@@ -1,0 +1,234 @@
+﻿@model Beauty.Application.Modules.Personnel.ViewModel.PersonnelProfileModifyViewModel
+@using Common.Crosscutting.Enum;
+@using Common.Crosscutting.Extensions;
+
+
+@using (Html.BeginForm((Model.Id == Guid.Empty ? "CreateProfile" : "UpdateProfile"), "Personnel", FormMethod.Post, new { id = "profile_frm", autocomplete = "off" }))
+{
+    @Html.HiddenFor(x => x.Id)
+    <div class="row">
+        <div class="col-10 col-lg-10 col-md-10 col-sm-12">
+            <div class="media mb-2">
+                <a class="mr-2 my-25" href="#">
+                    <img id="avatar_holder" src="@(string.IsNullOrEmpty(Model.Avatar)?"/images/avatar-placeholder.png":Model.Avatar)"
+                         alt="ویرایش تصویر پروفایل"
+                         class="users-avatar-shadow rounded"
+                         height="90"
+                         width="90" />
+                </a>
+                <input type="file" id="avatar_file" name="avatar_file" accept=".png, .jpg, .jpeg" onchange="change_avatar(this)" style="display:none">
+                <div class="media-body mt-50">
+                    <div class="col-12 d-flex mt-1 px-0">
+                        <a href="#" class="btn btn-primary d-none d-sm-block mr-75" onclick="choose_avatar()">ویرایش تصویر پروفایل</a>
+                        <a href="#" class="btn btn-primary d-block d-sm-none mr-75">
+                            <i class="feather icon-edit-1"></i>
+                        </a>
+                        <a href="#" class="btn btn-outline-danger d-none d-sm-block" onclick="delete_avatar()">حذف تصویر پروفایل</a>
+                        <a href="#" class="btn btn-outline-danger d-block d-sm-none"><i class="feather icon-trash-2"></i></a>
+                    </div>
+                    <span class="form-text text-black-50" style=" font-size: .8rem !important;">برای نمایش بهتر ترجیحا ابعاد 90 در 90 پیکسل باشد</span>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <div class="row">
+        <div class="col-12 col-lg-4 col-md-9 col-sm-12">
+            <div class="form-group">
+                <div class="controls">
+                    @Html.LabelFor(x => x.Name) <span class="text-danger">*</span>
+                    @Html.TextBoxFor(x => x.Name, null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-4 col-md-9 col-sm-12">
+            <div class="form-group">
+                <div class="controls">
+                    @Html.LabelFor(x => x.LastName) <span class="text-danger">*</span>
+                    @Html.TextBoxFor(x => x.LastName, null, new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.LastName, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-4 col-md-9 col-sm-12">
+            <div class="form-group">
+                <div class="controls  icon-ba">
+                    @Html.LabelFor(x => x.Birthdate) <span class="text-danger">*</span>
+                    @Html.TextBoxFor(x => x.Birthdate, null, new { @class = "form-control", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model.Birthdate, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-lg-4 col-md-9 col-sm-12">
+            <div class="form-group">
+                <div class="controls">
+                    @Html.LabelFor(x => x.JobStart) <span class="text-danger">*</span>
+                    @Html.TextBoxFor(x => x.JobStart, null, new { @class = "form-control", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model.JobStart, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+        <div class="col-12 col-lg-4 col-md-9 col-sm-12">
+            <div class="form-group">
+                <div class="controls">
+                    @Html.LabelFor(x => x.JobEnd)
+                    @Html.TextBoxFor(x => x.JobEnd, null, new { @class = "form-control", @readonly = "readonly" })
+                    @Html.ValidationMessageFor(model => model.JobEnd, "", new { @class = "text-danger" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12 col-lg-4 col-md-9 col-sm-12">
+            <div class="form-group">
+                <div class="controls">
+                    @Html.LabelFor(x => x.Address)
+                    @Html.TextAreaFor(x => x.Address, new { @class = "form-control", style = "resize:none" })
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <div class="table-responsive border rounded px-1 ">
+                <h6 class="border-bottom py-1 mx-1 mb-0 font-medium-2">
+                    <i class="feather icon-phone mr-50 "></i>اطلاعات تماس
+                    <span class="form-text text-muted" style=" font-size: .8rem !important;">* در صورت فعال بودن, برای تماس استفاده میشود </span>
+                </h6>
+                <div id="contacts_wrapper">
+                    @for (int i = 0; i < Model.Contacts.Count; i++)
+                    {
+                        <input type="hidden" id="contacts_index_@i" value="@i">
+                        <div style="margin-bottom: -2%;margin-top:1%" id="contact_item_@i">
+                            <input type="hidden" id="Contacts_@(i)__Id" name="Contacts[@i].Id" value="@Model.Contacts[i].Id">
+                            <div class="row">
+                                <div class="form-group" style="margin-bottom: 0rem;margin-top: 1.5rem;margin-right: 5rem;">
+                                    <button type="button" class="btn btn-icon btn-icon rounded-circle btn-warning mr-1 mb-1 waves-effect waves-light  delete_btn_@i" onclick="delete_contact('@Model.Contacts[i].Id','@i')"><i class="feather icon-trash-2"></i></button>
+                                </div>
+                                <div class="col-lg-2">
+                                    <div class="form-group">
+                                        @Html.LabelFor(x => x.Contacts[i].Type)  <span class="text-danger">*</span>
+                                        <select class="form-control  mb-3" id="Contacts_@(i)__Type" name="Contacts[@(i)].Type">
+                                            @foreach (ContactTypeEnum contact in Enum.GetValues(typeof(ContactTypeEnum)))
+                                            {
+                                                <!option value="@((int)contact)" @(Model.Contacts[i].Type == contact ? "selected" : "")>
+                                                    @(EnumExtensions<ContactTypeEnum>.GetPersianName(contact))
+                                                </!option>
+                                            }
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        @Html.LabelFor(x => x.Contacts[i].Value)  <span class="text-danger">*</span>
+                                        @Html.TextBoxFor(x => x.Contacts[i].Value, null, new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.Contacts[i].Value, "", new { @class = "text-danger" })
+                                    </div>
+                                </div>
+                                <div class="col-lg-3">
+                                    <div class="form-group">
+                                        <div style="margin-top: 2.5rem !important;">
+                                            <label class="beauty-radio beauty-radio--brand">
+                                                <input type="radio" id="Contacts_@(i)__IsActive" name="Contacts[@(i)].IsActive" value="true" @(Model.Contacts[i].IsActive ? "checked" : "")>
+                                                فعال
+                                                <span></span>
+                                            </label>
+                                            <label class="beauty-radio beauty-radio--success">
+                                                <input type="radio" id="Contacts_@(i)__NotActive" name="Contacts[@(i)].IsActive" value="false" @(Model.Contacts[i].IsActive ? "" : "checked")>
+                                                غیر فعال
+                                                <span></span>
+                                            </label>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+                    }
+                </div>
+                <div class="row">
+                    <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                        <button type="button"
+                                class="btn bg-gradient-success mr-1 mb-1 waves-effect waves-light"
+                                id="contact_count"
+                                onclick="add_contact(this)"
+                                value="@(Model.Contacts.Count)"
+                                style="margin-right: 45%;">
+                            <i class="feather icon-plus"></i>
+                            افزودن اطلاعات تماس بیشتر
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script type="text/template" id="contact_template">
+    <input type="hidden" id="contacts_index_{{index}}" value="{{index}}">
+    <div style="margin-bottom: -2%;margin-top:1%" id="contact_item_{{index}}">
+        <input type="hidden" id="Contacts_{{index}}__Id" name="Contacts[{{index}}].Id" value="0">
+        <div class="row">
+            <div class="form-group" style="margin-bottom: 0rem;margin-top: 1.5rem;margin-right: 5rem;">
+                <button type="button" class="btn btn-icon btn-icon rounded-circle btn-warning mr-1 mb-1 waves-effect waves-light  delete_btn_{{index}}" onclick="delete_contact('0','{{index}}')"><i class="feather icon-trash"></i></button>
+            </div>
+            <div class="col-lg-2">
+                <div class="form-group">
+                    <label for="Contacts_{{index}}__Type">نوع</label>  <span class="text-danger">*</span>
+                    <select class="form-control  mb-3" id="Contacts_{{index}}__Type" name="Contacts[{{index}}].Type">
+                        @foreach (ContactTypeEnum contact in Enum.GetValues(typeof(ContactTypeEnum)))
+                        {
+                            <option value="@((int)contact)">@(EnumExtensions<ContactTypeEnum>.GetPersianName(contact))</option>
+                        }
+                    </select>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <label for="Contacts_{{index}}__Value">مقدار</label>  <span class="text-danger">*</span>
+                    <input class="form-control" data-val="true" data-val-required="مقدار اجباری است" id="Contacts_{{index}}__Value" name="Contacts[{{index}}].Value" type="text" value="">
+                    <span class="field-validation-valid text-danger" data-valmsg-for="Contacts[{{index}}].Value" data-valmsg-replace="true"></span>
+                </div>
+            </div>
+            <div class="col-lg-3">
+                <div class="form-group">
+                    <div class="mt-2">
+                        <label class="beauty-radio beauty-radio--brand">
+                            <input type="radio" id="Contacts_{{index}}__IsActive" name="Contacts[{{index}}].IsActive" value="true" checked="">
+                            فعال
+                            <span></span>
+                        </label>
+                        <label class="beauty-radio beauty-radio--success">
+                            <input type="radio" id="Contacts_{{index}}__NotActive" name="Contacts[{{index}}].IsActive" value="false">
+                            غیر فعال
+                            <span></span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+<link href="~/lib/jalali.datetimepicker/jalali.datetimepicker.css" rel="stylesheet" />
+<script src="~/lib/jalali.datetimepicker/jalali.datetimepicker.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#Birthdate').JalaliDateTimePicker({
+            dateFormat: 'yyyy/MM/dd',
+            textFormat: 'yyyy/MM/dd',
+        });
+        $('#JobStart').JalaliDateTimePicker({
+            dateFormat: 'yyyy/MM/dd',
+            textFormat: 'yyyy/MM/dd',
+        });
+        $('#JobEnd').JalaliDateTimePicker({
+            dateFormat: 'yyyy/MM/dd',
+            textFormat: 'yyyy/MM/dd',
+        });
+    })
+</script>

@@ -1,0 +1,11 @@
+﻿
+protected void Application_AcquireRequestState(object sender, EventArgs e)
+{
+    if (Request.UserLanguages != null)
+    {
+        string culture = Request.UserLanguages[0];
+
+        Thread.CurrentThread.CurrentCulture = CultureInfo.GetCultureInfo(culture);
+        Thread.CurrentThread.CurrentUICulture = CultureInfo.GetCultureInfo(culture);
+    }
+}

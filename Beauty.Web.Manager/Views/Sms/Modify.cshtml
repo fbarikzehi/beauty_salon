@@ -1,0 +1,185 @@
+﻿@model Beauty.Application.Modules.Sms.ViewModel.SmsMessageViewModel
+@using Common.Crosscutting.Enum
+@using Common.Crosscutting.Extensions
+@{
+    ViewData["Title"] = PageTitleResource.SmsModify;
+}
+
+
+<section class="users-edit">
+    <div class="card">
+        <div class="card-content">
+            <div class="card-body">
+                @using (Html.BeginForm("UpdateMessage", "Sms", FormMethod.Post, new { id = "sms_frm", autocomplete = "off" }))
+                {
+                    <div class="row">
+                        <div class="col-md-9 col-sm-12 col-lg-10">
+                            @Html.HiddenFor(x => x.Id)
+                            <div class="row">
+                                <div class="col-12 col-lg-4 col-md-8 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="controls">
+                                            @Html.LabelFor(x => x.Title) <span class="text-danger">*</span>
+                                            @Html.TextBoxFor(x => x.Title, null, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.Title, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                                @if (!Model.IsSystemMessage)
+                                {
+                                    <div class="col-12 col-lg-4 col-md-4 col-sm-12">
+                                        <div class="form-group" style="padding-top:4%">
+                                            <div class="controls">
+                                                <button type="button" class="btn btn-flat-dark mr-1 mb-1 waves-effect waves-light" id="open_calendar" data-toggle="modal" data-target="#send_calendar_modal">
+                                                    <i class="feather icon-calendar"></i>
+                                                    برای انتخاب تاریخ و زمان ارسال پیامک اینجا کلیک کنید
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                <div class="col-12 col-lg-4 col-md-3 col-sm-12">
+                                    <div style="padding-top:4%">
+                                        <ul class="list-unstyled mb-0 mt-75">
+                                            <li class="d-inline-block mr-2">
+                                                <fieldset>
+                                                    <label for="AllowSend">ارسال : </label>
+                                                </fieldset>
+                                            </li>
+                                            <li class="d-inline-block mr-2">
+                                                <fieldset>
+                                                    <div class="custom-control custom-radio">
+                                                        <input type="radio" class="custom-control-input" name="AllowSend" id="AllowSend_@bool.TrueString" @(Model.AllowSend == true ? "checked" : "") value="@bool.TrueString">
+                                                        <label class="custom-control-label" for="AllowSend_@bool.TrueString">
+                                                            فعال
+                                                        </label>
+                                                    </div>
+                                                </fieldset>
+                                            </li>
+                                            <li class="d-inline-block mr-2">
+                                                <fieldset>
+                                                    <div class="custom-control custom-radio">
+                                                        <input type="radio" class="custom-control-input" name="AllowSend" id="AllowSend_@bool.FalseString" @(Model.AllowSend == false ? "checked" : "") value="@bool.FalseString">
+                                                        <label class="custom-control-label" for="AllowSend_@bool.FalseString">
+                                                            غیرفعال
+                                                        </label>
+                                                    </div>
+                                                </fieldset>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                    <div class="form-group">
+                                        <div class="controls">
+                                            @Html.LabelFor(x => x.Text) <span class="text-danger">*</span>
+                                            <span class="form-text text-primary" style=" font-size: 1rem !important;">* برای مورد نظر خود را تایپ کنید,سپس پارامترهای سیستم که در کادر سمت چپ قرار دارد را بصورت <code>{عدد}</code> در متن جایگذاری کنید.</span>
+                                            @Html.TextAreaFor(x => x.Text, new { @class = "form-control", style = "height: 360px;resize:none" })
+                                            @Html.ValidationMessageFor(model => model.Text, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            @if (!Model.IsSystemMessage)
+                            {
+                                <div class="row">
+                                    <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                        <label for="Text">برای چه کاربرانی ارسال شود: </label>
+                                        <ul class="list-unstyled mb-0 mt-75">
+                                            @foreach (SmsMessageReceiverTypeEnum type in Enum.GetValues(typeof(SmsMessageReceiverTypeEnum)))
+                                            {
+                                                <li class="d-inline-block mr-2">
+                                                    <fieldset>
+                                                        <div class="custom-control custom-radio">
+                                                            <input type="radio" class="custom-control-input" name="ReceiverType" id="customRadio@((int)type)" @(Model.ReceiverType == type ? "checked" : "") value="@type">
+                                                            <label class="custom-control-label" for="customRadio@((int)type)">
+                                                                @(EnumExtensions<SmsMessageReceiverTypeEnum>.GetPersianName(type))
+                                                            </label>
+                                                        </div>
+                                                    </fieldset>
+                                                </li>
+                                            }
+                                        </ul>
+                                    </div>
+                                </div>
+                            }
+                            else
+                            { <div class="row">
+                                    <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                        <div class="alert alert-primary" role="alert">
+                                            <i class="feather icon-alert-triangle mr-1 align-middle"></i>
+                                            <span>
+                                                این پیامک به صورت سیستمی مدیریت میشود و شما فقط قادر به تغییر عنوان و متن هستید
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                        <div class="col-md-3 col-sm-12 col-lg-2">
+                            <div class="card" style=" border: .5px solid #0000001f;">
+                                <div class="card-header d-flex justify-content-between">
+                                    <p class="text-dark" style="font-size: 13px;">ازین پارامتر در متن استفاده کنید</p>
+                                </div>
+                                <div class="card-body">
+                                    <div class="d-flex justify-content-start align-items-center mb-1">
+                                        <div class="input-group mr-1">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text" id="basic-addon0">{0}</span>
+                                            </div>
+                                            <input type="text" class="form-control" value="برو به خط بعد" aria-describedby="basic-addon0" readonly>
+                                        </div>
+                                    </div>
+                                    @foreach (var p in Model.Parameters)
+                                    {
+                                        <div class="d-flex justify-content-start align-items-center mb-1">
+                                            <div class="input-group mr-1">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text" id="basic-addon@(p.Index)">{@p.Index}</span>
+                                                </div>
+                                                <input type="text" class="form-control" value="@p.Title" aria-describedby="basic-addon@(p.Index)" readonly>
+                                            </div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-1">
+                            <button type="button" class="btn btn-primary glow mb-1 mb-sm-0 mr-0 mr-sm-1" id="save_btn">
+                                ثبت تغییرات
+                            </button>
+                            <a href="@Url.Action("Index","Customer")" class="btn btn-outline-warning">انصراف</a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="modal fade text-left" id="send_calendar_modal" tabindex="-1" role="dialog"
+     aria-labelledby="myModalLabel16" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="myModalLabel16">انتخاب تاریخ و زمان ارسال پیامک</h4>
+            </div>
+            <div class="modal-body">
+                <div id="calendar_wrapper">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">ثبت</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/lib/mustache.js"></script>
+    <script src="~/js/pages/sms-modify.js" asp-append-version="true"></script>
+}

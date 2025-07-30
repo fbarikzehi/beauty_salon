@@ -1,0 +1,51 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="bin\**" />
+    <Compile Remove="Modules\Account\_\**" />
+    <Compile Remove="Modules\Menu\**" />
+    <EmbeddedResource Remove="bin\**" />
+    <EmbeddedResource Remove="Modules\Account\_\**" />
+    <EmbeddedResource Remove="Modules\Menu\**" />
+    <None Remove="bin\**" />
+    <None Remove="Modules\Account\_\**" />
+    <None Remove="Modules\Menu\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Modules\Personnel\ViewModel\PersonnelProfileCreateViewModel.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Modules\Account\User\ViewModel\UserUpdateViewModel.cs~RF1f5f70d.TMP" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Modules\Account\User\Validator\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="KavenegarDotNetCore" Version="1.0.1" />
+    <PackageReference Include="LinqKit.Microsoft.EntityFrameworkCore" Version="3.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Beauty.Persistence\Beauty.Persistence.csproj" />
+    <ProjectReference Include="..\Beauty.Resource\Beauty.Resource.csproj" />
+    <ProjectReference Include="..\Common.Application\Common.Application.csproj" />
+    <ProjectReference Include="..\Common.Security\Common.Security.csproj" />
+  </ItemGroup>
+
+</Project>

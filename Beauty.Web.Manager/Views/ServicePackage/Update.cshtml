@@ -1,0 +1,180 @@
+﻿@model Beauty.Application.Modules.Service.Messaging.ServicePackageUpdateRequest
+@{
+    ViewData["Title"] = PageTitleResource.ServicePackageUpdate;
+}
+<section class="users-edit">
+    <div class="card">
+        <div class="card-content">
+            <div class="card-body">
+                @using (Html.BeginForm("Update", "ServicePackage", FormMethod.Post, new { id = "servicepackage_frm", autocomplete = "off" }))
+                {
+                    @Html.HiddenFor(x => x.Entity.Id)
+                    <div class="form-body">
+                        <div class="row mb-75">
+                            <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                                <fieldset style="border: .5px solid #bdbcbc;padding: 10px;">
+                                    <legend style="width: auto; padding: -1px; margin-right: 13px; font-size: 16px;">اطلاعات پکیج</legend>
+                                    <div class="row">
+                                        <div class="col-md-6 col-lg-4 col-sm-12 col-12">
+                                            <label for="Entity_Title">عنوان پکیج</label> <span class="text-danger">*</span>
+                                            <fieldset class="form-group position-relative has-icon-left input-divider-left">
+                                                <input class="form-control" id="Entity_Title" name="Entity.Title" type="text" value="@Model.Entity.Title" />
+                                                <div class="form-control-position">
+                                                    <i class="feather icon-grid"></i>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-md-3 col-lg-2 col-sm-12 col-12">
+                                            <label for="Entity_From">اعتبار از تاریخ</label>
+                                            <fieldset class="form-group position-relative has-icon-left input-divider-left">
+                                                <input class="form-control" id="Entity_From" name="Entity.From" type="text" value="@Model.Entity.From" />
+                                                <div class="form-control-position">
+                                                    <i class="feather icon-calendar"></i>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+
+                                        <div class="col-md-3 col-lg-2 col-sm-12 col-12">
+                                            <label for="Entity_To">اعتبار تا تاریخ</label>
+                                            <fieldset class="form-group position-relative has-icon-left input-divider-left">
+                                                <input class="form-control" id="Entity_To" name="Entity.To" type="text" value="@Model.Entity.To" />
+                                                <div class="form-control-position">
+                                                    <i class="feather icon-calendar"></i>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-md-3 col-lg-2 col-sm-12 col-12">
+                                            <label for="Entity_ExtendTo">تمدید تا تاریخ</label>
+                                            <fieldset class="form-group position-relative has-icon-left input-divider-left">
+                                                <input class="form-control" id="Entity_ExtendTo" name="Entity.ExtendTo" type="text" value="@Model.Entity.ExtendTo" />
+                                                <div class="form-control-position">
+                                                    <i class="feather icon-calendar"></i>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                        <div class="col-md-3 col-lg-2 col-sm-12 col-12">
+                                            <label for="Entity_DiscountPrice">قیمت تخفیف کلی</label>
+                                            <fieldset class="form-group position-relative has-icon-left input-divider-left">
+                                                <input class="form-control" id="Entity_DiscountPrice" name="Entity.DiscountPrice" type="text" value="@Model.Entity.DiscountPrice" />
+                                                <div class="form-control-position">
+                                                    <i class="feather icon-dollar-sign"></i>
+                                                </div>
+                                            </fieldset>
+                                        </div>
+                                    </div>
+                                    <span class="text-danger">در صورت مشخص نکردن تاریخ شروع و پایان اعتبار پکیج, باید بصورت دستی فعال و غیرفعال شود.</span>
+                                </fieldset>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="table-responsive border rounded px-1 " style=" overflow-x: visible;">
+                                    <h6 class="border-bottom py-1 mx-1 mb-0 font-medium-2">
+                                        <i class="feather icon-grid mr-50 "></i>خدمات
+                                    </h6>
+                                    <div class="row mt-75" style="background: aliceblue; padding: 1% 0;">
+                                        <div class="col-md-4 col-lg-4 col-sm-12 col-12">
+                                            <input type="hidden" id="row_index" value="@Model.Entity.Items.Count" />
+                                            <label>خدمت را با نام جستجو و انتخاب کنید</label>
+                                            <input class="form-control" id="service_search" type="text" onkeyup="search_service(this)" />
+                                            <ul id="search_select" class="search_dropdown"></ul>
+                                        </div>
+                                    </div>
+                                    <div class="row" style="padding: 1% 0;">
+                                        <div class="col-md-4 col-lg-4 col-sm-12 col-12">
+                                            <label>خدمت</label> <span class="text-danger">*</span>
+                                        </div>
+                                        <div class="col-md-3 col-lg-3 col-sm-12 col-12">
+                                            <label>قیمت خدمت </label>
+                                        </div>
+                                        <div class="col-md-3 col-lg-3 col-sm-12 col-12">
+                                            <label>قیمت با تخفیف </label>
+                                        </div>
+                                        <div class="col-md-2 col-lg-2 col-sm-12 col-12">
+                                        </div>
+                                    </div>
+                                    <div id="services_wrapper">
+                                        @for (int i = 0; i < Model.Entity.Items.Count; i++)
+                                        {
+                                            <input type="hidden" name="Entity.Items[@(i)].Id" value="@Model.Entity.Items[i].Id" />
+                                            <div class="row" id="Entity_Items_@(i)" data-index="@(i)">
+                                                <div class="col-md-4 col-lg-4 col-sm-12 col-12">
+                                                    <input type="hidden" id="Entity_Items[@(i)]__ServiceId" name="Entity.Items[@(i)].ServiceId" value="@Model.Entity.Items[i].ServiceId" />
+                                                    <input class="form-control" id="Entity_Items[@(i)]__ServiceTitle" type="text" value="@Model.Entity.Items[i].ServiceTitle" onkeyup="search_service(this,'@(i)')" readonly />
+                                                </div>
+                                                <div class="col-md-3 col-lg-3 col-sm-12 col-12">
+                                                    <fieldset class="form-group position-relative has-icon-left input-divider-left">
+                                                        <input class="form-control" id="Entity_Items[@(i)]__ServicePrice" type="text" value="@Model.Entity.Items[i].ServicePrice" readonly />
+                                                        <div class="form-control-position">
+                                                            <i class="feather icon-dollar-sign"></i>
+                                                        </div>
+                                                    </fieldset>
+                                                </div>
+                                                <div class="col-md-3 col-lg-3 col-sm-12 col-12">
+                                                    <fieldset class="form-group position-relative has-icon-left input-divider-left">
+                                                        <input class="form-control" id="Entity_Items[@(i)]__AfterDiscountPrice" name="Entity.Items[@(i)].AfterDiscountPrice" type="text" value="@Model.Entity.Items[i].AfterDiscountPrice" />
+                                                        <div class="form-control-position">
+                                                            <i class="feather icon-dollar-sign"></i>
+                                                        </div>
+                                                    </fieldset>
+                                                </div>
+                                                <div class="col-md-2 col-lg-2 col-sm-12 col-12">
+                                                    <button type="button" class="btn btn-icon btn-danger mr-1  waves-effect waves-light" onclick="delete_service('@(i)','@Model.Entity.Items[i].Id')"><i class="feather icon-x"></i></button>
+                                                </div>
+                                            </div>
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-1">
+                                <button type="button" class="btn btn-primary glow mb-1 mb-sm-0 mr-0 mr-sm-1" id="save_btn">
+                                    ثبت
+                                </button>
+                                <a href="@Url.Action("Index","ServicePackage")" class="btn btn-outline-warning">بازگشت به لیست پکیج ها</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</section>
+<script type="text/template" id="item_template">
+    <input type="hidden" name="Entity.Items[{{index}}].Id" value="0" />
+    <div class="row" id="Entity_Items_{{index}}" data-index="{{index}}">
+        <div class="col-md-4 col-lg-4 col-sm-12 col-12">
+            <input type="hidden" id="Entity_Items[{{index}}]__ServiceId" name="Entity.Items[{{index}}].ServiceId" value="{{serviceId}}" />
+            <input class="form-control" id="Entity_Items[{{index}}]__ServiceTitle" type="text" value="{{serviceTitle}}" readonly />
+        </div>
+        <div class="col-md-3 col-lg-3 col-sm-12 col-12">
+            <fieldset class="form-group position-relative has-icon-left input-divider-left">
+                <input class="form-control" id="Entity_Items[{{index}}]__ServicePrice" type="text" value="{{servicePrice}}" readonly />
+                <div class="form-control-position">
+                    <i class="feather icon-dollar-sign"></i>
+                </div>
+            </fieldset>
+        </div>
+        <div class="col-md-3 col-lg-3 col-sm-12 col-12">
+            <fieldset class="form-group position-relative has-icon-left input-divider-left">
+                <input class="form-control" id="Entity_Items[{{index}}]__AfterDiscountPrice" name="Entity.Items[{{index}}].AfterDiscountPrice" type="text" value="{{afterDiscountPrice}}" />
+                <div class="form-control-position">
+                    <i class="feather icon-dollar-sign"></i>
+                </div>
+            </fieldset>
+        </div>
+        <div class="col-md-2 col-lg-2 col-sm-12 col-12">
+            <button type="button" class="btn btn-icon btn-danger mr-1  waves-effect waves-light" onclick="delete_service('{{index}}')"><i class="feather icon-x"></i></button>
+        </div>
+    </div>
+</script>
+
+@section Scripts{
+    <script src="~/lib/mustache.js"></script>
+    <script src="~/lib/jquery-inputmask.js"></script>
+    <link href="~/lib/jalali.datetimepicker/jalali.datetimepicker.css" rel="stylesheet" />
+    <script src="~/lib/jalali.datetimepicker/jalali.datetimepicker.js"></script>
+    <script src="~/js/pages/service-package-update.js" asp-append-version="true"></script>
+}
+

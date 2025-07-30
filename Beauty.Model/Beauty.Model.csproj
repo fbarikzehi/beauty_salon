@@ -1,0 +1,32 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Application\Menu\**" />
+    <Compile Remove="bin\**" />
+    <EmbeddedResource Remove="Application\Menu\**" />
+    <EmbeddedResource Remove="bin\**" />
+    <None Remove="Application\Menu\**" />
+    <None Remove="bin\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MongoDB.Driver" Version="2.11.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Common.Crosscutting\Common.Crosscutting.csproj" />
+    <ProjectReference Include="..\Common.Model\Common.Model.csproj" />
+  </ItemGroup>
+
+</Project>

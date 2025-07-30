@@ -1,0 +1,135 @@
+﻿@model Beauty.Application.Modules.Personnel.ViewModel.PersonnelModifyViewModel
+@using Common.Crosscutting.Enum;
+@{
+    ViewData["Title"] = "Create";
+}
+
+<link href="~/css/plugins/intro.js/minified/introjs-rtl.min.css" rel="stylesheet" />
+<link href="~/css/plugins/intro.js/minified/introjs.min.css" rel="stylesheet" />
+<link href="~/css/plugins/intro.js/themes/introjs-modern.css" rel="stylesheet" />
+
+<input id="p_id" value="@Model.PersonnelId" type="hidden" />
+<div class="beauty-subheader   beauty-grid__item" id="Beauty_subheader">
+    <div class="beauty-container  beauty-container--fluid ">
+        <div class="beauty-subheader__main">
+            <h3 class="beauty-subheader__title">
+                اطلاعات پرسنل
+            </h3>
+            <span class="beauty-subheader__separator beauty-subheader__separator--v"></span>
+            <div class="beauty-subheader__toolbar" id="Beauty_subheader_search">
+                <span class="beauty-subheader__desc" id="Beauty_subheader_total">
+                    <span class="beauty-font-primary font-weight-bolder">کد پرسنل: </span>
+                    <span class="number-font beauty-badge beauty-badge--lg beauty-badge--elevate beauty-badge--inline beauty-badge--focus" id="personnel_code">@Model.PersonnelCode</span>
+                </span>
+            </div>
+        </div>
+        <div class="beauty-subheader__toolbar">
+            <input type="hidden" id="save_tab" value="Profile" />
+            <button type="submit" class="btn btn-success btn-bold" id="save_btn">
+                <i class="flaticon-download mr-2"></i>
+                ذخیره تغییرات
+            </button>
+            <a href="@Url.Action("Index","Personnel")" class="btn btn-primary btn-bold">
+                لیست پرسنل
+                <i class="flaticon2-left-arrow"></i>
+            </a>
+            @using (Html.BeginForm("Modify", "Personnel", FormMethod.Post, new { }))
+            {
+                @Html.Hidden("personnelId", Guid.Empty)
+                <button type="submit" class="btn btn-brand btn-bold">
+                    <i class="flaticon-add-circular-button mr-2"></i>
+                    پرسنل جدید
+                </button>
+            }
+            <button type="button" id="intro_this_page" class="btn btn-focus btn-elevate btn-icon btn-bold" data-toggle="beauty-tooltip" title="" data-placement="top" data-original-title="راهنما"><i class="flaticon-questions-circular-button"></i></button>
+        </div>
+    </div>
+</div>
+<div class="beauty-content  beauty-grid__item beauty-grid__item--fluid beauty-grid beauty-grid--hor" id="Beauty_content">
+    <div class="beauty-container  beauty-container--fluid  beauty-grid__item beauty-grid__item--fluid">
+        <div class="beauty-portlet beauty-portlet--tabs">
+            <div class="beauty-portlet__head">
+                <div class="beauty-portlet__head-toolbar">
+                    <ul class="nav nav-tabs nav-tabs-space-xl nav-tabs-line nav-tabs-bold nav-tabs-line-3x nav-tabs-line-brand" role="tablist">
+                        <li class="nav-item">
+                            <a class="nav-link personnel_tab active"
+                               data-toggle="tab"
+                               href="#Beauty_profile"
+                               role="tab"
+                               onclick="fetch_tab('@PersonnelModifyTabEnum.Profile', 'Beauty_profile')"
+                               id="intro_1">
+                                <i class="flaticon2-calendar-3"></i> پروفایل
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link personnel_tab"
+                               data-toggle="tab"
+                               href="#Beauty_account"
+                               role="tab"
+                               onclick="fetch_tab('@PersonnelModifyTabEnum.Account', 'Beauty_account')"
+                               id="intro_3">
+                                <i class="flaticon2-protected"></i> حساب کاربری
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link personnel_tab"
+                               data-toggle="tab"
+                               href="#Beauty_services"
+                               role="tab"
+                               onclick="fetch_tab('@PersonnelModifyTabEnum.Services', 'Beauty_services')"
+                               id="intro_4">
+                                <i class="flaticon2-gear"></i> خدمات
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link personnel_tab"
+                               data-toggle="tab"
+                               href="#Beauty_financial"
+                               role="tab"
+                               onclick="fetch_tab('@PersonnelModifyTabEnum.Financial', 'Beauty_financial')"
+                               id="intro_5">
+                                <i class="flaticon2-gear"></i> تنظیمات مالی
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link personnel_tab"
+                               data-toggle="tab" 
+                               href="#Beauty_workingTime"
+                               role="tab" 
+                               onclick="fetch_tab('@PersonnelModifyTabEnum.WorkingTime', 'Beauty_workingTime')"
+                               id="intro_6">
+                                <i class="flaticon2-calendar-5"></i> تنظیمات ساعات کاری
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="beauty-portlet__body mb-0">
+                <div class="tab-content beauty-margin-t-20 beauty-margin-b-20">
+                    <div class="tab-pane active" id="Beauty_profile" role="tabpanel">
+                        @*Personnel*@
+                    </div>
+                    <div class="tab-pane" id="Beauty_account" role="tabpanel">
+                        @*User*@
+                    </div>
+                    <div class="tab-pane" id="Beauty_services" role="tabpanel">
+                        @*Services*@
+                    </div>
+                    <div class="tab-pane" id="Beauty_financial" role="tabpanel">
+                        @*Financial*@
+                    </div>
+                    <div class="tab-pane" id="Beauty_workingTime" role="tabpanel">
+                        @*WorkingTime*@
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts{
+    <script src="~/lib/mustache.js"></script>
+    <script src="~/js/pages/personnel-modify.js" asp-append-version="true"></script>
+}

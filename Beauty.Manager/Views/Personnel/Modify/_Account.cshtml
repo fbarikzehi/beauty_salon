@@ -1,0 +1,69 @@
+﻿@model Beauty.Application.Modules.Personnel.ViewModel.PersonnelAccountViewModel
+
+@using (Html.BeginForm((Model.UserId == Guid.Empty ? "CreateAccount" : "UpdateAccount"), "Personnel", FormMethod.Post, new { id = "account_frm", autocomplete = "off" }))
+{
+    @Html.HiddenFor(x => x.UserId)
+    @Html.HiddenFor(x => x.PersonnelId)
+    <div class="beauty-form beauty-form--label-right">
+        <div class="beauty-form__body">
+            <div class="beauty-section beauty-section--first">
+                <div class="beauty-section__body">
+                    <div class="form-group row">
+                        <div class="col-lg-4 col-md-9 col-sm-12">
+                            @Html.LabelFor(x => x.Username) <span class="text-danger">*</span>
+                            @Html.TextBoxFor(x => x.Username, "", new { @class = "form-control", autocomplete = "user-name" })
+                            <span class="beauty-badge beauty-badge--dot beauty-badge--md beauty-badge--danger"></span>
+                            <span class="text-danger form-control-note"> نام کاربری پس از ثبت قابل ویرایش نمی باشد</span>
+                        </div>
+                        <div class="col-lg-4 col-md-9 col-sm-12">
+                            @Html.LabelFor(x => x.Password) <span class="text-danger">*</span>
+                            @Html.PasswordFor(x => x.Password, new { @class = "form-control", autocomplete = "new-password" })
+                            <label class="beauty-checkbox beauty-checkbox--brand mt-2">
+                                <input type="checkbox" onchange="show_hide_switch(this)"> پنهان کردن/نمایش رمز عبور
+                                <span></span>
+                            </label>
+                            @*<span class="beauty-badge beauty-badge--dot beauty-badge--md beauty-badge--danger"></span>
+                            <span class="text-danger form-control-note"> رمز عبور وارد شده جایگزین رمز قبلی خواهد شد </span>*@
+                        </div>
+                        <div class="col-lg-4 col-md-9 col-sm-12">
+                            @Html.LabelFor(x => x.ConfirmPassword) <span class="text-danger">*</span>
+                            @Html.PasswordFor(x => x.ConfirmPassword, new { @class = "form-control" })
+                        </div>
+                    </div>
+                   
+                </div>
+            </div>
+            <div class="beauty-separator beauty-separator--border-dashed beauty-separator--portlet-fit beauty-separator--space-lg"></div>
+            <div class="beauty-section beauty-section--first">
+                <div class="beauty-section__body">
+                    <div class="form-group row">
+                        <div class="col-lg-12 col-xl-12 col-sm-12">
+                            <div class="beauty-checkbox-single">
+                                <label class="beauty-checkbox beauty-checkbox--brand">
+                                    <input type="checkbox" id="Entity_SendAccountSms" name="Entity.SendAccountSms" value="false"> ارسال پیامک تغییر اطلاعات کاربری؟
+                                    <span></span>
+                                </label>
+                            </div>
+                            <span class="form-text text-muted">
+                                پیامک تغییر رمزعبور,فعال یا غیر فعال کردن برای کاربر ارسال میشود.
+                            </span>
+                        </div>
+                    </div>
+
+                    <div class="form-group row beauty-margin-t-10 beauty-margin-b-10">
+                        <div class="col-lg-2 col-xl-2 col-sm-12">
+                            <button type="button" class="btn btn-label-danger col-lg-12 col-xl-12 col-sm-12"><i class="flaticon-rotate"></i>غیر فعال کردن کاربر </button>
+                        </div>
+                        <div class="col-lg-2 col-xl-2 col-sm-12">
+                            <button type="button" class="btn btn-label-brand  col-lg-12 col-xl-12 col-sm-12"> <i class="flaticon-paper-plane-1"></i> ارسال پیامک اطلاعات کاربری</button>
+                        </div>
+                        <div class="col-lg-2 col-xl-2 col-sm-12">
+                            <a href="#" target="_blank" class="btn btn-secondary   col-lg-12 col-xl-12 col-sm-12"><i class="flaticon-clock-2"></i> سابقه حساب کاربری</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+}

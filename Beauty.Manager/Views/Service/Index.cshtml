@@ -1,0 +1,182 @@
+﻿@model Beauty.Application.Modules.Service.ViewModel.ServiceIndexViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="beauty-subheader   beauty-grid__item" id="Beauty_subheader">
+    <div class="beauty-container  beauty-container--fluid ">
+        <div class="beauty-subheader__main">
+            <button class="beauty-subheader__mobile-toggle" id="Beauty_subheader_mobile_toggle"><span></span></button>
+            <h3 class="beauty-subheader__title">
+                خدمات
+            </h3>
+            <span class="beauty-subheader__separator beauty-subheader__separator--v"></span>
+            <div class="beauty-subheader__toolbar" id="Beauty_subheader_search">
+                <span class="beauty-subheader__desc" id="Beauty_subheader_total">
+                    @*تعداد خدمت: @Model.ServicesCount*@
+                </span>
+                <form class="beauty-subheader__search" id="Beauty_subheader_search_form">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="جستجو...." id="service_search">
+                        <div class="input-group-append">
+                            <span class="input-group-text" id="basic-addon2">
+                                <i class="flaticon2-search-1"></i>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="beauty-subheader__toolbar beauty-hidden" id="Beauty_subheader_group_actions">
+                <div class="beauty-subheader__desc"><span id="Beauty_subheader_group_selected_rows"></span> Selected:</div>
+                <div class="btn-toolbar beauty-margin-l-20">
+                    <div class="dropdown" id="Beauty_subheader_group_actions_status_change">
+                        <button type="button" class="btn btn-label-brand btn-bold btn-sm dropdown-toggle" data-toggle="dropdown">
+                            Update Status
+                        </button>
+                        <div class="dropdown-menu">
+                            <ul class="beauty-nav">
+                                <li class="beauty-nav__section beauty-nav__section--first">
+                                    <span class="beauty-nav__section-text">Change status to:</span>
+                                </li>
+                                <li class="beauty-nav__item">
+                                    <a href="#" class="beauty-nav__link" data-toggle="status-change" data-status="1">
+                                        <span class="beauty-nav__link-text"><span class="beauty-badge beauty-badge--unified-success beauty-badge--inline beauty-badge--bold">Approved</span></span>
+                                    </a>
+                                </li>
+                                <li class="beauty-nav__item">
+                                    <a href="#" class="beauty-nav__link" data-toggle="status-change" data-status="2">
+                                        <span class="beauty-nav__link-text"><span class="beauty-badge beauty-badge--unified-danger beauty-badge--inline beauty-badge--bold">Rejected</span></span>
+                                    </a>
+                                </li>
+                                <li class="beauty-nav__item">
+                                    <a href="#" class="beauty-nav__link" data-toggle="status-change" data-status="3">
+                                        <span class="beauty-nav__link-text"><span class="beauty-badge beauty-badge--unified-warning beauty-badge--inline beauty-badge--bold">Pending</span></span>
+                                    </a>
+                                </li>
+                                <li class="beauty-nav__item">
+                                    <a href="#" class="beauty-nav__link" data-toggle="status-change" data-status="4">
+                                        <span class="beauty-nav__link-text"><span class="beauty-badge beauty-badge--unified-info beauty-badge--inline beauty-badge--bold">On Hold</span></span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <button class="btn btn-label-brand btn-bold btn-sm btn-icon-h" id="Beauty_subheader_group_actions_fetch" data-toggle="modal" data-target="#Beauty_datatable_records_fetch_modal">
+                        Fetch Selected
+                    </button>
+                    <button class="btn btn-label-brand btn-bold btn-sm btn-icon-h" id="Beauty_subheader_group_actions_delete_all">
+                        Delete All
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="beauty-subheader__toolbar">
+            <a href="/Service/CreateRange" class="btn btn-brand btn-bold">
+                <i class="flaticon2-plus"></i>
+                خدمت جدید
+            </a>
+            <a href="#" class="btn btn-success btn-bold">
+                <i class="flaticon2-plus"></i>
+                ثبت از فایل اکسل
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="beauty-content  beauty-grid__item beauty-grid__item--fluid beauty-grid beauty-grid--hor" id="Beauty_content">
+    <div class="beauty-container  beauty-container--fluid  beauty-grid__item beauty-grid__item--fluid">
+        <div class="beauty-grid__item beauty-grid__item--fluid beauty-app__content">
+            <div id="services_wrapper">
+            </div>
+            <div id="pager_wrapper"></div>
+        </div>
+    </div>
+</div>
+
+<script type="text/template" id="pager_template">
+    <div class="beauty-pagination beauty-pagination--brand beauty-margin-t-10">
+        <div class="beauty-pagination__toolbar">
+            <select class="form-control" style="width: 60px;" id="page_count" onchange="count_change()" value="{{selectedCount}}">
+                <option value="5">5</option>
+                <option value="10">10</option>
+                <option value="20">20</option>
+                <option value="30">30</option>
+                <option value="50">50</option>
+                <option value="100">100</option>
+            </select>
+            <span class="pagination__desc">
+                {{currentCount}} از {{totalCount}}
+            </span>
+        </div>
+        <ul class="beauty-pagination__links">
+            <li class="beauty-pagination__link--prev">
+                <button type="button" class="btn btn-primary btn-elevate prev_page" {{prevDisabled}} onclick="get_services('{{prev}}')">  <i class="flaticon2-next" style="font-size: 11px;"></i> قبلی </button>
+            </li>
+            <li class="beauty-pagination__link--next">
+                <button type="button" class="btn btn-primary btn-elevate next_page" {{nextDisabled}} onclick="get_services('{{next}}')">  <i class="flaticon2-back" style="font-size: 11px;float: left;padding-right: .5rem;"></i> بعدی </button>
+            </li>
+        </ul>
+    </div>
+</script>
+
+<script type="text/template" id="services_template">
+    {{#services}}
+    <div class="beauty-portlet beauty-widget beauty-widget--general-3">
+        <div class="beauty-portlet__body beauty-portlet__body--fit">
+            <div class="beauty-widget__top">
+                <div class="beauty-media beauty-media--lg beauty-media--circle">
+                    <img src="/images/avatar-placeholder.png" alt="{{title}}">
+                </div>
+                <div class="beauty-widget__wrapper">
+                    <div class="beauty-widget__label">
+                        <a href="/@ControllerResource.Service/@ActionResource.Update/{{id}}" class="beauty-widget__title">
+                            {{title}}
+                        </a>
+                        <span class="beauty-widget__desc">
+                            ................
+                        </span>
+                    </div>
+                    <div class="beauty-widget__stats">
+                        <div class="beauty-widget__stat" href="#">
+                            <span class="beauty-widget__value">{{cutomerCount}}</span>
+                            <span class="beauty-widget__caption">تعداد مشتری</span>
+                        </div>
+                        <div class="beauty-widget__stat" href="#">
+                            <span class="beauty-widget__value">{{rate}}</span>
+                            <span class="beauty-widget__caption">امتیاز مشتریان</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="beauty-widget__bottom">
+                <div class="beauty-widget__summary">
+                    <div class="beauty-widget__item">
+                        <span class="beauty-widget__hint">قیمت فعلی: </span>
+                        <span class="btn btn-label-brand btn-sm btn-bold btn-upper">{{currentPrice}}</span>
+                        <span class="beauty-widget__hint">زمان: </span>
+                        <span class="btn btn-label-brand btn-sm btn-bold btn-upper">{{durationMinutes}} دقیقه</span>
+                        <span class="beauty-widget__hint">امتیاز: </span>
+                        <span class="btn btn-label-warning btn-sm btn-bold btn-upper">{{score}}</span>
+                        <span class="beauty-widget__hint">حداقل امتیاز مشتری: </span>
+                        <span class="btn btn-label-warning btn-sm btn-bold btn-upper">{{customerMinScore}}</span>
+                        <span class="beauty-widget__hint">پیش پرداخت مشتری: </span>
+                        <span class="btn btn-label-dark btn-sm btn-bold btn-upper">{{prepayment}}</span>
+                    </div>
+                </div>
+                <div class="beauty-widget__toolbar">
+                    <button type="button" onclick="change_active('{{id}}')" class="btn {{activeBtnType}} btn-sm btn-bold btn-upper">{{activeText}}<i class="flaticon-refresh"></i></button>
+                    <a href="#" class="btn btn-primary btn-sm btn-bold btn-upper">افزودن قیمت<i class="flaticon-add"></i></a>
+                    <a href="/@ControllerResource.Service/@ActionResource.Update/{{id}}" class="btn btn-success btn-sm btn-bold btn-upper">ویرایش <i class="flaticon-edit-1"></i></a>
+                    <button type="button" onclick="delete_service('{{id}}')" class="btn btn-danger btn-sm btn-bold btn-upper">حذف <i class="flaticon-cancel"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/services}}
+</script>
+
+@section Scripts{
+    <script src="~/lib/mustache.js" asp-append-version="true"></script>
+    <script src="~/js/pages/service-index.js" asp-append-version="true"></script>
+}

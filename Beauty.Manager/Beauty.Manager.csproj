@@ -1,0 +1,221 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <CopyRefAssembliesToPublishDirectory>false</CopyRefAssembliesToPublishDirectory>
+    <AssemblyName>Beauty.Manager</AssemblyName>
+    <RootNamespace>Beauty.Manager</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="bin\**" />
+    <Compile Remove="Views\Account\**" />
+    <Compile Remove="Views\Error\**" />
+    <Compile Remove="Views\Home\**" />
+    <Compile Remove="Views\Personnel\**" />
+    <Compile Remove="Views\Salon\**" />
+    <Compile Remove="Views\Service\**" />
+    <Compile Remove="Views\Shared\**" />
+    <Compile Remove="wwwroot\lib\dist\**" />
+    <Content Remove="bin\**" />
+    <Content Remove="Views\Account\**" />
+    <Content Remove="Views\Error\**" />
+    <Content Remove="Views\Home\**" />
+    <Content Remove="Views\Personnel\**" />
+    <Content Remove="Views\Salon\**" />
+    <Content Remove="Views\Service\**" />
+    <Content Remove="Views\Shared\**" />
+    <Content Remove="wwwroot\lib\dist\**" />
+    <EmbeddedResource Remove="bin\**" />
+    <EmbeddedResource Remove="Views\Account\**" />
+    <EmbeddedResource Remove="Views\Error\**" />
+    <EmbeddedResource Remove="Views\Home\**" />
+    <EmbeddedResource Remove="Views\Personnel\**" />
+    <EmbeddedResource Remove="Views\Salon\**" />
+    <EmbeddedResource Remove="Views\Service\**" />
+    <EmbeddedResource Remove="Views\Shared\**" />
+    <EmbeddedResource Remove="wwwroot\lib\dist\**" />
+    <None Remove="bin\**" />
+    <None Remove="Views\Account\**" />
+    <None Remove="Views\Error\**" />
+    <None Remove="Views\Home\**" />
+    <None Remove="Views\Personnel\**" />
+    <None Remove="Views\Salon\**" />
+    <None Remove="Views\Service\**" />
+    <None Remove="Views\Shared\**" />
+    <None Remove="wwwroot\lib\dist\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\AccountController.cs" />
+    <Compile Remove="Controllers\CustomerController.cs" />
+    <Compile Remove="Controllers\ErrorController.cs" />
+    <Compile Remove="Controllers\HomeController.cs" />
+    <Compile Remove="Controllers\PersonnelController.cs" />
+    <Compile Remove="Controllers\SalonController.cs" />
+    <Compile Remove="Controllers\ServiceController.cs" />
+    <Compile Remove="Controllers\SharedController.cs" />
+    <Compile Remove="ViewComponents\Aside.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="3.1.4" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.4">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Beauty.Application\Beauty.Application.csproj" />
+    <ProjectReference Include="..\Common.Persistance\Common.Persistance.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="ViewComponents\" />
+    <Folder Include="wwwroot\css\pages\manager\" />
+    <Folder Include="wwwroot\theme\component\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\css\plugins\calheatmap\dist\js\persian-calheatmap-0.1.0.js" />
+    <None Include="wwwroot\css\plugins\calheatmap\dist\js\persian-calheatmap-0.1.0.min.js" />
+    <None Include="wwwroot\css\plugins\calheatmap\Gruntfile.js" />
+    <None Include="wwwroot\css\plugins\calheatmap\lib\bootstrap\css\bootstrap-theme.css.map" />
+    <None Include="wwwroot\css\plugins\calheatmap\lib\bootstrap\css\bootstrap.css.map" />
+    <None Include="wwwroot\css\plugins\calheatmap\lib\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <None Include="wwwroot\css\plugins\calheatmap\lib\bootstrap\js\bootstrap.js" />
+    <None Include="wwwroot\css\plugins\calheatmap\lib\bootstrap\js\bootstrap.min.js" />
+    <None Include="wwwroot\css\plugins\calheatmap\lib\bootstrap\js\npm.js" />
+    <None Include="wwwroot\css\plugins\calheatmap\lib\jquery.js" />
+    <None Include="wwwroot\css\plugins\calheatmap\lib\persian-date.js" />
+    <None Include="wwwroot\css\plugins\calheatmap\README.md" />
+    <None Include="wwwroot\css\plugins\calheatmap\src\data\sample.js" />
+    <None Include="wwwroot\css\plugins\calheatmap\src\js\config.js" />
+    <None Include="wwwroot\css\plugins\calheatmap\src\js\constant.js" />
+    <None Include="wwwroot\css\plugins\calheatmap\src\js\days.js" />
+    <None Include="wwwroot\css\plugins\calheatmap\src\js\mousewheel.js" />
+    <None Include="wwwroot\css\plugins\calheatmap\src\js\persian-hit-chart.js" />
+    <None Include="wwwroot\css\plugins\calheatmap\src\js\plugin.js" />
+    <None Include="wwwroot\css\plugins\calheatmap\src\js\template.js" />
+    <None Include="wwwroot\css\plugins\calheatmap\src\js\zebra_tooltips.js" />
+    <None Include="wwwroot\css\plugins\calheatmap\src\sass\style.scss" />
+    <None Include="wwwroot\fonts\feather\feather.svg" />
+    <None Include="wwwroot\theme\app-assets\fonts\feather\fonts\feather.svg" />
+    <None Include="wwwroot\theme\app-assets\js\core\app-menu.min.js" />
+    <None Include="wwwroot\theme\app-assets\js\core\app.min.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\ag-grid\ag-grid.min.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\cards\card-analytics.min.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\cards\card-statistics.min.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\charts\chart-apex.min.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\charts\chart-chartjs.min.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\charts\chart-echart.min.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\charts\gmaps\maps.min.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\components.min.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\customizer.min.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\datatables\datatable.min.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\editors\editor-quill.min.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\extensions\context-menu.min.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\extensions\copy-to-clipboard.min.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\extensions\drag-drop.min.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\extensions\dropzone.min.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\extensions\fullcalendar.min.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\extensions\i18n.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\extensions\media-plyr.min.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\extensions\noui-slider.min.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\extensions\sweet-alerts.min.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\extensions\swiper.min.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\extensions\toastr.min.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\extensions\tour.min.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\footer.min.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\forms\form-tooltip-valid.min.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\forms\number-input.min.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\forms\select\form-select2.min.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\forms\validation\form-validation.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\forms\wizard-steps.min.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\modal\components-modal.min.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\navs\navs.min.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\pages\account-setting.min.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\pages\app-chat.min.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\pages\app-ecommerce-details.min.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\pages\app-ecommerce-shop.min.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\pages\app-email.min.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\pages\app-todo.min.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\pages\app-user.min.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\pages\bootstrap-toast.min.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\pages\coming-soon.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\pages\dashboard-analytics.min.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\pages\dashboard-ecommerce.min.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\pages\faq-kb.min.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\pages\invoice.min.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\pages\user-profile.min.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\pagination\pagination.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\pickers\dateTime\pick-a-datetime.min.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\popover\popover.min.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\tooltip\tooltip.min.js" />
+    <None Include="wwwroot\theme\app-assets\js\scripts\ui\data-list-view.min.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\css\editors\quill\fonts\KaTeX_Main-Regular.woff2" />
+    <None Include="wwwroot\theme\app-assets\vendors\css\editors\quill\fonts\KaTeX_Math-Italic.woff2" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\calendar\extensions\daygrid.min.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\calendar\extensions\interactions.min.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\calendar\extensions\timegrid.min.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\calendar\fullcalendar.min.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\charts\apexcharts.min.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\charts\chart.min.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\charts\echarts\echarts.min.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\charts\gmaps.min.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\coming-soon\jquery.countdown.min.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\editors\quill\highlight.min.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\editors\quill\katex.min.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\editors\quill\quill.min.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\extensions\dragula.min.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\extensions\dropzone.min.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\extensions\jquery.contextMenu.min.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\extensions\jquery.steps.min.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\extensions\jquery.ui.position.min.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\extensions\moment.min.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\extensions\nouislider.min.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\extensions\polyfill.min.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\extensions\shepherd.min.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\extensions\sweetalert2.all.min.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\extensions\swiper.min.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\extensions\tether.min.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\extensions\toastr.min.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\extensions\wNumb.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\forms\select\select2.full.min.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\forms\spinner\jquery.bootstrap-touchspin.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\forms\validation\jqBootstrapValidation.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\forms\validation\jquery.validate.min.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\media\plyr.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\media\plyr.polyfilled.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\pagination\jquery.bootpag.min.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\pagination\jquery.twbsPagination.min.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\pickers\pickadate\legacy.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\pickers\pickadate\picker.date.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\pickers\pickadate\picker.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\pickers\pickadate\picker.time.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\tables\ag-grid\ag-grid-community.min.noStyle.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\tables\datatable\buttons.bootstrap.min.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\tables\datatable\buttons.html5.min.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\tables\datatable\buttons.print.min.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\tables\datatable\datatables.bootstrap4.min.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\tables\datatable\datatables.buttons.min.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\tables\datatable\datatables.checkboxes.min.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\tables\datatable\datatables.min.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\tables\datatable\dataTables.select.min.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\tables\datatable\pdfmake.min.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\tables\datatable\vfs_fonts.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\ui\jquery.sticky.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\ui\prism.min.js" />
+    <None Include="wwwroot\theme\app-assets\vendors\js\vendors.min.js" />
+  </ItemGroup>
+
+</Project>

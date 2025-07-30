@@ -1,0 +1,107 @@
+﻿@model Beauty.Application.Modules.Account.User.ViewModel.UserIndexViewModel
+@{
+    ViewData["Title"] = PageTitleResource.UserIndex;
+}
+
+
+<link href="~/theme/app-assets/vendors/css/tables/datatable/datatables.min.css" rel="stylesheet" />
+<link href="~/theme/app-assets/vendors/css/extensions/sweetalert2.min.css" rel="stylesheet" />
+
+<section class="users-list-wrapper">
+    <div id="basic-examples">
+        <div class="card">
+            <div class="card-header">
+                <button type="button" id="modal_create" data-toggle="modal" data-target="#large" class="btn btn-primary mb-2"><i class="feather icon-plus"></i>&nbsp; ثبت کاربر جدید</button>
+                <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+                <div class="heading-elements">
+                    <ul class="list-inline mb-0">
+                        <li><a data-action="expand"><i class="feather icon-maximize"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-content  collapse show">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table" id="users">
+                            <thead>
+                                <tr>
+                                    @foreach (var header in Model.Headers)
+                                    {
+                                        <th>@header.Title</th>
+                                    }
+                                </tr>
+                            </thead>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<div class="modal fade text-left" id="large" tabindex="-1" role="dialog" aria-labelledby="myModalLabel17" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header bg-primary white">
+                <h4 class="modal-title" id="myModalLabel17">کاربر جدید</h4>
+            </div>
+            <div class="modal-body mt-75 mb-25">
+                @using (Html.BeginForm("Create", "User", FormMethod.Post, new { @class = "form", id = "user_form", autocomplete = "off" }))
+                {
+                    <input type="hidden" id="Entity_Id" name="Entity.Id" value="00000000-0000-0000-0000-000000000000">
+                    <div class="form-body">
+                        <div class="row">
+                            <div class="col-md-6 col-12">
+                                <div class="form-label-group">
+                                    <input type="text" id="Entity_FullName" class="form-control" name="Entity.FullName" placeholder="نام و نام خانوادگی *">
+                                    <label for="Entity_FullName">نام و نام خانوادگی <span class="text-danger">*</span></label>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <div class="form-label-group">
+                                    <input type="text" id="Entity_Username" class="form-control" name="Entity.Username" placeholder="نام کاربری  *">
+                                    <label for="Entity_Username">نام کاربری <span class="text-danger">*</span></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-12">
+                                <div class="form-label-group">
+                                    <input type="text" id="Entity_Password" class="form-control" name="Entity.Password" placeholder="رمزعبور *">
+                                    <label for="Entity_Password">رمزعبور <span class="text-danger">*</span></label>
+                                    <span class="text-danger" id="password_change_text" style="display:none">در صورت نیاز به تغییر رمزعبور فعلی وارد شود</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-12">
+                                <div class="form-label-group">
+                                    <input type="text" id="Entity_ConfirmPassword" class="form-control" name="Entity.ConfirmPassword" placeholder="تکرار رمزعبور  *">
+                                    <label for="Entity_ConfirmPassword">تکرار رمزعبور <span class="text-danger">*</span></label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 col-12">
+                                <div class="form-label-group">
+                                    <label for="Entity_RoleId">نقش کاربری <span class="text-danger">*</span></label>
+                                    @Html.DropDownList("Entity.RoleId", Model.Roles, new { @class = "form-control", id = "Entity_RoleId" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-warning" data-dismiss="modal">انصراف</button>
+                <button type="button" class="btn btn-primary" id="submit_create_user">ثبت</button>
+                <button type="button" class="btn btn-primary" id="submit_edit_user" style="display:none">ثبت تغییرات</button>
+            </div>
+        </div>
+    </div>
+</div>
+@section Scripts{
+    <script src="~/theme/app-assets/vendors/js/extensions/sweetalert2.all.min.js"></script>
+    <script src="~/theme/app-assets/vendors/js/tables/datatable/datatables.min.js"></script>
+    <script src="~/theme/app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js"></script>
+    <script src="~/js/pages/user-index.js" asp-append-version="true"></script>
+}

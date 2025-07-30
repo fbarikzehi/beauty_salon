@@ -1,0 +1,40 @@
+﻿@model List<Beauty.Application.Modules.Sms.ViewModel.SmsMessageViewModel>
+@using Common.Crosscutting.Extensions
+@using Common.Crosscutting.Enum
+@{
+    ViewData["Title"] = PageTitleResource.SmsIndex;
+}
+
+
+<div class="row" id="lines">
+    @for (int i = 0; i < Model.Count; i++)
+    {
+        <div class="col-xl-2 col-md-4 col-sm-6">
+            <div class="card text-center">
+                <div class="card-content">
+                    <div class="card-body">
+                        <div class="avatar bg-rgba-info p-50 m-0 mb-1">
+                            <div class="avatar-content">
+                                <i class="feather icon-message-square text-info font-medium-5"></i>
+                            </div>
+                        </div>
+                        <h2 class="text-bold-700">@(EnumExtensions<SmsMessageReceiverTypeEnum>.GetPersianName(Model[i].ReceiverType))</h2>
+                        <p class="mb-0 line-ellipsis" id="line_title_id_@(Model[i].Id)">@Model[i].Title</p>
+                        <hr />
+                        @using (Html.BeginForm("Modify", "Sms", FormMethod.Post, new { style= "display: initial;" }))
+                        {
+                            @Html.Hidden("smsId", Model[i].Id)
+                            <button type="submit" class="btn mr-1 mb-1 btn-success btn-sm waves-effect waves-light"><i class="feather icon-list"></i> ویرایش</button>
+                        }
+                        <button type="button" class="btn mr-1 mb-1 btn-@(Model[i].AllowSend? "danger": "info") btn-sm ml-25 waves-effect waves-light" onclick="change_send('@Model[i].Id')"><i class="feather @(Model[i].AllowSend? "icon-power": "icon-share")"></i> @(Model[i].AllowSend? "ارسال نشود": "ارسال شود")</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+
+
+@section Scripts{
+    <script src="~/js/pages/sms-index.js" asp-append-version="true"></script>
+}

@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html>
+<html lang="en" direction="rtl" style="direction: rtl;">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@ViewData["Title"] - Beauty</title>
+    <meta name="description" content="Beauty">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <link href="~/css/pages/login.css" rel="stylesheet" />
+    <link href="~/css/global/plugins.css" rel="stylesheet" />
+    <link href="~/css/common/style.css" rel="stylesheet" />
+    <link href="~/css/common/fonts-fa.css" rel="stylesheet" />
+</head>
+<body class="beauty-demo-panel--right beauty-header-mobile--fixed beauty-page-content-white beauty-subheader--enabled beauty-aside--secondary-enabled beauty-offcanvas-panel--left beauty-aside--left beauty-page--loading">
+    <div class="beauty-grid beauty-grid--ver beauty-grid--root">
+        <div class="beauty-grid__item   beauty-grid__item--fluid beauty-grid  beauty-grid beauty-grid--hor beauty-login-v2" id="Beauty_login_v2">
+            <div class="beauty-grid__item  beauty-grid--hor">
+                <div class="beauty-login-v2__head">
+                    <div class="beauty-login-v2__signup">
+                        <span>حساب کاربری ندارید؟</span>
+                        <a asp-area="" asp-controller="Home" asp-action="Index" class="beauty-link beauty-font-brand">ثبت نام کنید</a>
+                    </div>
+                    <div class="beauty-login-v2__logo">
+                        <a asp-area="" asp-controller="Home" asp-action="Index">
+                            <img src="~/images/logo.png" alt="" />
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="beauty-grid__item  beauty-grid  beauty-grid--ver  beauty-grid__item--fluid">
+                <div class="beauty-login-v2__body">
+                    @RenderBody()
+                </div>
+            </div>
+            <div class="beauty-grid__item">
+                <div class="beauty-login-v2__footer">
+                    <div class="beauty-login-v2__link">
+                        <a asp-area="" asp-controller="Home" asp-action="Index" class="beauty-link beauty-font-brand">حریم خصوصی</a>
+                        <a asp-area="" asp-controller="Home" asp-action="Index" class="beauty-link beauty-font-brand">قوانین</a>
+                        <a asp-area="" asp-controller="Home" asp-action="Index" class="beauty-link beauty-font-brand">تماس با ما</a>
+                    </div>
+
+                    <div class="beauty-login-v2__info">
+                        <a asp-area="" asp-controller="Home" asp-action="Index" class="beauty-link">&copy; 1399 نسخه 0.0 دمو</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        var BeautyAppOptions = {
+            "colors": {
+                "state": {
+                    "brand": "#3699ff",
+                    "metal": "#c4c5d6",
+                    "light": "#ffffff",
+                    "accent": "#00c5dc",
+                    "primary": "#5867dd",
+                    "success": "#34bfa3",
+                    "info": "#36a3f7",
+                    "warning": "#ffb822",
+                    "danger": "#fd3995",
+                    "focus": "#9816f4"
+                },
+                "base": {
+                    "label": [
+                        "#c5cbe3",
+                        "#a1a8c3",
+                        "#3d4465",
+                        "#3e4466"
+                    ],
+                    "shape": [
+                        "#f0f3ff",
+                        "#d9dffa",
+                        "#afb4d4",
+                        "#646c9a"
+                    ]
+                }
+            }
+        };
+        console.log(window);
+    </script>
+    <script src="~/js/plugins.js" asp-append-version="true"></script>
+    <script src="~/js/scripts.js" asp-append-version="true"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

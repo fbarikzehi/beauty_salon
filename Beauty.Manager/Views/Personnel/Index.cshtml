@@ -1,0 +1,106 @@
+﻿@model Beauty.Application.Modules.Personnel.ViewModel.PersonnelIndexViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="beauty-subheader   beauty-grid__item" id="Beauty_subheader">
+    <div class="beauty-container  beauty-container--fluid ">
+        <div class="beauty-subheader__main">
+            <h3 class="beauty-subheader__title">
+                لیست پرسنل
+            </h3>
+            <span class="beauty-subheader__separator beauty-subheader__separator--v"></span>
+            <div class="beauty-subheader__toolbar" id="Beauty_subheader_search">
+                <span class="beauty-subheader__desc" id="Beauty_subheader_total">
+                    تعداد @(Model.TotalPersonnel)
+                </span>
+                <form class="beauty-subheader__search" id="Beauty_subheader_search_form">
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search..." id="generalSearch">
+                                <div class="input-group-append">
+                                    <span class="input-group-text" id="basic-addon2">
+                                        <i class="flaticon2-search-1"></i>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="beauty-subheader__toolbar beauty-hidden" id="Beauty_subheader_group_actions">
+                <div class="beauty-subheader__desc">انتخاب شده <span id="Beauty_subheader_group_selected_rows"></span> مورد</div>
+                <div class="btn-toolbar beauty-margin-l-20">
+                    <button class="btn btn-label-brand btn-bold btn-sm btn-icon-h" id="Beauty_subheader_group_actions_delete_all">
+                        حذف انتخاب شده ها
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="beauty-subheader__toolbar">
+            @using (Html.BeginForm("Modify", "Personnel", FormMethod.Post, new { }))
+            {
+                @Html.Hidden("personnelId", Guid.Empty)
+                <button type="submit" class="btn btn-brand btn-bold">
+                    <i class="flaticon-add-circular-button mr-2"></i> 
+                    پرسنل جدید
+                </button>
+            }
+
+            <div class="beauty-subheader__wrapper">
+                <div class="dropdown dropdown-inline" data-toggle="beauty-tooltip-" title="Quick actions" data-placement="left">
+                    <a href="#" class="btn btn-label-brand btn-icon" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="flaticon2-plus"></i>
+                    </a>
+                    <div class="dropdown-menu dropdown-menu-fit dropdown-menu-md dropdown-menu-right">
+                        <ul class="beauty-nav">
+                            <li class="beauty-nav__separator"></li>
+                            <li class="beauty-nav__item">
+                                <a href="#" class="beauty-nav__link">
+                                    <i class="beauty-nav__link-icon flaticon-file-2"></i>
+                                    <span class="beauty-nav__link-text">خروجی اکسل پرسنل</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="beauty-content  beauty-grid__item beauty-grid__item--fluid beauty-grid beauty-grid--hor" id="Beauty_content">
+    <div class="beauty-container  beauty-container--fluid  beauty-grid__item beauty-grid__item--fluid">
+        <div class="beauty-portlet beauty-portlet--mobile">
+            <div class="beauty-portlet__body beauty-portlet__body--fit">
+                <div class="beauty-datatable" id="Beauty_apps_user_list_datatable"></div>
+            </div>
+        </div>
+        <div class="modal fade" id="Beauty_datatable_records_fetch_modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Selected Records</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true"></span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="beauty-scroll" data-scroll="true" data-height="200">
+                            <ul id="Beauty_apps_user_fetch_records_selected"></ul>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-brand" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/pages/personnel-index.js" asp-append-version="true"></script>
+}

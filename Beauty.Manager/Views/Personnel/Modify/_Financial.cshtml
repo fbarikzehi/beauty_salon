@@ -1,0 +1,64 @@
+﻿@model Beauty.Application.Modules.Personnel.ViewModel.PersonnelFinancialViewModel
+@using Common.Crosscutting.Enum;
+
+@using (Html.BeginForm("UpdateFinancial", "Personnel", FormMethod.Post, new { id = "financial_frm", autocomplete = "off" }))
+{
+    @Html.HiddenFor(x => x.PersonnelId)
+    <div class="beauty-form beauty-form--label-right">
+        <div class="beauty-form__body">
+            <div class="beauty-section beauty-section--first">
+                <div class="beauty-section__body">
+                    <div class="form-group">
+                        <label>نوع پرداخت در ازای انجام کار را مشخص کنید</label>
+                        <div class="beauty-radio-inline">
+                            <label class="beauty-radio beauty-radio--success cooperationType">
+                                <input type="radio" id="Entity_CooperationType_0" name="CooperationType" value="@CooperationTypeEnum.Salary" onchange="cooperationType_changed(0)" @(Model.CooperationType == CooperationTypeEnum.Salary ? "checked" : "")> حقوقی
+                                <span></span>
+                            </label>
+                            <label class="beauty-radio beauty-radio--brand cooperationType">
+                                <input type="radio" id="Entity_CooperationType_1" name="CooperationType" value="@CooperationTypeEnum.Percentage" onchange="cooperationType_changed(1)" @(Model.CooperationType == CooperationTypeEnum.Percentage ? "checked" : "")> درصدی
+                                <span></span>
+                            </label>
+                        </div>
+                        <span class="form-text text-muted">در صورتی که پرداخت درصدی باشد برای هر خدمت انتخاب شده برای پرسنل درصد و درصورتی که حقوقی باشد میزان حقوق ماهیانه مشخص شود</span>
+                    </div>
+                    <div class="beauty-separator beauty-separator--border-dashed beauty-separator--portlet-fit beauty-separator--space-xs"></div>
+                    <div id="service_salary_wrapper"></div>
+                    <div id="service_percent_wrapper" class="form-group row"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+}
+
+<script type="text/template" id="service_percent_template">
+    <div class="col-lg-3 col-md-3 col-sm-12">
+        <label>نام خدمت</label>
+        <input name="Services[{{index}}].PersonnelServiceId" type="hidden" value="{{PersonnelServiceId}}">
+        <input class="form-control" readonly="readonly" type="text" value="{{ServiceTitle}}">
+    </div>
+    <div class="col-lg-3 col-md-3 col-sm-12 border-right">
+        <div class="form-group form-group-marginless">
+            <label>درصد</label>
+            <div class="input-group">
+                <input class="form-control" name="Services[{{index}}].Percentage" id="Services[{{index}}].Percentage" type="number" value="{{PersonnelServicePercentage}}" min="0" max="100" aria-describedby="Services[{{index}}].Percentage_i">
+                <div class="input-group-append">
+                    <span class="input-group-text" id="Services[{{index}}].Percentage_i">
+
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+
+
+<script type="text/template" id="salary_template">
+    <div class="form-group row">
+        <div class="col-lg-4 col-md-9 col-sm-12">
+            <label>میزان حقوق ماهیانه (تومان)</label>
+            <input class="form-control" name="Salary" id="Salary" type="text" onfocus="salary_inputmask(this)" value="{{value}}">
+        </div>
+    </div>
+</script>

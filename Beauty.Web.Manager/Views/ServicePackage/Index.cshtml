@@ -1,0 +1,78 @@
+﻿@model Beauty.Application.Modules.Service.ViewModel.ServicePackageIndexViewModel
+@{
+    ViewData["Title"] = PageTitleResource.ServicePackage;
+}
+
+
+<link href="~/theme/app-assets/vendors/css/tables/datatable/datatables.min.css" rel="stylesheet" />
+<link href="~/theme/app-assets/vendors/css/extensions/sweetalert2.min.css" rel="stylesheet" />
+
+<section class="users-list-wrapper">
+    <div id="basic-examples">
+        <div class="card">
+            <div class="card-header">
+                <a href="@Url.Action("Create","ServicePackage")" class="btn btn-primary mb-2"><i class="feather icon-plus"></i>&nbsp; ثبت پکیج جدید</a>
+                <a class="heading-elements-toggle"><i class="fa fa-ellipsis-v font-medium-3"></i></a>
+                <div class="heading-elements">
+                    <ul class="list-inline mb-0">
+                        <li><a data-action="expand"><i class="feather icon-maximize"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="card-content  collapse show">
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table" id="service-packages">
+                            <thead>
+                                <tr>
+                                    @foreach (var header in Model.Headers)
+                                    {
+                                        <th>@header.Title</th>
+                                    }
+                                </tr>
+                            </thead>
+
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/template" id="item_template">
+    <div class="row">
+        <div class="col-md-12 col-lg-12 col-12">
+            <table class="table table-bordered" style=" background: #9a9a9a;color:aliceblue">
+                <thead style=" background: #616161;color:#ffffff">
+                    <tr style=" background: #616161;color:#ffffff">
+                        <th scope="col">عنوان خدمت</th>
+                        <th scope="col">قیمت</th>
+                        <th scope="col">قیمت با تخفیف</th>
+                        <th scope="col">عملیات</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#items}}
+                    <tr id="row_service_item_{{id}}">
+                        <td>{{serviceTitle}}</td>
+                        <td>{{servicePrice}}</td>
+                        <td>{{afterDiscountPrice}}</td>
+                        <td>
+                            <button type="button" class="btn btn-danger mr-1 mb-1 waves-effect waves-light" onclick="delete_service('{{id}}')"><i class="feather icon-x"></i> حذف</button>
+                        </td>
+                    </tr>
+                    {{/items}}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</script>
+@section Scripts{
+    <script src="~/lib/mustache.js"></script>
+    <script src="~/theme/app-assets/vendors/js/extensions/sweetalert2.all.min.js"></script>
+    <script src="~/theme/app-assets/vendors/js/tables/datatable/datatables.min.js"></script>
+    <script src="~/theme/app-assets/vendors/js/tables/datatable/datatables.bootstrap4.min.js"></script>
+    <script src="~/js/pages/service-package-index.js" asp-append-version="true"></script>
+}
+

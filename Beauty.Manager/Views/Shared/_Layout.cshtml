@@ -1,0 +1,1446 @@
+﻿<!DOCTYPE html>
+<html lang="fa" direction="rtl" style="direction: rtl;">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>@ViewData["Title"] - Beauty</title>
+    <meta name="description" content="Beauty">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <link href="~/css/global/plugins.css" rel="stylesheet" />
+    <link href="~/css/common/style.css" rel="stylesheet" />
+    <link href="~/css/common/fonts-fa.css" rel="stylesheet" />
+
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+    <script src="~/lib/jquery/dist/jquery.js"></script>
+</head>
+<body class="beauty-demo-panel--right beauty-header-mobile--fixed beauty-page-content-white beauty-subheader--enabled beauty-aside--secondary-enabled beauty-offcanvas-panel--left beauty-aside--left beauty-page--loading">
+    <div class="preloader"></div>
+    <div id="Beauty_header_mobile" class="beauty-header-mobile  beauty-header-mobile--fixed ">
+        <div class="beauty-header-mobile__logo">
+            <a href="@Url.Action("Index","Home")">
+                <img src="~/images/logo.png" alt="Logo" />
+            </a>
+        </div>
+        <div class="beauty-header-mobile__toolbar">
+            <button class="beauty-header-mobile__toggler beauty-header-mobile__toggler--left"
+                    id="Beauty_aside_mobile_toggler">
+                <span></span>
+            </button>
+        </div>
+    </div>
+    <div class="beauty-grid beauty-grid--hor beauty-grid--root">
+        <div class="beauty-grid__item beauty-grid__item--fluid beauty-grid beauty-grid--ver beauty-page">
+            @await Component.InvokeAsync("Aside")
+            <div class="beauty-grid__item beauty-grid__item--fluid beauty-grid beauty-grid--hor beauty-wrapper" id="Beauty_wrapper">
+                @RenderBody()
+                <div class="beauty-footer beauty-grid__item beauty-grid beauty-grid--desBeautyop beauty-grid--ver-desBeautyop">
+                    <div class="beauty-container  beauty-container--fluid ">
+                        <div class="beauty-footer__copyright">
+                            2018&nbsp;&copy;&nbsp;<a href="http://keenthemes.com/keen" target="_blank"
+                                                     class="beauty-link">Keenthemes Inc</a>
+                        </div>
+                        <div class="beauty-footer__menu">
+                            <a href="http://keenthemes.com/keen" target="_blank"
+                               class="beauty-footer__menu-link beauty-link">About</a>
+                            <a href="http://keenthemes.com/keen" target="_blank"
+                               class="beauty-footer__menu-link beauty-link">Team</a>
+                            <a href="http://keenthemes.com/keen" target="_blank"
+                               class="beauty-footer__menu-link beauty-link">Contact</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="Beauty_offcanvas_toolbar_search" class="beauty-offcanvas-panel">
+        <div class="beauty-offcanvas-panel__head">
+            <h3 class="beauty-offcanvas-panel__title">
+                Search
+            </h3>
+            <a href="#" class="beauty-offcanvas-panel__close" id="Beauty_offcanvas_toolbar_search_close">
+                <i class="flaticon2-delete"></i>
+            </a>
+        </div>
+        <div class="beauty-offcanvas-panel__body">
+            <div class="beauty-quick-search beauty-quick-search--offcanvas" id="Beauty_quick_search_offcanvas">
+                <form method="get" action="#" class="beauty-quick-search__form">
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">
+                                <i class="flaticon2-search-1"></i>
+                            </span>
+                        </div>
+                        <input type="text" class="form-control beauty-quick-search__input" placeholder="Type here..."
+                               name="query">
+                        <div class="input-group-append">
+                            <span class="input-group-text">
+                                <i class="la la-close beauty-quick-search__close"></i>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+                <div class="beauty-quick-search__wrapper">
+                    <div class="beauty-quick-search__result">
+                        <div class="beauty-quick-search__category">
+                            Reports
+                        </div>
+                        <div class="beauty-quick-search__section">
+                            <div class="beauty-quick-search__item">
+                                <div class="beauty-quick-search__item-img beauty-quick-search__item-img--file">
+                                    <img src="https://keenthemes.com/keen/themes/keen/theme/demo6/dist/assets/media/files/doc.svg"
+                                         alt="" />
+                                </div>
+                                <div class="beauty-quick-search__item-wrapper">
+                                    <a href="#" class="beauty-quick-search__item-title">
+                                        AirPlus Requirements
+                                    </a>
+                                    <div class="beauty-quick-search__item-desc">
+                                        by Grog John
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="beauty-quick-search__item">
+                                <div class="beauty-quick-search__item-img beauty-quick-search__item-img--file">
+                                    <img src="https://keenthemes.com/keen/themes/keen/theme/demo6/dist/assets/media/files/pdf.svg"
+                                         alt="" />
+                                </div>
+                                <div class="beauty-quick-search__item-wrapper">
+                                    <a href="#" class="beauty-quick-search__item-title">
+                                        TechNav Documentation
+                                    </a>
+                                    <div class="beauty-quick-search__item-desc">
+                                        by Mary Broun
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="beauty-quick-search__item">
+                                <div class="beauty-quick-search__item-img beauty-quick-search__item-img--file">
+                                    <img src="https://keenthemes.com/keen/themes/keen/theme/demo6/dist/assets/media/files/zip.svg"
+                                         alt="" />
+                                </div>
+                                <div class="beauty-quick-search__item-wrapper">
+                                    <a href="#" class="beauty-quick-search__item-title">
+                                        All Framework Docs
+                                    </a>
+                                    <div class="beauty-quick-search__item-desc">
+                                        by Grog John
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="beauty-quick-search__item">
+                                <div class="beauty-quick-search__item-img beauty-quick-search__item-img--file">
+                                    <img src="https://keenthemes.com/keen/themes/keen/theme/demo6/dist/assets/media/files/xml.svg"
+                                         alt="" />
+                                </div>
+                                <div class="beauty-quick-search__item-wrapper">
+                                    <a href="#" class="beauty-quick-search__item-title">
+                                        AirPlus Requirements
+                                    </a>
+                                    <div class="beauty-quick-search__item-desc">
+                                        by Grog John
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="beauty-quick-search__category">
+                            Customers
+                        </div>
+                        <div class="beauty-quick-search__section">
+                            <div class="beauty-quick-search__item">
+                                <div class="beauty-quick-search__item-img">
+                                    <img src="../../../themes/keen/theme/demo6/dist/assets/media/users/300_11.jpg"
+                                         alt="" />
+                                </div>
+                                <div class="beauty-quick-search__item-wrapper">
+                                    <a href="#" class="beauty-quick-search__item-title">
+                                        Jimmy Curry
+                                    </a>
+                                    <div class="beauty-quick-search__item-desc">
+                                        Software Developer
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="beauty-quick-search__item">
+                                <div class="beauty-quick-search__item-img">
+                                    <img src="../../../themes/keen/theme/demo6/dist/assets/media/users/300_16.jpg"
+                                         alt="" />
+                                </div>
+                                <div class="beauty-quick-search__item-wrapper">
+                                    <a href="#" class="beauty-quick-search__item-title">
+                                        Milena Gibson
+                                    </a>
+                                    <div class="beauty-quick-search__item-desc">
+                                        UI Designer
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="beauty-quick-search__item">
+                                <div class="beauty-quick-search__item-img">
+                                    <img src="../../../themes/keen/theme/demo6/dist/assets/media/users/300_22.jpg"
+                                         alt="" />
+                                </div>
+                                <div class="beauty-quick-search__item-wrapper">
+                                    <a href="#" class="beauty-quick-search__item-title">
+                                        Stefan JohnStefan
+                                    </a>
+                                    <div class="beauty-quick-search__item-desc">
+                                        Marketing Manager
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="beauty-quick-search__item">
+                                <div class="beauty-quick-search__item-img">
+                                    <img src="../../../themes/keen/theme/demo6/dist/assets/media/users/300_5.jpg"
+                                         alt="" />
+                                </div>
+                                <div class="beauty-quick-search__item-wrapper">
+                                    <a href="#" class="beauty-quick-search__item-title">
+                                        Anna Strong
+                                    </a>
+                                    <div class="beauty-quick-search__item-desc">
+                                        Software Developer
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="beauty-quick-search__category">
+                            Files
+                        </div>
+                        <div class="beauty-quick-search__section">
+                            <div class="beauty-quick-search__item">
+                                <div class="beauty-quick-search__item-icon">
+                                    <i class="flaticon2-box beauty-font-danger"></i>
+                                </div>
+                                <div class="beauty-quick-search__item-wrapper">
+                                    <a href="#" class="beauty-quick-search__item-title">
+                                        2 New items submitted
+                                    </a>
+                                    <div class="beauty-quick-search__item-desc">
+                                        Marketing Manager
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="beauty-quick-search__item">
+                                <div class="beauty-quick-search__item-icon">
+                                    <i class="flaticon-psd beauty-font-brand"></i>
+                                </div>
+                                <div class="beauty-quick-search__item-wrapper">
+                                    <a href="#" class="beauty-quick-search__item-title">
+                                        79 PSD files generated
+                                    </a>
+                                    <div class="beauty-quick-search__item-desc">
+                                        by Grog John
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="beauty-quick-search__item">
+                                <div class="beauty-quick-search__item-icon">
+                                    <i class="flaticon2-supermarket beauty-font-warning"></i>
+                                </div>
+                                <div class="beauty-quick-search__item-wrapper">
+                                    <a href="#" class="beauty-quick-search__item-title">
+                                        $2900 worth products sold
+                                    </a>
+                                    <div class="beauty-quick-search__item-desc">
+                                        Total 234 items
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="beauty-quick-search__item">
+                                <div class="beauty-quick-search__item-icon">
+                                    <i class="flaticon-safe-shield-protection beauty-font-info"></i>
+                                </div>
+                                <div class="beauty-quick-search__item-wrapper">
+                                    <a href="#" class="beauty-quick-search__item-title">
+                                        4 New items submitted
+                                    </a>
+                                    <div class="beauty-quick-search__item-desc">
+                                        Marketing Manager
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="Beauty_offcanvas_toolbar_notifications" class="beauty-offcanvas-panel">
+        <div class="beauty-offcanvas-panel__head">
+            <h3 class="beauty-offcanvas-panel__title">
+                Notifications
+                <small>24 New</small>
+            </h3>
+            <a href="#" class="beauty-offcanvas-panel__close" id="Beauty_offcanvas_toolbar_notifications_close">
+                <i class="flaticon2-delete"></i>
+            </a>
+        </div>
+        <div class="beauty-offcanvas-panel__body">
+            <div class="beauty-notification-v2">
+                <a href="#" class="beauty-notification-v2__item">
+                    <div class="beauty-notification-v2__item-icon">
+                        <i class="flaticon-bell beauty-font-focus"></i>
+                    </div>
+                    <div class="beauty-notification-v2__item-wrapper">
+                        <div class="beauty-notification-v2__item-title">
+                            5 new user generated report
+                        </div>
+                        <div class="beauty-notification-v2__item-desc">
+                            Reports based on sales
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="beauty-notification-v2__item">
+                    <div class="beauty-notification-v2__item-icon">
+                        <i class="flaticon2-box beauty-font-danger"></i>
+                    </div>
+                    <div class="beauty-notification-v2__item-wrapper">
+                        <div class="beauty-notification-v2__item-title">
+                            2 new items submited
+                        </div>
+                        <div class="beauty-notification-v2__item-desc">
+                            by Grog John
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="beauty-notification-v2__item">
+                    <div class="beauty-notification-v2__item-icon">
+                        <i class="flaticon-psd beauty-font-brand"></i>
+                    </div>
+                    <div class="beauty-notification-v2__item-wrapper">
+                        <div class="beauty-notification-v2__item-title">
+                            79 PSD files generated
+                        </div>
+                        <div class="beauty-notification-v2__item-desc">
+                            Reports based on sales
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="beauty-notification-v2__item">
+                    <div class="beauty-notification-v2__item-icon">
+                        <i class="flaticon2-supermarket beauty-font-warning"></i>
+                    </div>
+                    <div class="beauty-notification-v2__item-wrapper">
+                        <div class="beauty-notification-v2__item-title">
+                            $2900 worth producucts sold
+                        </div>
+                        <div class="beauty-notification-v2__item-desc">
+                            Total 234 items
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="beauty-notification-v2__item">
+                    <div class="beauty-notification-v2__item-icon">
+                        <i class="flaticon-paper-plane-1 beauty-font-success"></i>
+                    </div>
+                    <div class="beauty-notification-v2__item-wrapper">
+                        <div class="beauty-notification-v2__item-title">
+                            4.5h-avarage response time
+                        </div>
+                        <div class="beauty-notification-v2__item-desc">
+                            Fostest is Barry
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="beauty-notification-v2__item">
+                    <div class="beauty-notification-v2__item-icon beauty-font-danger">
+                        <i class="flaticon-safe-shield-protection"></i>
+                    </div>
+                    <div class="beauty-notification-v2__item-wrapper">
+                        <div class="beauty-notification-v2__item-title">
+                            3 Defence alerts
+                        </div>
+                        <div class="beauty-notification-v2__item-desc">
+                            40% less alerts thar last week
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="beauty-notification-v2__item">
+                    <div class="beauty-notification-v2__item-icon beauty-font-brand">
+                        <i class="flaticon-notepad"></i>
+                    </div>
+                    <div class="beauty-notification-v2__item-wrapper">
+                        <div class="beauty-notification-v2__item-title">
+                            Avarage 4 blog posts per author
+                        </div>
+                        <div class="beauty-notification-v2__item-desc">
+                            Most posted 12 time
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="beauty-notification-v2__item">
+                    <div class="beauty-notification-v2__item-icon beauty-font-warning">
+                        <i class="flaticon-users-1"></i>
+                    </div>
+                    <div class="beauty-notification-v2__item-wrapper">
+                        <div class="beauty-notification-v2__item-title">
+                            16 authors joined last week
+                        </div>
+                        <div class="beauty-notification-v2__item-desc">
+                            9 photodrapehrs, 7 designer
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="beauty-notification-v2__item">
+                    <div class="beauty-notification-v2__item-icon">
+                        <i class="flaticon2-box beauty-font-info"></i>
+                    </div>
+                    <div class="beauty-notification-v2__item-wrapper">
+                        <div class="beauty-notification-v2__item-title">
+                            2 new items have been submited
+                        </div>
+                        <div class="beauty-notification-v2__item-desc">
+                            by Grog John
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="beauty-notification-v2__item">
+                    <div class="beauty-notification-v2__item-icon beauty-font-success">
+                        <i class="flaticon2-download"></i>
+                    </div>
+                    <div class="beauty-notification-v2__item-wrapper">
+                        <div class="beauty-notification-v2__item-title">
+                            2.8 GB-total downloads size
+                        </div>
+                        <div class="beauty-notification-v2__item-desc">
+                            Mostly PSD end AL concepts
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="beauty-notification-v2__item">
+                    <div class="beauty-notification-v2__item-icon">
+                        <i class="flaticon2-supermarket beauty-font-danger"></i>
+                    </div>
+                    <div class="beauty-notification-v2__item-wrapper">
+                        <div class="beauty-notification-v2__item-title">
+                            $2900 worth producucts sold
+                        </div>
+                        <div class="beauty-notification-v2__item-desc">
+                            Total 234 items
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="beauty-notification-v2__item">
+                    <div class="beauty-notification-v2__item-icon">
+                        <i class="flaticon-bell beauty-font-brand"></i>
+                    </div>
+                    <div class="beauty-notification-v2__item-wrapper">
+                        <div class="beauty-notification-v2__item-title">
+                            7 new user generated report
+                        </div>
+                        <div class="beauty-notification-v2__item-desc">
+                            Reports based on sales
+                        </div>
+                    </div>
+                </a>
+
+                <a href="#" class="beauty-notification-v2__item">
+                    <div class="beauty-notification-v2__item-icon">
+                        <i class="flaticon-paper-plane-1 beauty-font-success"></i>
+                    </div>
+                    <div class="beauty-notification-v2__item-wrapper">
+                        <div class="beauty-notification-v2__item-title">
+                            4.5h-avarage response time
+                        </div>
+                        <div class="beauty-notification-v2__item-desc">
+                            Fostest is Barry
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </div>
+    <div id="Beauty_offcanvas_toolbar_profile" class="beauty-offcanvas-panel">
+        <div class="beauty-offcanvas-panel__head">
+            <h3 class="beauty-offcanvas-panel__title">
+                Profile
+            </h3>
+            <a href="#" class="beauty-offcanvas-panel__close" id="Beauty_offcanvas_toolbar_profile_close">
+                <i class="flaticon2-delete"></i>
+            </a>
+        </div>
+        <div class="beauty-offcanvas-panel__body">
+            <div class="beauty-user-card-v3 beauty-margin-b-30">
+                <div class="beauty-user-card-v3__avatar">
+                    <img src="../../../themes/keen/theme/demo6/dist/assets/media/users/300_21.jpg" alt="" />
+                </div>
+                <div class="beauty-user-card-v3__detalis">
+                    <a href="#" class="beauty-user-card-v3__name">
+                        James Jones
+                    </a>
+                    <div class="beauty-user-card-v3__desc">
+                        Application Developer
+                    </div>
+                    <div class="beauty-user-card-v3__info">
+                        <a href="#" class="beauty-user-card-v3__item">
+                            <i class="flaticon-email-black-circular-button beauty-font-brand"></i>
+                            <span class="beauty-user-card-v3__tag">jm@softplus.com</span>
+                        </a>
+                        <a href="#" class="beauty-user-card-v3__item">
+                            <i class="flaticon-twitter-logo-button beauty-font-success"></i>
+                            <span class="beauty-user-card-v3__tag">jmdev</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="beauty-offcanvas-panel__section beauty-margin-t-50">
+                Sales Stats
+            </div>
+
+            <div class="beauty-widget-1">
+                <div class="beauty-widget-1__items">
+                    <div class="beauty-widget-1__item">
+                        <div class="beauty-widget-1__item-info">
+                            <a href="#">
+                                <div class="beauty-widget-1__item-title">HTML 5 Templates</div>
+                            </a>
+                            <div class="beauty-widget-1__item-desc">Font-end,Admin &amp; Email</div>
+                        </div>
+                        <div class="beauty-widget-1__item-stats">
+                            <div class="beauty-widget-1__item-value">+79%</div>
+                            <div class="beauty-widget-1__item-progress">
+                                <div class="progress">
+                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 79%;"
+                                         aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="beauty-widget-1__item">
+                        <div class="beauty-widget-1__item-info">
+                            <a href="#">
+                                <div class="beauty-widget-1__item-title">Wordpress Themes</div>
+                            </a>
+                            <div class="beauty-widget-1__item-desc">eCommerce Website, Plugin</div>
+                        </div>
+                        <div class="beauty-widget-1__item-stats">
+                            <div class="beauty-widget-1__item-value">+21%</div>
+                            <div class="beauty-widget-1__item-progress">
+                                <div class="progress">
+                                    <div class="progress-bar bg-brand" role="progressbar" style="width: 60%;"
+                                         aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="beauty-widget-1__item">
+                        <div class="beauty-widget-1__item-info">
+                            <a href="#">
+                                <div class="beauty-widget-1__item-title">eCommerce Websites</div>
+                            </a>
+                            <div class="beauty-widget-1__item-desc">Shops, Fasion wep sites &amp; atc</div>
+                        </div>
+                        <div class="beauty-widget-1__item-stats">
+                            <div class="beauty-widget-1__item-value">-16%</div>
+                            <div class="beauty-widget-1__item-progress">
+                                <div class="progress">
+                                    <div class="progress-bar  bg-success" role="progressbar" style="width: 80%;"
+                                         aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="beauty-widget-1__item">
+                        <div class="beauty-widget-1__item-info">
+                            <a href="#">
+                                <div class="beauty-widget-1__item-title">UI/UX Design</div>
+                            </a>
+                            <div class="beauty-widget-1__item-desc">Evrything you ever imagine</div>
+                        </div>
+                        <div class="beauty-widget-1__item-stats">
+                            <div class="beauty-widget-1__item-value">+4%</div>
+                            <div class="beauty-widget-1__item-progress">
+                                <div class="progress">
+                                    <div class="progress-bar bg-focus" role="progressbar" style="width: 90%;"
+                                         aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="beauty-offcanvas-panel__section beauty-margin-t-50">
+                Top Products
+            </div>
+
+            <div class="beauty-widget-4">
+                <div class="beauty-widget-4__items">
+                    <div class="beauty-widget-4__item">
+                        <div class="beauty-widget-4__item-content">
+                            <div class="beauty-widget-4__item-section">
+                                <div class="beauty-widget-4__item-pic">
+                                    <img class=""
+                                         src="../../../themes/keen/theme/demo6/dist/assets/media/product-logos/logo1.png"
+                                         alt="">
+                                </div>
+                                <div class="beauty-widget-4__item-info">
+                                    <a href="#">
+                                        <div class="beauty-widget-4__item-username">Circle Desige</div>
+                                    </a>
+                                    <div class="beauty-widget-4__item-desc">UI/UX, Animation, Design</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="beauty-widget-4__item-content">
+                            <div class="beauty-widget-4__item-price">
+                                <span class="beauty-widget-4__item-badge">$</span>
+                                <span class="beauty-widget-4__item-number">2,830</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="beauty-widget-4__item">
+                        <div class="beauty-widget-4__item-content">
+                            <div class="beauty-widget-4__item-section">
+                                <div class="beauty-widget-4__item-pic">
+                                    <img class=""
+                                         src="../../../themes/keen/theme/demo6/dist/assets/media/product-logos/logo2.png"
+                                         alt="">
+                                </div>
+                                <div class="beauty-widget-4__item-info">
+                                    <a href="#">
+                                        <div class="beauty-widget-4__item-username">Clip Code</div>
+                                    </a>
+                                    <div class="beauty-widget-4__item-desc">PHP, NET, Python, Ruby</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="beauty-widget-4__item-content">
+                            <div class="beauty-widget-4__item-price">
+                                <span class="beauty-widget-4__item-badge">$</span>
+                                <span class="beauty-widget-4__item-number">4,975</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="beauty-widget-4__item">
+                        <div class="beauty-widget-4__item-content">
+                            <div class="beauty-widget-4__item-section">
+                                <div class="beauty-widget-4__item-pic">
+                                    <img class=""
+                                         src="../../../themes/keen/theme/demo6/dist/assets/media/product-logos/logo3.png"
+                                         alt="">
+                                </div>
+                                <div class="beauty-widget-4__item-info">
+                                    <a href="#">
+                                        <div class="beauty-widget-4__item-username">JS-Nijas</div>
+                                    </a>
+                                    <div class="beauty-widget-4__item-desc">jQuery, AngularJS, Recct</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="beauty-widget-4__item-content">
+                            <div class="beauty-widget-4__item-price">
+                                <span class="beauty-widget-4__item-badge">$</span>
+                                <span class="beauty-widget-4__item-number">3.594</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="beauty-margin-t-40">
+                <button type="button" class="btn btn-brand btn-font-sm btn-upper btn-bold">full profile</button>
+            </div>
+        </div>
+    </div>
+    <div id="Beauty_quick_panel" class="beauty-offcanvas-panel">
+        <div class="beauty-offcanvas-panel__nav">
+            <ul class="nav nav-pills" role="tablist">
+                <li class="nav-item active">
+                    <a class="nav-link active" data-toggle="tab" href="#Beauty_quick_panel_tab_notifications"
+                       role="tab">Notifications</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#Beauty_quick_panel_tab_actions" role="tab">Actions</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-toggle="tab" href="#Beauty_quick_panel_tab_settings" role="tab">Settings</a>
+                </li>
+            </ul>
+
+            <button class="beauty-offcanvas-panel__close" id="Beauty_quick_panel_close_btn">
+                <i class="flaticon2-delete"></i>
+            </button>
+        </div>
+
+        <div class="beauty-offcanvas-panel__body">
+            <div class="tab-content">
+                <div class="tab-pane fade show beauty-offcanvas-panel__content beauty-scroll active"
+                     id="Beauty_quick_panel_tab_notifications" role="tabpanel">
+                    <div class="beauty-timeline">
+                        <div class="beauty-timeline__item beauty-timeline__item--success">
+                            <div class="beauty-timeline__item-section">
+                                <div class="beauty-timeline__item-section-border">
+                                    <div class="beauty-timeline__item-section-icon">
+                                        <i class="flaticon-feed beauty-font-success"></i>
+                                    </div>
+                                </div>
+                                <span class="beauty-timeline__item-datetime">02:30 PM</span>
+                            </div>
+
+                            <a href="#" class="beauty-timeline__item-text">
+                                KeenThemes created new layout whith tens of new options for Keen Admin panel
+                            </a>
+                            <div class="beauty-timeline__item-info">
+                                HTML,CSS,VueJS
+                            </div>
+                        </div>
+                        <div class="beauty-timeline__item beauty-timeline__item--danger">
+                            <div class="beauty-timeline__item-section">
+                                <div class="beauty-timeline__item-section-border">
+                                    <div class="beauty-timeline__item-section-icon">
+                                        <i class="flaticon-safe-shield-protection beauty-font-danger"></i>
+                                    </div>
+                                </div>
+                                <span class="beauty-timeline__item-datetime">01:20 AM</span>
+                            </div>
+
+                            <a href="#" class="beauty-timeline__item-text">
+                                New secyrity alert by Firewall & order to take aBeautyion on User Preferences
+                            </a>
+                            <div class="beauty-timeline__item-info">
+                                Security, Fieewall
+                            </div>
+                        </div>
+                        <div class="beauty-timeline__item beauty-timeline__item--brand">
+                            <div class="beauty-timeline__item-section">
+                                <div class="beauty-timeline__item-section-border">
+                                    <div class="beauty-timeline__item-section-icon">
+                                        <i class="flaticon2-box beauty-font-brand"></i>
+                                    </div>
+                                </div>
+                                <span class="beauty-timeline__item-datetime">Yestardey</span>
+                            </div>
+
+                            <a href="#" class="beauty-timeline__item-text">
+                                FlyMore design mock-ups been uploadet by designers Bob, Naomi, Richard
+                            </a>
+                            <div class="beauty-timeline__item-info">
+                                PSD, Sketch, AJ
+                            </div>
+                        </div>
+                        <div class="beauty-timeline__item beauty-timeline__item--warning">
+                            <div class="beauty-timeline__item-section">
+                                <div class="beauty-timeline__item-section-border">
+                                    <div class="beauty-timeline__item-section-icon">
+                                        <i class="flaticon-pie-chart-1 beauty-font-warning"></i>
+                                    </div>
+                                </div>
+                                <span class="beauty-timeline__item-datetime">Aug 13,2018</span>
+                            </div>
+
+                            <a href="#" class="beauty-timeline__item-text">
+                                Meeting with Ken Digital Corp ot Unit14, 3 Edigor Buildings, George Street, Loondon<br>
+                                England, BA12FJ
+                            </a>
+                            <div class="beauty-timeline__item-info">
+                                Meeting, Customer
+                            </div>
+                        </div>
+                        <div class="beauty-timeline__item beauty-timeline__item--info">
+                            <div class="beauty-timeline__item-section">
+                                <div class="beauty-timeline__item-section-border">
+                                    <div class="beauty-timeline__item-section-icon">
+                                        <i class="flaticon-notepad beauty-font-info"></i>
+                                    </div>
+                                </div>
+                                <span class="beauty-timeline__item-datetime">May 09, 2018</span>
+                            </div>
+
+                            <a href="#" class="beauty-timeline__item-text">
+                                KeenThemes created new layout whith tens of new options for Keen Admin panel
+                            </a>
+                            <div class="beauty-timeline__item-info">
+                                HTML,CSS,VueJS
+                            </div>
+                        </div>
+                        <div class="beauty-timeline__item beauty-timeline__item--accent">
+                            <div class="beauty-timeline__item-section">
+                                <div class="beauty-timeline__item-section-border">
+                                    <div class="beauty-timeline__item-section-icon">
+                                        <i class="flaticon-bell beauty-font-success"></i>
+                                    </div>
+                                </div>
+                                <span class="beauty-timeline__item-datetime">01:20 AM</span>
+                            </div>
+
+                            <a href="#" class="beauty-timeline__item-text">
+                                New secyrity alert by Firewall & order to take aBeautyion on User Preferences
+                            </a>
+                            <div class="beauty-timeline__item-info">
+                                Security, Fieewall
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade beauty-offcanvas-panel__content beauty-scroll" id="Beauty_quick_panel_tab_actions"
+                     role="tabpanel">
+                    <div class="beauty-portlet beauty-portlet--solid-success">
+                        <div class="beauty-portlet__head">
+                            <div class="beauty-portlet__head-label">
+                                <span class="beauty-portlet__head-icon beauty-hide"><i class="flaticon-stopwatch"></i></span>
+                                <h3 class="beauty-portlet__head-title">Recent Bills</h3>
+                            </div>
+                            <div class="beauty-portlet__head-toolbar">
+                                <div class="beauty-portlet__head-group">
+                                    <div class="dropdown dropdown-inline">
+                                        <button type="button"
+                                                class="btn btn-sm btn-font-light btn-outline-hover-light btn-circle btn-icon"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                            <i class="flaticon-more"></i>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#">Separated link</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="beauty-portlet__body">
+                            <div class="beauty-portlet__content">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting simply dummy text of
+                                the printing industry.
+                            </div>
+                        </div>
+                        <div class="beauty-portlet__foot beauty-portlet__foot--sm beauty-align-right">
+                            <a href="#"
+                               class="btn btn-bold btn-upper btn-sm btn-font-light btn-outline-hover-light">Dismiss</a>
+                            <a href="#"
+                               class="btn btn-bold btn-upper btn-sm btn-font-light btn-outline-hover-light">View</a>
+                        </div>
+                    </div>
+                    <div class="beauty-portlet beauty-portlet--solid-focus">
+                        <div class="beauty-portlet__head">
+                            <div class="beauty-portlet__head-label">
+                                <span class="beauty-portlet__head-icon beauty-hide"><i class="flaticon-stopwatch"></i></span>
+                                <h3 class="beauty-portlet__head-title">Latest Orders</h3>
+                            </div>
+                            <div class="beauty-portlet__head-toolbar">
+                                <div class="beauty-portlet__head-group">
+                                    <div class="dropdown dropdown-inline">
+                                        <button type="button"
+                                                class="btn btn-sm btn-font-light btn-outline-hover-light btn-circle btn-icon"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                            <i class="flaticon-more"></i>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#">Separated link</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="beauty-portlet__body">
+                            <div class="beauty-portlet__content">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting simply dummy text of
+                                the printing industry.
+                            </div>
+                        </div>
+                        <div class="beauty-portlet__foot beauty-portlet__foot--sm beauty-align-right">
+                            <a href="#"
+                               class="btn btn-bold btn-upper btn-sm btn-font-light btn-outline-hover-light">Dismiss</a>
+                            <a href="#"
+                               class="btn btn-bold btn-upper btn-sm btn-font-light btn-outline-hover-light">View</a>
+                        </div>
+                    </div>
+                    <div class="beauty-portlet beauty-portlet--solid-info">
+                        <div class="beauty-portlet__head">
+                            <div class="beauty-portlet__head-label">
+                                <h3 class="beauty-portlet__head-title">Latest Invoices</h3>
+                            </div>
+                            <div class="beauty-portlet__head-toolbar">
+                                <div class="beauty-portlet__head-group">
+                                    <div class="dropdown dropdown-inline">
+                                        <button type="button"
+                                                class="btn btn-sm btn-font-light btn-outline-hover-light btn-circle btn-icon"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                            <i class="flaticon-more"></i>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#">Separated link</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="beauty-portlet__body">
+                            <div class="beauty-portlet__content">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting simply dummy text of
+                                the printing industry.
+                            </div>
+                        </div>
+                        <div class="beauty-portlet__foot beauty-portlet__foot--sm beauty-align-right">
+                            <a href="#"
+                               class="btn btn-bold btn-upper btn-sm btn-font-light btn-outline-hover-light">Dismiss</a>
+                            <a href="#"
+                               class="btn btn-bold btn-upper btn-sm btn-font-light btn-outline-hover-light">View</a>
+                        </div>
+                    </div>
+                    <div class="beauty-portlet beauty-portlet--solid-warning">
+                        <div class="beauty-portlet__head">
+                            <div class="beauty-portlet__head-label">
+                                <h3 class="beauty-portlet__head-title">New Comments</h3>
+                            </div>
+                            <div class="beauty-portlet__head-toolbar">
+                                <div class="beauty-portlet__head-group">
+                                    <div class="dropdown dropdown-inline">
+                                        <button type="button"
+                                                class="btn btn-sm btn-font-light btn-outline-hover-light btn-circle btn-icon"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                            <i class="flaticon-more"></i>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#">Separated link</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="beauty-portlet__body">
+                            <div class="beauty-portlet__content">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting simply dummy text of
+                                the printing industry.
+                            </div>
+                        </div>
+                        <div class="beauty-portlet__foot beauty-portlet__foot--sm beauty-align-right">
+                            <a href="#"
+                               class="btn btn-bold btn-upper btn-sm btn-font-light btn-outline-hover-light">Dismiss</a>
+                            <a href="#"
+                               class="btn btn-bold btn-upper btn-sm btn-font-light btn-outline-hover-light">View</a>
+                        </div>
+                    </div>
+                    <div class="beauty-portlet beauty-portlet--solid-brand">
+                        <div class="beauty-portlet__head">
+                            <div class="beauty-portlet__head-label">
+                                <h3 class="beauty-portlet__head-title">Recent Posts</h3>
+                            </div>
+                            <div class="beauty-portlet__head-toolbar">
+                                <div class="beauty-portlet__head-group">
+                                    <div class="dropdown dropdown-inline">
+                                        <button type="button"
+                                                class="btn btn-sm btn-font-light btn-outline-hover-light btn-circle btn-icon"
+                                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                            <i class="flaticon-more"></i>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <a class="dropdown-item" href="#">Action</a>
+                                            <a class="dropdown-item" href="#">Another action</a>
+                                            <a class="dropdown-item" href="#">Something else here</a>
+                                            <div class="dropdown-divider"></div>
+                                            <a class="dropdown-item" href="#">Separated link</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="beauty-portlet__body">
+                            <div class="beauty-portlet__content">
+                                Lorem Ipsum is simply dummy text of the printing and typesetting simply dummy text of
+                                the printing industry.
+                            </div>
+                        </div>
+                        <div class="beauty-portlet__foot beauty-portlet__foot--sm beauty-align-right">
+                            <a href="#"
+                               class="btn btn-bold btn-upper btn-sm btn-font-light btn-outline-hover-light">Dismiss</a>
+                            <a href="#"
+                               class="btn btn-bold btn-upper btn-sm btn-font-light btn-outline-hover-light">View</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="tab-pane fade beauty-offcanvas-panel__content beauty-scroll" id="Beauty_quick_panel_tab_settings"
+                     role="tabpanel">
+                    <form class="beauty-form">
+                        <div class="beauty-heading beauty-heading--space-sm">Notifications</div>
+
+                        <div class="form-group form-group-xs row">
+                            <label class="col-8 col-form-label">Enable notifications:</label>
+                            <div class="col-4 beauty-align-right">
+                                <span class="beauty-switch beauty-switch--sm">
+                                    <label>
+                                        <input type="checkbox" checked="checked" name="quick_panel_notifications_1">
+                                        <span></span>
+                                    </label>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group form-group-xs row">
+                            <label class="col-8 col-form-label">Enable audit log:</label>
+                            <div class="col-4 beauty-align-right">
+                                <span class="beauty-switch beauty-switch--sm">
+                                    <label>
+                                        <input type="checkbox" name="quick_panel_notifications_2">
+                                        <span></span>
+                                    </label>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group form-group-last form-group-xs row">
+                            <label class="col-8 col-form-label">Notify on new orders:</label>
+                            <div class="col-4 beauty-align-right">
+                                <span class="beauty-switch beauty-switch--sm">
+                                    <label>
+                                        <input type="checkbox" checked="checked" name="quick_panel_notifications_2">
+                                        <span></span>
+                                    </label>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="beauty-separator beauty-separator--space-md beauty-separator--border-dashed"></div>
+
+                        <div class="beauty-heading beauty-heading--space-sm">Orders</div>
+
+                        <div class="form-group form-group-xs row">
+                            <label class="col-8 col-form-label">Enable order tracking:</label>
+                            <div class="col-4 beauty-align-right">
+                                <span class="beauty-switch beauty-switch--sm beauty-switch--danger">
+                                    <label>
+                                        <input type="checkbox" checked="checked" name="quick_panel_notifications_3">
+                                        <span></span>
+                                    </label>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group form-group-xs row">
+                            <label class="col-8 col-form-label">Enable orders reports:</label>
+                            <div class="col-4 beauty-align-right">
+                                <span class="beauty-switch beauty-switch--sm beauty-switch--danger">
+                                    <label>
+                                        <input type="checkbox" name="quick_panel_notifications_3">
+                                        <span></span>
+                                    </label>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group form-group-last form-group-xs row">
+                            <label class="col-8 col-form-label">Allow order status auto update:</label>
+                            <div class="col-4 beauty-align-right">
+                                <span class="beauty-switch beauty-switch--sm beauty-switch--danger">
+                                    <label>
+                                        <input type="checkbox" checked="checked" name="quick_panel_notifications_4">
+                                        <span></span>
+                                    </label>
+                                </span>
+                            </div>
+                        </div>
+
+                        <div class="beauty-separator beauty-separator--space-md beauty-separator--border-dashed"></div>
+
+                        <div class="beauty-heading beauty-heading--space-sm">Customers</div>
+
+                        <div class="form-group form-group-xs row">
+                            <label class="col-8 col-form-label">Enable customer singup:</label>
+                            <div class="col-4 beauty-align-right">
+                                <span class="beauty-switch beauty-switch--sm beauty-switch--success">
+                                    <label>
+                                        <input type="checkbox" checked="checked" name="quick_panel_notifications_5">
+                                        <span></span>
+                                    </label>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group form-group-xs row">
+                            <label class="col-8 col-form-label">Enable customers reporting:</label>
+                            <div class="col-4 beauty-align-right">
+                                <span class="beauty-switch beauty-switch--sm beauty-switch--success">
+                                    <label>
+                                        <input type="checkbox" name="quick_panel_notifications_5">
+                                        <span></span>
+                                    </label>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="form-group form-group-last form-group-xs row">
+                            <label class="col-8 col-form-label">Notifiy on new customer registration:</label>
+                            <div class="col-4 beauty-align-right">
+                                <span class="beauty-switch beauty-switch--sm beauty-switch--success">
+                                    <label>
+                                        <input type="checkbox" checked="checked" name="quick_panel_notifications_6">
+                                        <span></span>
+                                    </label>
+                                </span>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="Beauty_scrolltop" class="beauty-scrolltop">
+        <i class="fa fa-arrow-up"></i>
+    </div>
+    <div id="Beauty_demo_panel" class="beauty-demo-panel">
+        <div class="beauty-demo-panel__head">
+            <h3 class="beauty-demo-panel__title">
+                نوبت های انجام نشده امروز
+            </h3>
+            <a href="#" class="beauty-demo-panel__close" id="Beauty_demo_panel_close"><i class="flaticon2-delete"></i></a>
+        </div>
+        <div class="beauty-demo-panel__body">
+            <div class="beauty-demo-panel__item ">
+                <div class="beauty-demo-panel__item-title">
+                    Demo 1
+                </div>
+                <div class="beauty-demo-panel__item-preview">
+                    <img src="../../../themes/keen/doc/assets/img/demos/demo2.png" alt="" />
+                    <div class="beauty-demo-panel__item-preview-overlay">
+                        <a href="https://keenthemes.com/keen/preview/demo6/demo1/index.html"
+                           class="btn btn-brand btn-elevate " target="_blank">Default</a>
+                        <a href="https://keenthemes.com/keen/preview/demo6/demo1/rtl/index.html"
+                           class="btn btn-light btn-elevate" target="_blank">RTL Version</a>
+                    </div>
+                </div>
+            </div>
+            <div class="beauty-demo-panel__item ">
+                <div class="beauty-demo-panel__item-title">
+                    Demo 2
+                </div>
+                <div class="beauty-demo-panel__item-preview">
+                    <img src="../../../themes/keen/doc/assets/img/demos/demo3.png" alt="" />
+                    <div class="beauty-demo-panel__item-preview-overlay">
+                        <a href="https://keenthemes.com/keen/preview/demo6/demo2/index.html"
+                           class="btn btn-brand btn-elevate " target="_blank">Default</a>
+                        <a href="https://keenthemes.com/keen/preview/demo6/demo2/rtl/index.html"
+                           class="btn btn-light btn-elevate" target="_blank">RTL Version</a>
+                    </div>
+                </div>
+            </div>
+            <div class="beauty-demo-panel__item ">
+                <div class="beauty-demo-panel__item-title">
+                    Demo 3
+                </div>
+                <div class="beauty-demo-panel__item-preview">
+                    <img src="../../../themes/keen/doc/assets/img/demos/demo1-1.png" alt="" />
+                    <div class="beauty-demo-panel__item-preview-overlay">
+                        <a href="https://keenthemes.com/keen/preview/demo6/demo3/index.html"
+                           class="btn btn-brand btn-elevate " target="_blank">Default</a>
+                        <a href="https://keenthemes.com/keen/preview/demo6/demo3/rtl/index.html"
+                           class="btn btn-light btn-elevate" target="_blank">RTL Version</a>
+                    </div>
+                </div>
+            </div>
+            <div class="beauty-demo-panel__item ">
+                <div class="beauty-demo-panel__item-title">
+                    Demo 4
+                </div>
+                <div class="beauty-demo-panel__item-preview">
+                    <img src="../../../themes/keen/doc/assets/img/demos/demo4.png" alt="" />
+                    <div class="beauty-demo-panel__item-preview-overlay">
+                        <a href="https://keenthemes.com/keen/preview/demo6/demo4/index.html"
+                           class="btn btn-brand btn-elevate " target="_blank">Default</a>
+                        <a href="https://keenthemes.com/keen/preview/demo6/demo4/rtl/index.html"
+                           class="btn btn-light btn-elevate" target="_blank">RTL Version</a>
+                    </div>
+                </div>
+            </div>
+            <div class="beauty-demo-panel__item ">
+                <div class="beauty-demo-panel__item-title">
+                    Demo 5
+                </div>
+                <div class="beauty-demo-panel__item-preview">
+                    <img src="../../../themes/keen/doc/assets/img/demos/demo5.png" alt="" />
+                    <div class="beauty-demo-panel__item-preview-overlay">
+                        <a href="https://keenthemes.com/keen/preview/demo6/demo5/index.html"
+                           class="btn btn-brand btn-elevate " target="_blank">Default</a>
+                        <a href="https://keenthemes.com/keen/preview/demo6/demo5/rtl/index.html"
+                           class="btn btn-light btn-elevate" target="_blank">RTL Version</a>
+                    </div>
+                </div>
+            </div>
+            <div class="beauty-demo-panel__item beauty-demo-panel__item--active">
+                <div class="beauty-demo-panel__item-title">
+                    Demo 6
+                </div>
+                <div class="beauty-demo-panel__item-preview">
+                    <img src="../../../themes/keen/doc/assets/img/demos/demo6.jpg" alt="" />
+                    <div class="beauty-demo-panel__item-preview-overlay">
+                        <a href="https://keenthemes.com/keen/preview/demo6/demo6/index.html"
+                           class="btn btn-brand btn-elevate " target="_blank">Default</a>
+                        <a href="https://keenthemes.com/keen/preview/demo6/demo6/rtl/index.html"
+                           class="btn btn-light btn-elevate" target="_blank">RTL Version</a>
+                    </div>
+                </div>
+            </div>
+            <div class="beauty-demo-panel__item ">
+                <div class="beauty-demo-panel__item-title">
+                    Demo 7
+                </div>
+                <div class="beauty-demo-panel__item-preview">
+                    <img src="../../../themes/keen/doc/assets/img/demos-small/Demo-1.png" alt="" />
+                    <div class="beauty-demo-panel__item-preview-overlay">
+                        <a href="#" class="btn btn-brand btn-elevate disabled">Coming soon</a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="beauty-demo-panel__item ">
+                <div class="beauty-demo-panel__item-title">
+                    Demo 8
+                </div>
+                <div class="beauty-demo-panel__item-preview">
+                    <img src="../../../themes/keen/doc/assets/img/demos-small/Demo-2.png" alt="" />
+                    <div class="beauty-demo-panel__item-preview-overlay">
+                        <a href="#" class="btn btn-brand btn-elevate disabled">Coming soon</a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="beauty-demo-panel__item ">
+                <div class="beauty-demo-panel__item-title">
+                    Demo 9
+                </div>
+                <div class="beauty-demo-panel__item-preview">
+                    <img src="../../../themes/keen/doc/assets/img/demos-small/Demo-3.png" alt="" />
+                    <div class="beauty-demo-panel__item-preview-overlay">
+                        <a href="#" class="btn btn-brand btn-elevate disabled">Coming soon</a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="beauty-demo-panel__item ">
+                <div class="beauty-demo-panel__item-title">
+                    Demo 10
+                </div>
+                <div class="beauty-demo-panel__item-preview">
+                    <img src="../../../themes/keen/doc/assets/img/demos-small/Demo-4.png" alt="" />
+                    <div class="beauty-demo-panel__item-preview-overlay">
+                        <a href="#" class="btn btn-brand btn-elevate disabled">Coming soon</a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="beauty-demo-panel__item ">
+                <div class="beauty-demo-panel__item-title">
+                    Demo 11
+                </div>
+                <div class="beauty-demo-panel__item-preview">
+                    <img src="../../../themes/keen/doc/assets/img/demos-small/Demo-5.png" alt="" />
+                    <div class="beauty-demo-panel__item-preview-overlay">
+                        <a href="#" class="btn btn-brand btn-elevate disabled">Coming soon</a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="beauty-demo-panel__item ">
+                <div class="beauty-demo-panel__item-title">
+                    Demo 12
+                </div>
+                <div class="beauty-demo-panel__item-preview">
+                    <img src="../../../themes/keen/doc/assets/img/demos-small/Demo-6.png" alt="" />
+                    <div class="beauty-demo-panel__item-preview-overlay">
+                        <a href="#" class="btn btn-brand btn-elevate disabled">Coming soon</a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="beauty-demo-panel__item ">
+                <div class="beauty-demo-panel__item-title">
+                    Demo 13
+                </div>
+                <div class="beauty-demo-panel__item-preview">
+                    <img src="../../../themes/keen/doc/assets/img/demos-small/Demo-7.png" alt="" />
+                    <div class="beauty-demo-panel__item-preview-overlay">
+                        <a href="#" class="btn btn-brand btn-elevate disabled">Coming soon</a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="beauty-demo-panel__item ">
+                <div class="beauty-demo-panel__item-title">
+                    Demo 14
+                </div>
+                <div class="beauty-demo-panel__item-preview">
+                    <img src="../../../themes/keen/doc/assets/img/demos-small/Demo-8.png" alt="" />
+                    <div class="beauty-demo-panel__item-preview-overlay">
+                        <a href="#" class="btn btn-brand btn-elevate disabled">Coming soon</a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="beauty-demo-panel__item ">
+                <div class="beauty-demo-panel__item-title">
+                    Demo 15
+                </div>
+                <div class="beauty-demo-panel__item-preview">
+                    <img src="../../../themes/keen/doc/assets/img/demos-small/Demo-9.png" alt="" />
+                    <div class="beauty-demo-panel__item-preview-overlay">
+                        <a href="#" class="btn btn-brand btn-elevate disabled">Coming soon</a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="beauty-demo-panel__item ">
+                <div class="beauty-demo-panel__item-title">
+                    Demo 16
+                </div>
+                <div class="beauty-demo-panel__item-preview">
+                    <img src="../../../themes/keen/doc/assets/img/demos-small/Demo-10.png" alt="" />
+                    <div class="beauty-demo-panel__item-preview-overlay">
+                        <a href="#" class="btn btn-brand btn-elevate disabled">Coming soon</a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="beauty-demo-panel__item ">
+                <div class="beauty-demo-panel__item-title">
+                    Demo 17
+                </div>
+                <div class="beauty-demo-panel__item-preview">
+                    <img src="../../../themes/keen/doc/assets/img/demos-small/Demo-11.png" alt="" />
+                    <div class="beauty-demo-panel__item-preview-overlay">
+                        <a href="#" class="btn btn-brand btn-elevate disabled">Coming soon</a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="beauty-demo-panel__item ">
+                <div class="beauty-demo-panel__item-title">
+                    Demo 18
+                </div>
+                <div class="beauty-demo-panel__item-preview">
+                    <img src="../../../themes/keen/doc/assets/img/demos-small/Demo-12.png" alt="" />
+                    <div class="beauty-demo-panel__item-preview-overlay">
+                        <a href="#" class="btn btn-brand btn-elevate disabled">Coming soon</a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="beauty-demo-panel__item ">
+                <div class="beauty-demo-panel__item-title">
+                    Demo 19
+                </div>
+                <div class="beauty-demo-panel__item-preview">
+                    <img src="../../../themes/keen/doc/assets/img/demos-small/Demo-14.png" alt="" />
+                    <div class="beauty-demo-panel__item-preview-overlay">
+                        <a href="#" class="btn btn-brand btn-elevate disabled">Coming soon</a>
+
+                    </div>
+                </div>
+            </div>
+            <div class="beauty-demo-panel__item ">
+                <div class="beauty-demo-panel__item-title">
+                    Demo 20
+                </div>
+                <div class="beauty-demo-panel__item-preview">
+                    <img src="../../../themes/keen/doc/assets/img/demos-small/Demo-13.png" alt="" />
+                    <div class="beauty-demo-panel__item-preview-overlay">
+                        <a href="#" class="btn btn-brand btn-elevate disabled">Coming soon</a>
+
+                    </div>
+                </div>
+            </div>
+            <a href="https://themes.getbootstrap.com/product/keen-the-ultimate-bootstrap-admin-theme/" target="_blank"
+               class="beauty-demo-panel__purchase btn btn-brand btn-elevate btn-bold btn-upper">
+                Buy Keen Now!
+            </a>
+        </div>
+    </div>
+    <ul class="beauty-sticky-toolbar" style="margin-top: 30px;">
+        <li class="beauty-sticky-toolbar__item beauty-sticky-toolbar__item--demo-toggle" id="Beauty_demo_panel_toggle"
+            data-toggle="beauty-tooltip" title="مشاهده نوبت های امروز" data-placement="right">
+            <a href="#" class=""> نوبت های امروز</a>
+        </li>
+        <li class="beauty-sticky-toolbar__item beauty-sticky-toolbar__item--builder" data-toggle="beauty-tooltip"
+            title="نوبت دهی" data-placement="left">
+            <a href="#" onclick="appointment_QuickView()"><i class="la la-plus-square-o"></i></a>
+        </li>
+        <li class="beauty-sticky-toolbar__item beauty-sticky-toolbar__item--builder" data-toggle="beauty-tooltip"
+            title="پرداختی ها" data-placement="left">
+            <a href="#"><i class="flaticon2-box"></i></a>
+        </li>
+        <li class="beauty-sticky-toolbar__item beauty-sticky-toolbar__item--docs" data-toggle="beauty-tooltip" title="راهنمای برنامه"
+            data-placement="left">
+            <a href="#" target="_blank"><i class="flaticon2-file"></i></a>
+        </li>
+    </ul>
+    <script>
+        var BeautyAppOptions = {
+            "colors": {
+                "state": {
+                    "brand": "#3699ff",
+                    "metal": "#c4c5d6",
+                    "light": "#ffffff",
+                    "accent": "#00c5dc",
+                    "primary": "#5867dd",
+                    "success": "#34bfa3",
+                    "info": "#36a3f7",
+                    "warning": "#ffb822",
+                    "danger": "#fd3995",
+                    "focus": "#9816f4"
+                },
+                "base": {
+                    "label": [
+                        "#c5cbe3",
+                        "#a1a8c3",
+                        "#3d4465",
+                        "#3e4466"
+                    ],
+                    "shape": [
+                        "#f0f3ff",
+                        "#d9dffa",
+                        "#afb4d4",
+                        "#646c9a"
+                    ]
+                }
+            }
+        };
+
+    </script>
+
+    <script src="~/lib/persianDate.js"></script>
+    <script src="~/css/plugins/intro.js/minified/intro.min.js" asp-append-version="true"></script>
+    <script src="~/js/plugins.js"></script>
+    <script src="~/js/scripts.js"></script>
+
+    <script src="~/js/pages/dashboard.js"></script>
+    <script src="~/js/pages/_layout.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

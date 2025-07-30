@@ -1,0 +1,146 @@
+﻿@model Beauty.Application.Modules.Setting.ViewModel.ProductModifyViewModel
+@{
+    ViewData["Title"] = PageTitleResource.ProductModify;
+}
+
+<section class="users-edit">
+    <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center border-bottom pb-1">
+            <ul class="nav">
+                <li class="nav-item">
+                    <button type="button" class="btn btn-flat-primary  waves-effect waves-light choose_tab active " id="product_tab" data-name="GetProduct">  <i class="feather icon-user mr-25"></i>اطلاعات کالا </button>
+                </li>
+            </ul>
+        </div>
+        <div class="card-content">
+            <div class="card-body">
+                @using (Html.BeginForm((Model.Id == Guid.Empty ? "Create" : "Update"), "Product", FormMethod.Post, new { id = "product_frm", autocomplete = "off" }))
+                {
+                    @Html.HiddenFor(x => x.Id)
+                    <div class="row">
+                        <div class="col-12 col-lg-4 col-md-9 col-sm-12">
+                            <div class="form-group">
+                                <div class="controls">
+                                    @Html.LabelFor(x => x.Name) <span class="text-danger">*</span>
+                                    @Html.TextBoxFor(x => x.Name, null, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-4 col-md-9 col-sm-12">
+                            <div class="form-group">
+                                <div class="controls">
+                                    @Html.LabelFor(x => x.Code) <span class="text-danger">*</span>
+                                    @if (Model.Id == Guid.Empty)
+                                    {
+                                        @Html.TextBoxFor(x => x.Code, null, new { @class = "form-control" })
+                                    }
+                                    else
+                                    {
+                                        @Html.TextBoxFor(x => x.Code, null, new { @class = "form-control", @readonly = "@readonly" })
+                                    }
+                                    <span class="text-danger">کد کالا بعد از ثبت قابل تغییر نمی باشد</span>
+                                    @Html.ValidationMessageFor(model => model.Code, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-4 col-md-9 col-sm-12">
+                            <div class="form-group">
+                                <div class="controls">
+                                    @Html.LabelFor(x => x.UnitId) <span class="text-danger">*</span>
+                                    @Html.DropDownListFor(x => x.UnitId, Model.Units, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.UnitId, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 col-lg-12 col-md-12 col-sm-12">
+                            <div class="form-group">
+                                <div class="controls">
+                                    @Html.LabelFor(x => x.Description)
+                                    @Html.TextAreaFor(x => x.Description, new { @class = "form-control", style = "resize:none" })
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="table-responsive border rounded px-1 ">
+                                <h6 class="border-bottom py-1 mx-1 mb-0 font-medium-2">
+                                    <i class="feather icon-camera mr-50 "></i>تصاویر کالا
+                                    <span class="form-text text-danger" style=" font-size: .8rem !important;">اندازه هر تصویر حداکثر 1400 در 740 و حجم آن حداکثر 500 کیلوبایت باشد  </span>
+                                </h6>
+                                <div class="row" id="image_wrapper">
+                                    @if (Model.Images != null)
+                                    {
+                                        for (int i = 0; i < Model.Images.Count; i++)
+                                        {
+                                            <div class="col-12 col-lg-3 col-md-3 col-sm-12 mt-75" id="image_div_@(i)">
+                                                <input type="file" id="image_file_@(i)" name="Images[@(i)]_File" style="display:none;" onchange="set_image(this,'@(i)')">
+                                                <div class="card bg-dark">
+                                                    <div class="card-content">
+                                                        <div class="card-body">
+                                                            <img class="img-fluid" id="image_prev_@(i)" src="@Model.Images[i].ServerPath" alt="@Model.Name" style="width: 390px; height: 220px;">
+                                                            <div class="d-flex justify-content-start mt-2">
+                                                                <a href="#" class="icon-dislike" onclick="delete_image('@(i)', '@Model.Images[i].Id')">
+                                                                    <i class="feather icon-trash-2 font-medium-5 align-middle text-danger"></i>
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+                                    }
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 col-lg-12 col-md-12 col-sm-12 mt-75 pr-lg-25">
+                                        <button type="button" id="btn_add_image" onclick="add_image(this)" value="@(Model.Images!=null?Model.Images.Count:0)" class="btn btn-icon btn-warning mr-1 mb-1 waves-effect waves-light">
+                                            <i class="feather icon-plus"></i>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-12 d-flex flex-sm-row flex-column justify-content-end mt-1">
+                            <button type="button" class="btn btn-primary glow mb-1 mb-sm-0 mr-0 mr-sm-1" id="save_btn">
+                                ثبت
+                            </button>
+                            <a href="@Url.Action("Index","Product")" class="btn btn-outline-warning">انصراف</a>
+                        </div>
+                    </div>
+                }
+
+            </div>
+        </div>
+    </div>
+</section>
+
+<script type="text/template" id="image_template">
+    <div class="col-12 col-lg-3 col-md-3 col-sm-12  mt-75" id="image_div_{{index}}">
+        <input type="file" id="image_file_{{index}}" name="Images[{{index}}]_File" style="display:none;" onchange="set_image(this,'{{index}}')">
+        <div class="card bg-dark">
+            <div class="card-content">
+                <div class="card-body">
+                    <img class="img-fluid" id="image_prev_{{index}}" src="/images/image-placeholder.png" alt="{{index}}"  style="width: 390px; height: 220px;">
+                    <div class="d-flex justify-content-start mt-2">
+                        <a href="#" class="icon-dislike" onclick="delete_image('{{index}}', undefined)">
+                            <i class="feather icon-trash-2 font-medium-5 align-middle text-danger"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+
+@section Scripts{
+    <script src="~/lib/mustache.js"></script>
+    <script src="~/js/pages/product-modify.js" asp-append-version="true"></script>
+}
+
