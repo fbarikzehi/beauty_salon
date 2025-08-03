@@ -11,10 +11,10 @@ namespace Beauty.Persistence.EntityConfigurations.Salon
         public void Configure(EntityTypeBuilder<SalonModel> builder)
         {
             builder.Property(x => x.Id).HasDefaultValueSql("NEWID()");
-            //builder.HasData(new List<SalonModel>
-            //{
-            //   new SalonModel { Id = Guid.NewGuid(),Logo="/images/dye.png"},
-            //});
+            builder.HasData(new List<SalonModel>
+            {
+              new SalonModel { Id = Guid.NewGuid(),Logo="/images/dye.png"},
+            });
             builder.HasQueryFilter(e => !e.IsDeleted);
         }
     }

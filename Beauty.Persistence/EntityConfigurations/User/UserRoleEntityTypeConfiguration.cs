@@ -14,10 +14,10 @@ namespace Beauty.Persistence.EntityConfigurations.User
         void IEntityTypeConfiguration<UserRoleModel>.Configure(EntityTypeBuilder<UserRoleModel> builder)
         {
             builder.HasAlternateKey(x => x.UserId);
-            //builder.HasData(new List<UserRoleModel> {
-            //     new UserRoleModel {Id=1, RoleId = 1, UserId = new Guid("3C92559B-7154-4220-8E67-949A54D4327F") },
-            //     new UserRoleModel {Id=2, RoleId = 2, UserId = new Guid("AC3092EF-2A8F-439C-9354-47D6FAB98E3A") },
-            //});
+            builder.HasData(new List<UserRoleModel> {
+                new UserRoleModel {Id=1, RoleId = 1, UserId = new Guid("3C92559B-7154-4220-8E67-949A54D4327F") },
+                new UserRoleModel {Id=2, RoleId = 2, UserId = new Guid("AC3092EF-2A8F-439C-9354-47D6FAB98E3A") },
+            });
         }
     }
 }

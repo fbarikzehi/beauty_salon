@@ -15,20 +15,20 @@ namespace Beauty.Persistence.EntityConfigurations.User
         {
             builder.Property(x => x.Id).HasDefaultValueSql("NEWID()");
 
-            //builder.HasData(new List<UserModel> {
-            //new UserModel
-            //{
-            //    Id = new Guid("3C92559B-7154-4220-8E67-949A54D4327F"),
-            //    HashedPassword = PasswordHasher.HashPassword("legend_4121"),
-            //    Username = "admin",
-            //},
-            //new UserModel
-            //{
-            //    Id = new Guid("AC3092EF-2A8F-439C-9354-47D6FAB98E3A"),
-            //    HashedPassword = PasswordHasher.HashPassword("legend_4121"),
-            //    Username = "manager",
-            //}
-            //});
+            builder.HasData(new List<UserModel> {
+            new UserModel
+            {
+               Id = new Guid("3C92559B-7154-4220-8E67-949A54D4327F"),
+               HashedPassword = PasswordHasher.HashPassword("legend_4121"),
+               Username = "admin",
+            },
+            new UserModel
+            {
+               Id = new Guid("AC3092EF-2A8F-439C-9354-47D6FAB98E3A"),
+               HashedPassword = PasswordHasher.HashPassword("legend_4121"),
+               Username = "manager",
+            }
+            });
             builder.HasQueryFilter(e => !e.IsDeleted);
         }
     }
